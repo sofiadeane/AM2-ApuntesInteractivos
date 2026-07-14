@@ -296,9 +296,9 @@
   };
   const allSections = ['home','u1','u2','u3','u4','u5','u6','u7','u8','u9','u10','u11','u12','recursos','tips','examenes'];
 
-  /* ================= CARGA PEREZOSA DE SECCIONES (secciones/*.html) =================
+  /* ================= CARGA PEREZOSA DE SECCIONES (*.html) =================
      "home" ya viene armada en este mismo archivo (es la vista por defecto). El resto
-     de las secciones son archivos aparte en secciones/, y se piden con fetch() la
+     de las secciones son archivos aparte en la raíz del repo, y se piden con fetch() la
      primera vez que el usuario navega a cada una (y quedan cacheadas en el DOM para
      las próximas veces). Esto requiere que el sitio se sirva por http(s) (GitHub
      Pages funciona perfecto); no funciona abriendo este archivo con doble clic
@@ -306,7 +306,7 @@
   ============================================================================ */
   const loadedSections = new Set(['home']);
   // La sección "examenes" (id interno, usado por el sidebar/JS) vive en el archivo
-  // secciones/parciales.html (nombre distinto al id). El resto usa el mismo nombre
+  // parciales.html (nombre distinto al id). El resto usa el mismo nombre
   // que su id (u1.html, u2.html, ..., recursos.html, tips.html).
   const sectionFileNames = { examenes: 'parciales' };
 
@@ -315,7 +315,7 @@
     const el = document.getElementById('section-'+unit);
     const fileName = sectionFileNames[unit] || unit;
     try{
-      const res = await fetch('secciones/'+fileName+'.html');
+      const res = await fetch(fileName+'.html');
       const html = await res.text();
       el.innerHTML = html;
       loadedSections.add(unit);
@@ -330,7 +330,7 @@
       });
       if(unit==='examenes' && !quiz1Started){ quiz1Started = true; renderQuiz1Question(); }
     }catch(err){
-      el.innerHTML = '<p style="text-align:center; color:var(--ink-soft); font-family:\'IBM Plex Mono\',monospace; padding:60px 20px;">No se pudo cargar esta sección (secciones/'+fileName+'.html). Si estás abriendo el archivo directo con doble clic, necesitás servirlo con un servidor local o subirlo a GitHub Pages.</p>';
+      el.innerHTML = '<p style="text-align:center; color:var(--ink-soft); font-family:\'IBM Plex Mono\',monospace; padding:60px 20px;">No se pudo cargar esta sección ('+fileName+'.html). Si estás abriendo el archivo directo con doble clic, necesitás servirlo con un servidor local o subirlo a GitHub Pages.</p>';
     }
   }
 
