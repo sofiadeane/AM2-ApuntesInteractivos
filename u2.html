@@ -1,0 +1,188 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 2: Nociones de topología, funciones</h2>
+    <p class="intro-line">¿Te piden el <b>dominio</b> de una función o campo, clasificar un <b>conjunto</b> (abierto/cerrado/acotado), o trazar <b>curvas de nivel</b>?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad2.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 2 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u2-dominio" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u2','dominio')">
+      <span class="eyebrow">Dom(f)</span>
+      <p class="cc-title">DOMINIO</p>
+      <p class="cc-desc">Dominio natural de una función o campo, y si es abierto/cerrado.</p>
+    </div>
+    <div class="choice-card" id="u2-conjuntos" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u2','conjuntos')">
+      <span class="eyebrow">Topología</span>
+      <p class="cc-title">CONJUNTOS: ABIERTO, CERRADO, ACOTADO</p>
+      <p class="cc-desc">Interior, frontera, exterior, punto de acumulación.</p>
+    </div>
+    <div class="choice-card" id="u2-nivel" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u2','nivel')">
+      <span class="eyebrow">Ck = {f(x)=k}</span>
+      <p class="cc-title">CURVAS Y SUPERFICIES DE NIVEL</p>
+      <p class="cc-desc">Mapa de contorno de una función.</p>
+    </div>
+  </div>
+
+  <div id="panel-u2-dominio" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+    <div class="detail-header">DOMINIO</div>
+    <div class="detail-sub">Función escalar f, o campo (escalar o vectorial) f.</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Dominio natural</div>
+          <p>El dominio natural de una función es el conjunto más grande de puntos para los cuales todas las operaciones que aparecen en su fórmula están bien definidas (no dividir por 0, no hacer raíces pares de negativos, no tomar logaritmo de algo ≤0, etc.).</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Dominio de un campo vectorial (o de una función con varias componentes)</div>
+          <p>Si <span class="mathi">\vec f=(f_1,f_2,\ldots,f_m)</span>, el dominio natural de <span class="mathi">\vec f</span> es la intersección de los dominios naturales de cada componente:</p>
+          $$\text{Dom}(\vec f) = \text{Dom}(f_1)\cap\text{Dom}(f_2)\cap\cdots\cap\text{Dom}(f_m)$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué el dominio de un campo vectorial es una intersección?</b> Porque para poder evaluar <span class="mathi">\vec f(x)</span> necesitás que <i>todas</i> sus componentes den un resultado válido en ese punto; si una sola componente no está definida ahí, el vector completo tampoco lo está.</p>
+        <p><b>¿Cómo sé si el dominio que encontré es abierto?</b> Fijate si las desigualdades que lo definen son estrictas (<span class="mathi">&lt;,\ &gt;</span>) o no (<span class="mathi">\le,\ \ge</span>). Si son todas estrictas, el conjunto es abierto (ningún punto de la "cáscara" que lo limita está incluido). Si aparece algún <span class="mathi">\le</span> o <span class="mathi">\ge</span>, esos puntos de la cáscara sí están incluidos, y en general el conjunto no es abierto (podría ser cerrado, si están todos los puntos de la frontera).</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Identificar cada operación "peligrosa" en la fórmula de f (denominadores, raíces de índice par, logaritmos, arcoseno/arcocoseno, etc.).</div></li>
+      <li><div class="step-body">Plantear la condición que cada una exige (denominador ≠ 0, argumento de la raíz par ≥ 0, argumento del logaritmo &gt; 0, etc.).</div></li>
+      <li><div class="step-body">Si f es un campo con varias componentes, repetir para cada una y armar la intersección de todas las condiciones.</div></li>
+      <li><div class="step-body">Graficar el conjunto resultante y, si te lo piden, indicar si es abierto o cerrado.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 03_limite.pdf (apunte de la cátedra, ejemplo 32)</span>
+        <p><b>Enunciado:</b> determine el mayor subconjunto abierto A de <span class="mathi">\mathbb{R}^2</span> donde <span class="mathi">f(x,y)=\sqrt{1-x^2-y^2}</span> define una función continua en A.</p>
+        <p><b>Paso 1.</b> Identificamos la operación peligrosa: una raíz cuadrada (índice par), así que el argumento tiene que ser <span class="mathi">\ge 0</span>.</p>
+        <p><b>Paso 2.</b> Planteamos la condición: <span class="mathi">1-x^2-y^2\ge0</span>, es decir <span class="mathi">x^2+y^2\le1</span>.</p>
+        <p><b>Paso 3.</b> El dominio natural es <span class="mathi">\text{Dom}(f)=\{(x,y):x^2+y^2\le1\}</span> (el disco cerrado). Como f es composición de funciones continuas (un polinomio y la raíz cuadrada), es continua en todo su dominio.</p>
+        <p><b>Paso 4.</b> Analizamos si ese conjunto es abierto: no lo es, porque los puntos de la circunferencia <span class="mathi">x^2+y^2=1</span> no son interiores (cualquier disco centrado ahí se sale del conjunto).</p>
+        <p><b>Paso 5.</b> Nos quedamos con el interior del dominio, descartando esos puntos de la frontera:</p>
+        $$A = \{(x,y): x^2+y^2 < 1\}$$
+        <div class="example-answer">A = {(x,y): x²+y² &lt; 1}</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u2-conjuntos" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+    <div class="detail-header">CONJUNTOS: ABIERTO, CERRADO, ACOTADO</div>
+    <div class="detail-sub">Un conjunto A ⊂ ℝⁿ.</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Bola abierta</div>
+          <p>Con <span class="mathi">x_0\in\mathbb{R}^n</span> y <span class="mathi">r&gt;0</span>:</p>
+          $$B_r(x_0) = \{x\in\mathbb{R}^n : \|x-x_0\|&lt;r\}$$
+          <p>(en <span class="mathi">\mathbb{R}</span> es un intervalo abierto, en <span class="mathi">\mathbb{R}^2</span> un disco sin el borde, en <span class="mathi">\mathbb{R}^3</span> el interior de una esfera.)</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Punto interior, exterior y frontera</div>
+          <p><span class="mathi">x_0</span> es <b>interior</b> a A si existe <span class="mathi">r&gt;0</span> tal que <span class="mathi">B_r(x_0)\subset A</span> (hay una bolita centrada en <span class="mathi">x_0</span> totalmente adentro de A).</p>
+          <p><span class="mathi">x_0</span> es <b>exterior</b> a A si existe <span class="mathi">r&gt;0</span> tal que <span class="mathi">B_r(x_0)\cap A=\emptyset</span> (hay una bolita que no toca a A en absoluto).</p>
+          <p><span class="mathi">x_0</span> es <b>frontera</b> de A si no es ni interior ni exterior: toda bola centrada en <span class="mathi">x_0</span>, por más chica que sea, tiene puntos de A y puntos fuera de A.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Conjunto abierto, cerrado y acotado</div>
+          <p>A es <b>abierto</b> si todos sus puntos son interiores (ningún punto de su frontera pertenece a A).</p>
+          <p>A es <b>cerrado</b> si contiene a toda su frontera.</p>
+          <p>A es <b>acotado</b> si existe alguna bola abierta (de radio suficientemente grande) que contiene a A por completo.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Punto de acumulación</div>
+          <p><span class="mathi">x_0</span> es punto de acumulación de A si para todo <span class="mathi">r&gt;0</span>, la bola reducida <span class="mathi">B_r^*(x_0)=B_r(x_0)-\{x_0\}</span> tiene intersección no vacía con A (es decir, hay puntos de A tan cerca de <span class="mathi">x_0</span> como quieras, sin contar el propio <span class="mathi">x_0</span>).</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Un conjunto puede no ser ni abierto ni cerrado?</b> Sí, y es bastante común: alcanza con que tenga <i>algunos</i> puntos de su frontera pero no todos. Por ejemplo, un disco donde una parte del borde está incluida y otra no.</p>
+        <p><b>¿Un punto de acumulación tiene que pertenecer al conjunto?</b> No necesariamente. Puede haber puntos de acumulación de A que no sean elementos de A (por ejemplo, un punto en la frontera de un conjunto abierto: no pertenece al conjunto, pero hay puntos de A arbitrariamente cerca).</p>
+        <p><b>Truco rápido para "abierto vs. cerrado" a partir de las desigualdades:</b> si el conjunto está definido únicamente con desigualdades estrictas (<span class="mathi">&lt;,\ &gt;</span>), es abierto. Si está definido únicamente con <span class="mathi">\le,\ \ge</span>, es cerrado. Si mezcla ambos tipos (por ejemplo <span class="mathi">1&lt;x^2+y^2\le4</span>), en general no es ni abierto ni cerrado.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Graficar el conjunto.</div></li>
+      <li><div class="step-body">Identificar la frontera: los puntos "límite" entre el conjunto y su complemento (normalmente donde las desigualdades se cumplen con igualdad).</div></li>
+      <li><div class="step-body">¿La frontera está completamente incluida en A? Si sí, es candidato a cerrado. ¿Ningún punto de la frontera está incluido? Es candidato a abierto.</div></li>
+      <li><div class="step-body">¿A cabe dentro de alguna bola de radio finito? Si sí, es acotado; si se extiende indefinidamente en alguna dirección, no lo es.</div></li>
+      <li><div class="step-body">Si piden puntos de acumulación específicos, chequear si toda bola reducida centrada ahí toca al conjunto, sin importar qué tan chica sea.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Elaboración propia (ejercicio tipo, usando las definiciones de la cátedra)</span>
+        <p><b>Enunciado:</b> clasifique el conjunto <span class="mathi">A=\{(x,y): 1&lt;x^2+y^2\le4\}</span>: indique si es abierto, cerrado y/o acotado, y determine su interior y su frontera.</p>
+        <p><b>Paso 1.</b> Graficamos: es un anillo entre las circunferencias de radio 1 y radio 2, sin incluir la interior (<span class="mathi">1&lt;\ldots</span>, desigualdad estricta) pero incluyendo la exterior (<span class="mathi">\ldots\le4</span>).</p>
+        <p><b>Paso 2.</b> Identificamos la frontera: son las dos circunferencias, <span class="mathi">x^2+y^2=1</span> y <span class="mathi">x^2+y^2=4</span>.</p>
+        <p><b>Paso 3.</b> ¿Está toda la frontera incluida en A? La circunferencia de radio 1 NO está incluida (la desigualdad es estricta ahí), pero la de radio 2 SÍ. Como falta una parte de la frontera, A no es cerrado; y como sobra la otra parte (si fuera abierto no debería tener ningún punto de la frontera), tampoco es abierto.</p>
+        <p><b>Paso 4.</b> ¿Es acotado? Sí, todo A cabe dentro de, por ejemplo, una bola de radio 3 centrada en el origen.</p>
+        <p><b>Paso 5.</b> El interior de A es el mismo anillo pero sin ninguna de las dos circunferencias: <span class="mathi">A^\circ=\{(x,y):1&lt;x^2+y^2&lt;4\}</span>.</p>
+        <div class="example-answer">No es abierto ni cerrado; es acotado. Frontera = {r=1} ∪ {r=2}.</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u2-nivel" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+    <div class="detail-header">CURVAS Y SUPERFICIES DE NIVEL</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ.</div>
+
+    <details class="block">
+      <summary>Definición que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Conjunto de nivel</div>
+          <p>Dados <span class="mathi">f:A\subset\mathbb{R}^n\to\mathbb{R}</span> y <span class="mathi">k\in\mathbb{R}</span>, llamamos conjunto de nivel k de f a:</p>
+          $$C_k = \{x\in A : f(x)=k\}$$
+          <p>Si <span class="mathi">n=2</span>, al conjunto de nivel lo llamamos <b>curva de nivel</b>; si <span class="mathi">n=3</span>, <b>superficie de nivel</b>. A una colección de curvas de nivel la llamamos un <b>mapa de contorno</b> de la función.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Dónde "vive" una curva de nivel?</b> Está contenida en el dominio de f, es decir, es un subconjunto de <span class="mathi">\mathbb{R}^2</span> (no de <span class="mathi">\mathbb{R}^3</span>). Esto se confunde fácil con el gráfico de f, que sí es un subconjunto de <span class="mathi">\mathbb{R}^3</span> (los puntos <span class="mathi">(x,y,f(x,y))</span>). La curva de nivel es, en cierto sentido, la "sombra" que deja el gráfico al cortarlo con el plano horizontal <span class="mathi">z=k</span> y proyectar ese corte de vuelta al plano xy.</p>
+        <p><b>¿Qué pasa si para un k dado no hay ningún punto que cumpla f(x)=k?</b> El conjunto de nivel es vacío para ese k (no hay curva que dibujar). Es perfectamente normal, sobre todo en los extremos del recorrido de f.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Elegir algunos valores representativos de k (o usar los que pide el enunciado).</div></li>
+      <li><div class="step-body">Para cada k, plantear la ecuación <span class="mathi">f(x,y)=k</span> (o <span class="mathi">f(x,y,z)=k</span>) y reconocer qué curva (o superficie) es.</div></li>
+      <li><div class="step-body">Graficar cada conjunto de nivel en el dominio de f (plano xy, o espacio si es superficie de nivel).</div></li>
+      <li><div class="step-body">Si piden el mapa de contorno, dibujar varias curvas de nivel juntas, etiquetando cada una con su valor de k.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 01_funciones.pdf (apunte de la cátedra, ejemplo 8)</span>
+        <p><b>Enunciado:</b> trace un mapa de contorno de la función <span class="mathi">f(x,y)=x^2+y^2</span>.</p>
+        <p><b>Paso 1.</b> Elegimos algunos valores de k para trazar: <span class="mathi">k=-1,\ 0,\ 1,\ 2,\ 4</span>.</p>
+        <p><b>Paso 2.</b> Planteamos <span class="mathi">f(x,y)=k</span> para cada uno:</p>
+        <p><span class="mathi">k=-1</span>: <span class="mathi">x^2+y^2=-1</span>, no tiene solución (una suma de cuadrados nunca es negativa), así que <span class="mathi">C_{-1}=\emptyset</span>.</p>
+        <p><span class="mathi">k=0</span>: <span class="mathi">x^2+y^2=0</span>, sólo se cumple en el origen, así que <span class="mathi">C_0=\{(0,0)\}</span> (un único punto).</p>
+        <p><span class="mathi">k=1,2,4</span>: <span class="mathi">x^2+y^2=k</span> es una circunferencia centrada en el origen de radio <span class="mathi">\sqrt k</span>.</p>
+        <p><b>Paso 3.</b> El mapa de contorno queda formado por circunferencias concéntricas de radio creciente (más juntas cerca del origen, porque ahí f crece más rápido en proporción), con el origen como caso degenerado.</p>
+        <div class="example-answer">Circunferencias concéntricas de radio √k (k&gt;0); un punto en k=0; vacío para k&lt;0.</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u2" class="placeholder">Elegí DOMINIO, CONJUNTOS o CURVAS DE NIVEL para ver los pasos</div>

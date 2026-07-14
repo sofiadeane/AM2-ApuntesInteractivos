@@ -1,0 +1,204 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 4: Derivadas parciales y direccionales</h2>
+    <p class="intro-line">¿Necesitás la derivada por <b>definición</b> (límite), las <b>parciales y el gradiente</b>, o una <b>derivada de orden superior</b>?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad4.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 4 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u4-direccional" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u4','direccional')">
+      <span class="eyebrow">∂f/∂v (x₀) = lim...</span>
+      <p class="cc-title">DERIVADA POR DEFINICIÓN</p>
+      <p class="cc-desc">Derivada respecto a un vector o direccional, usando el límite.</p>
+    </div>
+    <div class="choice-card" id="u4-parciales" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u4','parciales')">
+      <span class="eyebrow">∇f</span>
+      <p class="cc-title">PARCIALES Y GRADIENTE</p>
+      <p class="cc-desc">Regla práctica, derivada direccional máxima y direcciones de derivada nula.</p>
+    </div>
+    <div class="choice-card" id="u4-superior" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u4','superior')">
+      <span class="eyebrow">∂²f/∂x∂y</span>
+      <p class="cc-title">DERIVADAS DE ORDEN SUPERIOR</p>
+      <p class="cc-desc">Derivadas segundas y el teorema de Schwarz.</p>
+    </div>
+  </div>
+
+  <div id="panel-u4-direccional" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+    <div class="detail-header">DERIVADA POR DEFINICIÓN</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ, A abierto, x₀ ∈ A, vector v ≠ 0.</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Derivada de f en x₀ respecto de un vector v</div>
+          $$\frac{\partial f}{\partial \vec v}(x_0) = \lim_{t\to0} \frac{f(x_0+t\vec v)-f(x_0)}{t}$$
+          <p>(si el límite existe)</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Derivada direccional</div>
+          <p>Es la derivada respecto de un vector, pero tomando específicamente el versor <span class="mathi">\check v = \vec v/\|\vec v\|</span> (vector de norma 1). Por el principio de homogeneidad:</p>
+          $$\frac{\partial f}{\partial \check v}(x_0) = \frac{1}{\|\vec v\|}\cdot\frac{\partial f}{\partial \vec v}(x_0)$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Principio de homogeneidad</div>
+          <p>Si <span class="mathi">\vec w=k\vec v</span> (con <span class="mathi">k\ne0</span>), la derivada respecto de <span class="mathi">\vec w</span> existe si y sólo si existe la derivada respecto de <span class="mathi">\vec v</span>, y:</p>
+          $$\frac{\partial f}{\partial \vec w}(x_0) = k\cdot\frac{\partial f}{\partial \vec v}(x_0)$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué la derivada direccional exige un versor?</b> Porque el resultado cambia según qué tan "largo" sea el vector con el que derivás (por el principio de homogeneidad); para que la derivada direccional mida algo estandarizado (independiente de la escala del vector elegido), se fija la convención de usar siempre un vector de norma 1.</p>
+        <p><b>¿Cuándo tengo que usar sí o sí la definición (el límite)?</b> Cuando el punto <span class="mathi">x_0</span> es un punto de "corte" de una función partida (ahí la "regla práctica" de derivar como si fuera una sola fórmula no es válida), o cuando te piden explícitamente justificar la existencia de la derivada a partir de la definición.</p>
+        <p><b>Atajo:</b> si <span class="mathi">g(t)=f(x_0+t\vec v)</span> resulta una función de una sola variable derivable con las reglas comunes (por ejemplo, un polinomio en t), entonces <span class="mathi">\frac{\partial f}{\partial \vec v}(x_0)=g'(0)</span>: es exactamente el mismo resultado que el límite, pero se calcula mucho más rápido con derivación de una variable.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Escribir <span class="mathi">x_0+t\vec v</span> componente a componente (o <span class="mathi">x_0+t\check v</span> si piden directamente la direccional, con <span class="mathi">\check v</span> ya normalizado).</div></li>
+      <li><div class="step-body">Definir <span class="mathi">g(t)=f(x_0+t\vec v)</span> y plantear el cociente incremental (o directamente <span class="mathi">g'(0)</span> si g es derivable con reglas comunes).</div></li>
+      <li><div class="step-body">Si g(t) es derivable en t=0 con las reglas usuales, calcular <span class="mathi">g'(0)</span> directamente.</div></li>
+      <li><div class="step-body">Si no (por ejemplo, en un punto de corte), calcular el límite explícitamente con las técnicas de la Unidad 3 (acotación o factorización).</div></li>
+      <li><div class="step-body">Si te dieron un vector v no unitario y piden la derivada direccional, dividir el resultado por <span class="mathi">\|\vec v\|</span> al final.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 04_derivadasF.pdf (apunte de la cátedra, ejemplos 2 y 4)</span>
+        <p><b>Enunciado:</b> calcule, si existe, la derivada de <span class="mathi">f(x,y)=x^2y</span> en <span class="mathi">x_0=(1,-1)</span> respecto al vector <span class="mathi">\vec v=(2,3)</span>.</p>
+        <p><b>Paso 1.</b> Escribimos <span class="mathi">x_0+t\vec v = (1+2t,\ -1+3t)</span>.</p>
+        <p><b>Paso 2.</b> Definimos <span class="mathi">g(t)=f(1+2t,-1+3t)=(1+2t)^2(-1+3t)</span>.</p>
+        <p><b>Paso 3.</b> Como g es un polinomio en t, es derivable, así que la derivada existe y vale <span class="mathi">g'(0)</span>. Expandimos g(t):</p>
+        $$g(t) = (1+4t+4t^2)(-1+3t) = -1-t+8t^2+12t^3$$
+        <p><b>Paso 4.</b> Derivamos:</p>
+        $$g'(t) = -1+16t+36t^2$$
+        <p><b>Paso 5.</b> Evaluamos en t=0:</p>
+        $$\frac{\partial f}{\partial \vec v}(1,-1) = g'(0) = -1$$
+        <div class="example-answer">∂f/∂v (1,-1) = -1</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u4-parciales" class="detail-panel" style="--panel-color:#D4FF3F; --panel-text:#1B2340;">
+    <div class="detail-header">PARCIALES Y GRADIENTE</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ, A abierto.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Derivada parcial</div>
+          <p>Es la derivada direccional en la dirección del i-ésimo vector canónico <span class="mathi">\check e_i</span>:</p>
+          $$\frac{\partial f}{\partial x_i}(x) = \lim_{h\to0}\frac{f(x+h\check e_i)-f(x)}{h}$$
+          <p>En la práctica (si f es una fórmula común, no partida), se calcula derivando respecto de <span class="mathi">x_i</span> y tratando a las demás variables como constantes.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Gradiente</div>
+          $$\nabla f(x_0) = \left(\frac{\partial f}{\partial x_1}(x_0),\ \frac{\partial f}{\partial x_2}(x_0),\ \ldots,\ \frac{\partial f}{\partial x_n}(x_0)\right)$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Relación con la derivada direccional (si f es diferenciable)</div>
+          $$\frac{\partial f}{\partial \check v}(x_0) = \nabla f(x_0)\cdot\check v$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Derivada direccional máxima</div>
+          <p>Si f es diferenciable en <span class="mathi">x_0</span> y <span class="mathi">\nabla f(x_0)\ne\vec0</span>, existe la derivada direccional máxima, vale <span class="mathi">\|\nabla f(x_0)\|</span>, y se alcanza en la dirección:</p>
+          $$\check v = \frac{\nabla f(x_0)}{\|\nabla f(x_0)\|}$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué la regla práctica no siempre sirve?</b> Porque supone que f está dada por una única fórmula válida en todo un entorno del punto. En un punto de "corte" de una función partida, la regla práctica no es aplicable: ahí hay que ir a la definición por límite (ver la rama "Derivada por definición").</p>
+        <p><b>¿Qué significa que exista "derivada direccional máxima"?</b> Que hay una dirección particular en la que la derivada direccional da el mayor valor posible entre todas las direcciones, y ese valor máximo es exactamente <span class="mathi">\|\nabla f(x_0)\|</span> (nunca se puede superar, porque <span class="mathi">\nabla f(x_0)\cdot\check v \le \|\nabla f(x_0)\|</span> para cualquier versor, con igualdad sólo cuando <span class="mathi">\check v</span> apunta en la dirección del gradiente).</p>
+        <p><b>¿Cómo hallo las direcciones de derivada nula?</b> Son los versores perpendiculares al gradiente (donde el producto escalar <span class="mathi">\nabla f(x_0)\cdot\check v=0</span>). En el plano hay exactamente dos (uno opuesto al otro); en el espacio, infinitos, formando una circunferencia.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Si f es una fórmula común (no partida) en un entorno del punto, calcular cada derivada parcial con la regla práctica.</div></li>
+      <li><div class="step-body">Armar el gradiente: <span class="mathi">\nabla f(x_0)</span> = vector de todas las derivadas parciales evaluadas en <span class="mathi">x_0</span>.</div></li>
+      <li><div class="step-body">Si piden la derivada direccional en un versor <span class="mathi">\check v</span> específico (y f es diferenciable ahí), calcular <span class="mathi">\nabla f(x_0)\cdot\check v</span> directamente.</div></li>
+      <li><div class="step-body">Si piden la derivada direccional máxima: calcular <span class="mathi">\|\nabla f(x_0)\|</span> (si el gradiente es no nulo).</div></li>
+      <li><div class="step-body">Si piden direcciones de derivada nula: buscar los versores perpendiculares al gradiente.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 05_diferenciación F.pdf (apunte de la cátedra, ejemplo 34)</span>
+        <p><b>Enunciado:</b> halle la derivada direccional máxima y las direcciones de derivada direccional nula de <span class="mathi">f(x,y)=x^2e^{xy}</span> en (2,0).</p>
+        <p><b>Paso 1.</b> Calculamos las derivadas parciales:</p>
+        $$f_x' = 2xe^{xy}+x^2ye^{xy} \qquad f_y' = x^3e^{xy}$$
+        <p><b>Paso 2.</b> Ambas son continuas en todo <span class="mathi">\mathbb{R}^2</span> (producto de polinomios y exponenciales de polinomios), así que f es <span class="mathi">C^1</span>, en particular diferenciable en (2,0).</p>
+        <p><b>Paso 3.</b> Evaluamos el gradiente en (2,0):</p>
+        $$\nabla f(2,0) = (2xe^{xy}+x^2ye^{xy},\ x^3e^{xy})\Big|_{(2,0)} = (4,\ 8)$$
+        <p><b>Paso 4.</b> Como <span class="mathi">\nabla f(2,0)\ne\vec0</span>, existe derivada direccional máxima, y vale:</p>
+        $$\|\nabla f(2,0)\| = \|(4,8)\| = \sqrt{80} = 4\sqrt5$$
+        <p><b>Paso 5.</b> Las direcciones de derivada nula son los versores perpendiculares a (4,8) (equivalentemente, a (1,2)):</p>
+        $$\check v_1 = \left(\frac{2}{\sqrt5},\ -\frac{1}{\sqrt5}\right) \qquad \check v_2 = \left(-\frac{2}{\sqrt5},\ \frac{1}{\sqrt5}\right)$$
+        <div class="example-answer">máxima = 4√5; nula en ±(2/√5, -1/√5)</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u4-superior" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+    <div class="detail-header">DERIVADAS DE ORDEN SUPERIOR</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ, A abierto.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Derivada segunda</div>
+          <p>Es la derivada parcial de una derivada parcial: primero derivás f respecto de <span class="mathi">x_i</span>, obtenés una nueva función, y a esa función la volvés a derivar respecto de <span class="mathi">x_j</span> (que puede ser la misma variable u otra):</p>
+          $$\frac{\partial^2 f}{\partial x_j\partial x_i}(x_0) = \frac{\partial}{\partial x_j}\left(\frac{\partial f}{\partial x_i}\right)(x_0)$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Teorema de Schwarz (igualdad de derivadas cruzadas)</div>
+          <p>Si f es <span class="mathi">C^2</span> en un abierto A (es decir, tiene todas las derivadas parciales hasta orden 2, y son continuas), entonces:</p>
+          $$\frac{\partial^2 f}{\partial x_i\partial x_j}(x) = \frac{\partial^2 f}{\partial x_j\partial x_i}(x), \qquad \text{para todo } x\in A$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Qué significa que f sea de clase C²?</b> Que existen todas sus derivadas parciales de primer y segundo orden, y que estas últimas son funciones continuas.</p>
+        <p><b>¿Por qué es útil Schwarz?</b> Te ahorra la mitad del trabajo: si sabés que f es C² (por ser composición/suma/producto de funciones conocidas), no hace falta calcular las dos derivadas cruzadas por separado para "verificar" que dan lo mismo, ya sabés de antemano que van a coincidir, así que calculás la que te resulte más cómoda.</p>
+        <p><b>¿Qué pasa si f no es C²?</b> El teorema no se puede aplicar, y en esos casos (poco frecuentes en los ejercicios típicos de parcial) las derivadas cruzadas podrían no coincidir.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Calcular las derivadas parciales primeras de f con la regla práctica.</div></li>
+      <li><div class="step-body">Volver a derivar cada una de las derivadas primeras, respecto de cada variable, para obtener las derivadas segundas.</div></li>
+      <li><div class="step-body">Si sólo te piden una derivada cruzada y f es C¹, alcanza con calcular la más cómoda de las dos (<span class="mathi">\partial^2f/\partial x\partial y</span> o <span class="mathi">\partial^2f/\partial y\partial x</span>) y usar Schwarz para asegurar que la otra da lo mismo.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 04_derivadasF.pdf (apunte de la cátedra, ejemplo 31)</span>
+        <p><b>Enunciado:</b> calcule las derivadas parciales segundas de <span class="mathi">f(x,y)=\ln(x+y^2)</span>.</p>
+        <p><b>Paso 1.</b> Calculamos las derivadas primeras:</p>
+        $$f_x' = \frac{1}{x+y^2} \qquad f_y' = \frac{2y}{x+y^2}$$
+        <p><b>Paso 2.</b> Derivamos <span class="mathi">f_x'</span> respecto de x (para <span class="mathi">f_{xx}''</span>) y respecto de y (para <span class="mathi">f_{xy}''</span>):</p>
+        $$f_{xx}'' = -\frac{1}{(x+y^2)^2} \qquad f_{xy}'' = -\frac{2y}{(x+y^2)^2}$$
+        <p><b>Paso 3.</b> Derivamos <span class="mathi">f_y'</span> respecto de x (para <span class="mathi">f_{yx}''</span>) y respecto de y (para <span class="mathi">f_{yy}''</span>):</p>
+        $$f_{yx}'' = -\frac{2y}{(x+y^2)^2} \qquad f_{yy}'' = \frac{2x-2y^2}{(x+y^2)^2}$$
+        <p><b>Paso 4.</b> Verificamos Schwarz: <span class="mathi">f_{xy}''=f_{yx}''=-\dfrac{2y}{(x+y^2)^2}</span>, coinciden, como garantiza el teorema (f es C² en su dominio).</p>
+        <div class="example-answer">f''ₓᵧ = f''ᵧₓ = -2y/(x+y²)²</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u4" class="placeholder">Elegí DERIVADA POR DEFINICIÓN, PARCIALES/GRADIENTE o DERIVADAS DE ORDEN SUPERIOR para ver los pasos</div>

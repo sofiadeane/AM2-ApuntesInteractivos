@@ -1,0 +1,210 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 1: Ecuaciones diferenciales ordinarias</h2>
+    <p class="intro-line">¿La ecuación se puede separar en variables, es lineal, o te dan/piden una <b>familia de curvas</b> (o su haz ortogonal)?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad1.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 1 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u1-separables" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u1','separables')">
+      <span class="eyebrow">y' = g(x)h(y)</span>
+      <p class="cc-title">VARIABLES SEPARABLES</p>
+      <p class="cc-desc">Separar x de y e integrar cada lado (incluye el caso homogéneo de grado 0).</p>
+    </div>
+    <div class="choice-card" id="u1-lineal" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u1','lineal')">
+      <span class="eyebrow">y' + a(x)y = b(x)</span>
+      <p class="cc-title">LINEAL DE ORDEN 1</p>
+      <p class="cc-desc">Fórmula madre: y = k·y1 + y0.</p>
+    </div>
+    <div class="choice-card" id="u1-familia" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u1','familia')">
+      <span class="eyebrow">F(x,y) = C</span>
+      <p class="cc-title">FAMILIA DE CURVAS / HAZ ORTOGONAL</p>
+      <p class="cc-desc">De la familia a su EDO, y de ahí a la familia ortogonal.</p>
+    </div>
+  </div>
+
+  <div id="panel-u1-separables" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
+    <div class="detail-header">VARIABLES SEPARABLES</div>
+    <div class="detail-sub">EDO de primer orden y' = f(x,y), con f(x,y) = g(x)h(y).</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">EDO de variables separadas</div>
+          <p>Decimos que una EDO de primer orden <span class="mathi">y'=f(x,y)</span> es de variables separadas si existen funciones g y h tales que <span class="mathi">f(x,y)=g(x)h(y)</span>, es decir, si se puede escribir como:</p>
+          $$y' = g(x)h(y)$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">EDO homogénea de grado 0 (caso especial)</div>
+          <p>Es homogénea de grado 0 si <span class="mathi">f(\lambda x,\lambda y)=f(x,y)</span> para todo <span class="mathi">\lambda\in\mathbb{R}</span>. No es de variables separadas directamente, pero con el cambio <span class="mathi">z=y/x</span> (es decir <span class="mathi">y=xz,\ y'=z+xz'</span>) se transforma en una de variables separadas en x, z.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué escribir y' como dy/dx?</b> Es sólo notación cómoda: permite tratar los diferenciales como cantidades que se pueden reagrupar (multiplicar/dividir) para juntar toda la x de un lado y toda la y del otro, aunque formalmente lo que estás haciendo es una integración por sustitución.</p>
+        <p><b>¿Qué es una solución singular?</b> Una solución particular se obtiene fijando las constantes de la solución general; una solución singular es cualquier solución que NO se puede obtener de esa forma. En variables separables suelen aparecer al dividir por h(y): si existe algún valor <span class="mathi">y_0</span> tal que <span class="mathi">h(y_0)=0</span>, la función constante <span class="mathi">y=y_0</span> también es solución, y puede no estar contenida en la familia general.</p>
+        <p><b>¿Cómo chequeo si es homogénea de grado 0?</b> Reemplazá x por λx e y por λy en f(x,y), y fijate si las λ se cancelan y te queda otra vez f(x,y) (sin ninguna λ suelta).</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Reescribir <span class="mathi">y'</span> como <span class="mathi">\dfrac{dy}{dx}</span>.</div></li>
+      <li><div class="step-body">Reagrupar para que todo lo que tiene x quede de un lado y todo lo que tiene y del otro (multiplicando o dividiendo, nunca sumando o restando términos mezclados).
+        <p>Si no se puede separar así nomás pero la ecuación es homogénea de grado 0, usar <span class="mathi">z=y/x</span> (<span class="mathi">y=xz,\ y'=z+xz'</span>) para llevarla a variables separadas en x, z.</p>
+      </div></li>
+      <li><div class="step-body">Integrar cada lado por separado.</div></li>
+      <li><div class="step-body">Despejar y si es posible; si no, dejar la solución general en forma implícita (y, si se usó el cambio z=y/x, volver a las variables originales).</div></li>
+      <li><div class="step-body">Revisar si se perdieron soluciones singulares al dividir por h(y): chequear si algún <span class="mathi">y=y_0</span> con <span class="mathi">h(y_0)=0</span> también verifica la ecuación original.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: EDO.pdf (apunte de la cátedra, ejemplo 9)</span>
+        <p><b>Enunciado:</b> halle la solución general de <span class="mathi">y'=xe^y</span>.</p>
+        <p><b>Paso 1.</b> Reescribimos: <span class="mathi">\dfrac{dy}{dx}=xe^y</span>.</p>
+        <p><b>Paso 2.</b> Separamos (dividiendo por <span class="mathi">e^y</span>, multiplicando por dx):</p>
+        $$\frac{dy}{e^y} = x\,dx$$
+        <p><b>Paso 3.</b> Integramos cada lado:</p>
+        $$\int e^{-y}\,dy = \int x\,dx$$
+        <p><b>Paso 4.</b> Resolvemos las primitivas (dejamos la constante sólo del lado de x):</p>
+        $$-e^{-y} = \frac{x^2}{2} + C$$
+        <p><b>Paso 5.</b> Despejamos y:</p>
+        $$y = -\ln\left(-\frac{x^2}{2}-C\right)$$
+        <div class="example-answer">y = -ln(-x²/2 - C)</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u1-lineal" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+    <div class="detail-header">LINEAL DE ORDEN 1</div>
+    <div class="detail-sub">EDO de la forma y' + a(x)y = b(x).</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">EDO lineal de primer orden</div>
+          <p>Es lineal si se puede escribir como:</p>
+          $$y' = \alpha(x)y + b(x) \quad\text{o, equivalentemente,}\quad y' + a(x)y = b(x)$$
+          <p>con a, α, b funciones continuas en un intervalo.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Estructura de la solución general ("fórmula madre")</div>
+          <p>La solución general de <span class="mathi">y'+a(x)y=b(x)</span> tiene la forma:</p>
+          $$y_G(x) = k\,y_1(x) + y_0(x), \qquad k\in\mathbb{R}$$
+          <p>donde <span class="mathi">y_1</span> es una solución no nula de la homogénea asociada <span class="mathi">y'+a(x)y=0</span>, e <span class="mathi">y_0</span> es una solución cualquiera de la ecuación completa.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué la homogénea asociada siempre es de variables separadas?</b> Porque <span class="mathi">y'+a(x)y=0</span> se reescribe <span class="mathi">y'=-a(x)y</span>, que ya es un producto de una función de x por una función de y (aunque esta última sea simplemente <span class="mathi">h(y)=y</span>). Por eso siempre se puede resolver por separación, sin excepción.</p>
+        <p><b>¿Qué es la función auxiliar v?</b> Es la función que se propone multiplicando a <span class="mathi">y_1</span> (<span class="mathi">y_0=v(x)y_1(x)</span>) para buscar la solución particular. Al reemplazar en la ecuación completa, los términos que tienen v sola (sin derivar) se cancelan por construcción (porque <span class="mathi">y_1</span> resuelve la homogénea), y queda una ecuación de variables separadas mucho más simple para <span class="mathi">v'</span>. A este método se lo llama variación de parámetros.</p>
+        <p><b>¿Por qué las EDO lineales no tienen soluciones singulares?</b> Porque al resolverlas nunca hay que dividir por una expresión que dependa de y (a diferencia de las separables), así que no hay ningún paso en el que se puedan "perder" soluciones.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Escribir la ecuación en la forma <span class="mathi">y'+a(x)y=b(x)</span>.</div></li>
+      <li><div class="step-body">Hallar <span class="mathi">y_1</span>: resolver la homogénea asociada <span class="mathi">y'+a(x)y=0</span> (siempre de variables separadas) y tomar cualquier solución no nula.</div></li>
+      <li><div class="step-body">Proponer <span class="mathi">y_0=v(x)y_1(x)</span>, reemplazar en la ecuación completa, derivar, y despejar <span class="mathi">v'</span> (los términos con v sola se cancelan por construcción).</div></li>
+      <li><div class="step-body">Integrar <span class="mathi">v'</span> para hallar v (tomar cualquier v no nula, sin agregar constante de integración acá) y armar <span class="mathi">y_0=v\,y_1</span>.</div></li>
+      <li><div class="step-body">Armar la solución general: <span class="mathi">y_G = k\,y_1 + y_0</span>.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: EDO.pdf (apunte de la cátedra, ejemplo 16)</span>
+        <p><b>Enunciado:</b> halle la solución general de <span class="mathi">y'+3y=xe^{-3x}</span>.</p>
+        <p><b>Paso 1.</b> Ya está en la forma <span class="mathi">y'+a(x)y=b(x)</span>, con <span class="mathi">a(x)=3</span>, <span class="mathi">b(x)=xe^{-3x}</span>.</p>
+        <p><b>Paso 2.</b> Homogénea asociada: <span class="mathi">y'+3y=0</span>, de variables separadas:</p>
+        $$\frac{dy}{dx}=-3y \;\Rightarrow\; \frac{dy}{y}=-3\,dx \;\Rightarrow\; \int\frac{dy}{y}=\int-3\,dx \;\Rightarrow\; y=ke^{-3x}$$
+        <p>Tomamos <span class="mathi">y_1=e^{-3x}</span>.</p>
+        <p><b>Paso 3.</b> Proponemos <span class="mathi">y_0=ve^{-3x}</span> y reemplazamos en la ecuación completa, sin simplificar todavía:</p>
+        $$(ve^{-3x})' + 3(ve^{-3x}) = xe^{-3x}$$
+        <p><b>Paso 4.</b> Derivamos el primer término (regla del producto):</p>
+        $$v'e^{-3x} + v(-3e^{-3x}) + 3ve^{-3x} = xe^{-3x}$$
+        <p><b>Paso 5.</b> Los términos con v sola se cancelan (<span class="mathi">-3v+3v=0</span>), quedando:</p>
+        $$v'e^{-3x} = xe^{-3x}$$
+        <p><b>Paso 6.</b> Simplificamos (dividiendo por <span class="mathi">e^{-3x}</span>) e integramos:</p>
+        $$v'=x \;\Rightarrow\; v=\frac{x^2}{2}$$
+        <p><b>Paso 7.</b> Armamos <span class="mathi">y_0</span>:</p>
+        $$y_0 = \frac{x^2}{2}e^{-3x}$$
+        <p><b>Paso 8.</b> Armamos la solución general:</p>
+        $$y_G = ke^{-3x} + \frac{x^2}{2}e^{-3x}$$
+        <div class="example-answer">y = (k + x²/2)e⁻³ˣ</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u1-familia" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+    <div class="detail-header">FAMILIA DE CURVAS / HAZ ORTOGONAL</div>
+    <div class="detail-sub">Dada una familia F(x,y)=C, hallar su EDO y, si lo piden, la del haz ortogonal.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Ecuación diferencial de una familia de curvas</div>
+          <p>Es el problema inverso a resolver una EDO: dada una familia que depende de una constante <span class="mathi">C</span>, buscamos la EDO de primer orden que la tiene como solución general. Se obtiene derivando implícitamente la ecuación de la familia respecto de x (tratando <span class="mathi">y=y(x)</span>) y eliminando <span class="mathi">C</span> con ayuda de la ecuación original.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Curvas y familias ortogonales</div>
+          <p>Dos curvas son ortogonales si sus rectas tangentes, en el punto donde se cruzan, son perpendiculares. Dos familias son ortogonales si cada curva de una es ortogonal a todas las de la otra.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">EDO del haz ortogonal</div>
+          <p>Si una familia <span class="mathi">C_1</span> tiene ecuación diferencial <span class="mathi">y'=f(x,y)</span>, la familia ortogonal <span class="mathi">C_2</span> tiene ecuación diferencial:</p>
+          $$y' = -\frac{1}{f(x,y)}$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué derivar implícitamente?</b> Porque la familia suele estar dada como <span class="mathi">F(x,y)=C</span> sin y despejada. Derivando ambos lados respecto de x (tratando a y como y(x) y usando la regla de la cadena) se obtiene una relación entre x, y e y' donde todavía puede aparecer C.</p>
+        <p><b>¿Cómo elimino la constante C?</b> Si después de derivar todavía aparece C, se despeja de la ecuación original <span class="mathi">F(x,y)=C</span> y se reemplaza en la ecuación derivada, para que quede una expresión sólo en términos de x, y, y'.</p>
+        <p><b>¿De dónde sale el <span class="mathi">-1/f(x,y)</span> del ortogonal?</b> Del hecho de que el producto de las pendientes de dos rectas perpendiculares es <span class="mathi">-1</span>: si la curva de la primera familia que pasa por <span class="mathi">(x_0,y_0)</span> tiene pendiente <span class="mathi">f(x_0,y_0)</span>, la curva ortogonal que pasa por ese mismo punto tiene pendiente <span class="mathi">-1/f(x_0,y_0)</span>.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Si te dan la familia <span class="mathi">F(x,y)=C</span>, derivar implícitamente ambos lados respecto de x, tratando a y como y(x).</div></li>
+      <li><div class="step-body">Si C todavía aparece, despejarla de la ecuación original y reemplazarla, para que quede una ecuación sólo en x, y, y'.</div></li>
+      <li><div class="step-body">Esa ecuación <span class="mathi">y'=f(x,y)</span> es la EDO de la familia dada.</div></li>
+      <li><div class="step-body">Si piden el haz ortogonal: plantear <span class="mathi">y'=-1/f(x,y)</span>, y resolver esta nueva EDO con las técnicas de variables separables o lineal, según corresponda (ver las otras dos ramas de esta unidad).</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: EDO_2.pdf (apunte de la cátedra, observación 27 y ejemplo posterior)</span>
+        <p><b>Enunciado:</b> halle el haz ortogonal a la familia <span class="mathi">y=Ce^{3x}</span>.</p>
+        <p><b>Paso 1.</b> Derivamos implícitamente la familia respecto de x:</p>
+        $$y' = 3Ce^{3x}$$
+        <p><b>Paso 2.</b> Reemplazamos <span class="mathi">Ce^{3x}=y</span> (de la ecuación original) para eliminar C:</p>
+        $$y' = 3y$$
+        <p><b>Paso 3.</b> Esa es la EDO de la familia dada (<span class="mathi">f(x,y)=3y</span>). Planteamos la del haz ortogonal:</p>
+        $$y' = -\frac{1}{3y}$$
+        <p><b>Paso 4.</b> Resolvemos esta nueva ecuación (de variables separadas):</p>
+        $$\frac{dy}{dx} = -\frac{1}{3y} \;\Rightarrow\; 3y\,dy = -dx$$
+        <p><b>Paso 5.</b> Integramos cada lado:</p>
+        $$\int 3y\,dy = \int -dx$$
+        <p><b>Paso 6.</b> Resolvemos las primitivas:</p>
+        $$\frac{3}{2}y^2 = -x + C$$
+        <div class="example-answer">haz ortogonal: (3/2)y² = -x + C</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u1" class="placeholder">Elegí VARIABLES SEPARABLES, LINEAL o FAMILIA DE CURVAS para ver los pasos</div>

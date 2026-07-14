@@ -1,0 +1,286 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 3: Límite y continuidad de campos escalares y vectoriales</h2>
+    <p class="intro-line">¿Necesitás demostrar que un límite <b>existe</b>, que <b>no existe</b>, o estudiar la <b>continuidad</b> de una función?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad3.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 3 (PDF)</a></div>
+  </div>
+
+  <div class="lead-note" style="max-width:900px; margin-left:auto; margin-right:auto;">Antes de elegir un módulo: probá primero resolver el límite como si existiera (reemplazo directo, simplificar la expresión, ver si se cancela algo). Si te resulta difícil, la cuenta no se simplifica, o te da la sensación de que "algo raro pasa", es una buena señal de que el límite podría no existir: sospechá de él y probá directamente con trayectorias (Módulo 2) antes de perder tiempo intentando acotar algo que no se puede acotar.</div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u3-existe" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u3','existe')">
+      <span class="eyebrow">Módulo 1</span>
+      <p class="cc-title">CÓMO DEMOSTRAR QUE EXISTE</p>
+      <p class="cc-desc">Álgebra de límites, acotación, fórmulas típicas y límites famosos.</p>
+    </div>
+    <div class="choice-card" id="u3-noexiste" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u3','noexiste')">
+      <span class="eyebrow">Módulo 2</span>
+      <p class="cc-title">CÓMO DEMOSTRAR QUE NO EXISTE</p>
+      <p class="cc-desc">Límites iterados y límite por trayectorias.</p>
+    </div>
+    <div class="choice-card" id="u3-continuidad" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u3','continuidad')">
+      <span class="eyebrow">f continua en x₀?</span>
+      <p class="cc-title">CONTINUIDAD</p>
+      <p class="cc-desc">Definición, y cómo estudiarla en un punto de empalme.</p>
+    </div>
+  </div>
+
+  <div id="panel-u3-existe" class="detail-panel" style="--panel-color:#FFD23F; --panel-text:#1B2340;">
+    <div class="detail-header">MÓDULO 1 (CÓMO DEMOSTRAR QUE EXISTE)</div>
+    <div class="detail-sub">Calcular lim f(x) cuando x tiende a x₀ (x₀ punto de acumulación del dominio).</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Definición formal de límite</div>
+          <p>Sean <span class="mathi">\vec f:A\subset\mathbb{R}^n\to\mathbb{R}^m</span> y <span class="mathi">x_0</span> un punto de acumulación de A. Decimos que L es el límite de f cuando x tiende a <span class="mathi">x_0</span> si para todo <span class="mathi">\varepsilon>0</span> existe <span class="mathi">\delta>0</span> tal que:</p>
+          $$0<\|x-x_0\|<\delta,\ x\in A \;\Rightarrow\; \|\vec f(x)-L\|<\varepsilon$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Álgebra de límites</div>
+          <p>Si <span class="mathi">\vec f=(f_1,\ldots,f_m)</span> es una función vectorial, su límite existe si y sólo si existe el límite de <b>cada componente</b>, y en ese caso el límite de <span class="mathi">\vec f</span> es el vector formado por esos límites:</p>
+          $$\lim_{x\to x_0}\vec f(x) = \Big(\lim_{x\to x_0}f_1(x),\ \ldots,\ \lim_{x\to x_0}f_m(x)\Big)$$
+          <p>Para funciones escalares con límites <span class="mathi">\ell_1,\ell_2</span>: existen los límites de <span class="mathi">f+g</span> (=<span class="mathi">\ell_1+\ell_2</span>), de <span class="mathi">fg</span> (=<span class="mathi">\ell_1\ell_2</span>), y de <span class="mathi">f/g</span> (=<span class="mathi">\ell_1/\ell_2</span>, si <span class="mathi">\ell_2\ne0</span>).</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Límite de acotada por algo que tiende a 0</div>
+          <p>Si <span class="mathi">\lim_{x\to x_0} f(x)=0</span> y existe <span class="mathi">r>0</span> tal que g está acotada en <span class="mathi">B_r^*(x_0)\cap A</span>, entonces:</p>
+          $$\lim_{x\to x_0} f(x)g(x) = 0$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Fórmulas de acotación para fracciones (para tener a mano)</summary>
+      <div class="inner">
+        <p>Estas son las formas de cociente acotado que más aparecen en los ejercicios. En todas, x, y representan expresiones que tienden a 0 (no necesariamente las variables solas):</p>
+        <table>
+          <tr><th>Expresión</th><th>Cota</th></tr>
+          <tr><td><span class="mathi">\dfrac{xy}{x^2+y^2}</span></td><td>acotada entre −1/2 y 1/2</td></tr>
+          <tr><td><span class="mathi">\dfrac{x}{\sqrt{x^2+y^2}}</span>, <span class="mathi">\dfrac{y}{\sqrt{x^2+y^2}}</span></td><td>acotadas entre −1 y 1</td></tr>
+          <tr><td><span class="mathi">\dfrac{xy}{\sqrt{x^2+y^2}}</span></td><td>acotada (y además tiende a 0)</td></tr>
+          <tr><td><span class="mathi">\dfrac{x^2}{x^2+y^2}</span>, <span class="mathi">\dfrac{y^2}{x^2+y^2}</span></td><td>acotadas entre 0 y 1</td></tr>
+        </table>
+        <p><b>Idea general:</b> si el numerador y el denominador son polinomios homogéneos del mismo grado (todos los términos "pesan" lo mismo, contando x e y por igual), el cociente suele quedar acotado. Si el denominador tiene mayor grado que el numerador, el cociente completo tiende a 0 directamente (no hace falta ni separar factores).</p>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Límites famosos de una variable (con argumento que tiende a 0)</summary>
+      <div class="inner">
+        <p>Si tenés una subexpresión <span class="mathi">u=g(x,y)</span> que tiende a 0, y esa misma expresión u aparece "acompañada" de una función conocida, podés usar estos límites de una variable ya conocidos:</p>
+        <table>
+          <tr><th>Límite famoso</th><th>Vale</th></tr>
+          <tr><td><span class="mathi">\lim_{u\to0}\dfrac{\sin(u)}{u}</span></td><td>1</td></tr>
+          <tr><td><span class="mathi">\lim_{u\to0}\dfrac{1-\cos(u)}{u^2}</span></td><td>1/2</td></tr>
+          <tr><td><span class="mathi">\lim_{u\to0}\dfrac{\ln(1+u)}{u}</span></td><td>1</td></tr>
+          <tr><td><span class="mathi">\lim_{u\to0}\dfrac{e^u-1}{u}</span></td><td>1</td></tr>
+        </table>
+        <p>Por ejemplo, si te aparece <span class="mathi">\dfrac{\sin(x^2+y^2)}{x^2+y^2}</span>, es directamente el primer límite famoso con <span class="mathi">u=x^2+y^2\to0</span>: vale 1.</p>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Qué significa que g esté "acotada cerca de x₀"?</b> Que existe algún número M y algún radio r tales que <span class="mathi">|g(x)|\le M</span> para todo x en la bola reducida <span class="mathi">B_r^*(x_0)\cap A</span>. No hace falta que g esté acotada en todo su dominio, sólo en un entorno chico de <span class="mathi">x_0</span>.</p>
+        <p><b>¿Por qué esta técnica y no la definición ε-δ directamente?</b> La definición formal es difícil de usar para calcular un valor concreto (se usa más para demostrar propiedades generales). En la práctica, se combina álgebra de límites, las fórmulas de acotación de fracciones, y los límites famosos, para resolver la gran mayoría de los ejercicios.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Intentar reemplazar directamente: si la expresión da un número bien definido (no hay indeterminación), ese es el límite.
+        <p class="step-mini">Ejemplo: <span class="mathi">\lim_{(x,y)\to(1,2)}(x+y^2)=1+4=5</span>, directo, sin ningún truco.</p>
+      </div></li>
+      <li><div class="step-body">Si da una indeterminación, fijarse si alguna parte de la expresión coincide con un límite famoso (una función conocida "dividida por su propio argumento", con ese argumento tendiendo a 0).
+        <p class="step-mini">Ejemplo: <span class="mathi">\dfrac{e^{x+y}-1}{x+y}\to1</span> cuando <span class="mathi">(x,y)\to(0,0)</span>, con <span class="mathi">u=x+y\to0</span>.</p>
+      </div></li>
+      <li><div class="step-body">Si no, intentar reescribir la expresión como (una función que tiende a 0) × (una función acotada cerca de <span class="mathi">x_0</span>), usando las fórmulas de acotación típicas.
+        <p class="step-mini">Ejemplo: <span class="mathi">x\cdot\dfrac{y}{\sqrt{x^2+y^2}}</span>: el segundo factor está acotado entre −1 y 1, y el primero (x) tiende a 0.</p>
+      </div></li>
+      <li><div class="step-body">Si se puede acotar (o identificar el límite famoso), concluir el valor del límite.
+        <p class="step-mini">Ejemplo: en el caso anterior, (tiende a 0)×(acotada) ⇒ el límite completo es 0.</p>
+      </div></li>
+      <li><div class="step-body">Si no se puede acotar y no es evidente, sospechar que el límite no existe y pasar al Módulo 2.
+        <p class="step-mini">Ejemplo: en <span class="mathi">xy/(x^2+y^2)</span> no hay ningún factor que tienda a 0 "sobrando": numerador y denominador son del mismo grado. Mala señal, mejor probar trayectorias.</p>
+      </div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 03_limite.pdf (apunte de la cátedra, ejemplo 20)</span>
+        <p><b>Enunciado:</b> calcule, si existe, <span class="mathi">\displaystyle\lim_{(x,y)\to(1,0)} \frac{(x-1)y}{\sqrt{(x-1)^4+y^2}}</span>.</p>
+        <p><b>Paso 1.</b> Reemplazar directo da <span class="mathi">0/0</span>, indeterminado.</p>
+        <p><b>Paso 2.</b> Reescribimos separando un factor que tiende a 0:</p>
+        $$\frac{(x-1)y}{\sqrt{(x-1)^4+y^2}} = (x-1)\cdot\frac{y}{\sqrt{(x-1)^4+y^2}}$$
+        <p><b>Paso 3.</b> El segundo factor tiene la forma <span class="mathi">b/\sqrt{a^2+b^2}</span> (con <span class="mathi">a=(x-1)^2,\ b=y</span>), que siempre está entre −1 y 1: está acotado.</p>
+        <p><b>Paso 4.</b> El primer factor, <span class="mathi">(x-1)</span>, tiende a 0 cuando <span class="mathi">(x,y)\to(1,0)</span>.</p>
+        <p><b>Paso 5.</b> Por el límite del producto de acotada por algo que tiende a 0:</p>
+        $$\lim_{(x,y)\to(1,0)} \frac{(x-1)y}{\sqrt{(x-1)^4+y^2}} = 0$$
+        <div class="example-answer">límite = 0</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u3-noexiste" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+    <div class="detail-header">MÓDULO 2 (CÓMO DEMOSTRAR QUE NO EXISTE)</div>
+    <div class="detail-sub">Demostrar que un límite NO existe.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Límites iterados (o reiterados)</div>
+          <p>Son los límites que se obtienen fijando primero una variable y dejando que la otra tienda a su valor, y después al revés:</p>
+          $$\lim_{x\to x_0}\Big(\lim_{y\to y_0} f(x,y)\Big) \qquad\text{y}\qquad \lim_{y\to y_0}\Big(\lim_{x\to x_0} f(x,y)\Big)$$
+          <p>Si el límite doble existe, ambos iterados (cuando existen) coinciden con él. Por lo tanto, si los dos iterados existen y son distintos, el límite doble <b>no existe</b>.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Límite a lo largo de una trayectoria</div>
+          <p>Si <span class="mathi">\lim_{x\to x_0}f(x)=L</span> y <span class="mathi">\lim_{t\to t_0}\vec\alpha(t)=x_0</span> (con <span class="mathi">\vec\alpha</span> una trayectoria dentro del dominio de f), entonces:</p>
+          $$\lim_{t\to t_0} f(\vec\alpha(t)) = L$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Corolario: cómo probar que un límite no existe</div>
+          <p>Si <span class="mathi">\vec\alpha</span> y <span class="mathi">\vec\beta</span> son dos trayectorias que tienden a <span class="mathi">x_0</span>, y <span class="mathi">\lim f(\vec\alpha(t)) \ne \lim f(\vec\beta(u))</span>, entonces <b>no existe</b> el límite de f cuando x tiende a <span class="mathi">x_0</span>. Si f es vectorial, alcanza con mostrar que una sola componente no tiene límite.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros: límites iterados</summary>
+      <div class="inner">
+        <p><b>Ojo, cuidado con esta técnica:</b> los límites iterados son poco confiables cuando la expresión es un <b>producto</b> de partes que tienden a 0 en cada variable por separado (como <span class="mathi">xy/(x^2+y^2)</span>). En esos casos, casi siempre los dos iterados dan el mismo resultado (típicamente 0) sin importar si el límite doble existe o no, así que <b>no sirven para nada</b> ahí: hay que ir directo a trayectorias.</p>
+        <p><b>¿Cuándo sí conviene usarlos?</b> Cuando la expresión es una <b>suma</b> (no un producto) y fijar una variable primero te permite simplificar una fracción de forma reveladora. Por ejemplo, con <span class="mathi">f(x,y)=\dfrac{x-y}{x+y}</span> cerca de (0,0):</p>
+        $$\lim_{y\to0}\Big(\lim_{x\to0}\frac{x-y}{x+y}\Big) = \lim_{y\to0}\frac{-y}{y} = -1 \qquad \lim_{x\to0}\Big(\lim_{y\to0}\frac{x-y}{x+y}\Big) = \lim_{x\to0}\frac{x}{x} = 1$$
+        <p>Como los dos iterados existen y dan distinto (−1 ≠ 1), ya está probado que el límite doble no existe, sin necesidad de probar ninguna trayectoria.</p>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros: cómo elegir una buena trayectoria</summary>
+      <div class="inner">
+        <p><b>¿Qué condiciones tiene que cumplir una trayectoria?</b> Tiene que tender al punto <span class="mathi">x_0</span> en cuestión, y estar contenida en el dominio de f (al menos cerca de <span class="mathi">x_0</span>).</p>
+        <p><b>¿Cómo la pienso rápido?</b> Primero probá con rectas <span class="mathi">y=mx</span> (dejando m como parámetro libre): si el resultado depende de m, ya está, no existe. Si da lo mismo para todo m, mirá los <b>exponentes</b> de la expresión (sobre todo del denominador): si aparecen potencias "desparejadas" entre x e y (como <span class="mathi">x^4</span> con <span class="mathi">y^2</span>), probá una trayectoria potencia <span class="mathi">y=x^k</span> que empareje esos grados.</p>
+        <p><b>Usar curvas de nivel como trayectoria:</b> otra forma rápida de encontrar una buena candidata es tomar como trayectoria una curva de nivel de alguna parte de la expresión (por ejemplo, del denominador). A lo largo de esa curva, esa parte queda constante, así que el cálculo se simplifica muchísimo y suele revelar rápido si el resultado depende de la constante elegida.</p>
+        <p><b>Forma vectorial de una curva genérica (probar muchas trayectorias de una sola vez):</b> en vez de probar trayectoria por trayectoria, podés plantear una familia con un parámetro libre, por ejemplo <span class="mathi">\vec\alpha(t)=(t,\ mt^k)</span> con m (o k) libre, reemplazar una sola vez, y ver si el resultado depende de ese parámetro. Si depende, con una única cuenta simbólica ya probaste que el límite no existe.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">(Con cuidado) Si la expresión es una suma que permite simplificar una fracción al fijar una variable, probar los límites iterados. Si ambos existen y son distintos, el límite no existe: listo.
+        <p class="step-mini">Ejemplo: <span class="mathi">(x-y)/(x+y)</span> da iterados −1 y 1: no existe, sin necesitar trayectorias.</p>
+      </div></li>
+      <li><div class="step-body">Si la expresión es un producto de partes que tienden a 0 (los iterados no van a servir), pasar directo a trayectorias.
+        <p class="step-mini">Ejemplo: en <span class="mathi">xy/(x^2+y^2)</span>, los dos iterados dan 0 sin importar el orden, aunque el límite doble no existe. Ahí los iterados "mienten": van directo a trayectorias.</p>
+      </div></li>
+      <li><div class="step-body">Probar primero con rectas <span class="mathi">y=mx</span> (o una familia con parámetro libre) y ver si el resultado depende del parámetro.
+        <p class="step-mini">Ejemplo: en <span class="mathi">x^2y/(x^4+y^2)</span>, con <span class="mathi">y=mx</span> da 0 para cualquier m.</p>
+      </div></li>
+      <li><div class="step-body">Si todas las rectas dan lo mismo, buscar una trayectoria que empareje los grados de las variables (mirando los exponentes), o usar una curva de nivel de alguna parte de la expresión.
+        <p class="step-mini">Ejemplo: en el mismo caso, el denominador tiene <span class="mathi">x^4</span> e <span class="mathi">y^2</span>: probamos <span class="mathi">y=x^2</span> para emparejar los grados.</p>
+      </div></li>
+      <li><div class="step-body">Si dos trayectorias (o la familia con parámetro) dan resultados distintos, concluir que el límite no existe.
+        <p class="step-mini">Ejemplo: rectas dan 0, pero <span class="mathi">y=x^2</span> da 1/2: como son distintos, el límite no existe.</p>
+      </div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto: límites iterados</summary>
+      <div class="inner">
+        <span class="example-source">Ejemplo clásico (elaboración propia, ilustra cuándo sí conviene usar iterados)</span>
+        <p><b>Enunciado:</b> calcule, si existe, <span class="mathi">\displaystyle\lim_{(x,y)\to(0,0)} \frac{x-y}{x+y}</span>.</p>
+        <p><b>Paso 1.</b> Es una suma (no un producto) donde fijar una variable simplifica bien la fracción: probamos con los límites iterados.</p>
+        <p><b>Paso 2.</b> Fijamos x=0 primero y hacemos y→0 después:</p>
+        $$\lim_{y\to0}\left(\lim_{x\to0}\frac{x-y}{x+y}\right) = \lim_{y\to0}\frac{0-y}{0+y} = \lim_{y\to0}(-1) = -1$$
+        <p><b>Paso 3.</b> Fijamos y=0 primero y hacemos x→0 después:</p>
+        $$\lim_{x\to0}\left(\lim_{y\to0}\frac{x-y}{x+y}\right) = \lim_{x\to0}\frac{x-0}{x+0} = \lim_{x\to0}(1) = 1$$
+        <p><b>Paso 4.</b> Ambos iterados existen pero son distintos (−1 ≠ 1).</p>
+        <div class="example-answer">el límite no existe</div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Ejemplo resuelto: trayectorias</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 03_limite.pdf (apunte de la cátedra, "ejemplo importante")</span>
+        <p><b>Enunciado:</b> calcule, si existe, <span class="mathi">\displaystyle\lim_{(x,y)\to(0,0)} \frac{x^2y}{x^4+y^2}</span>.</p>
+        <p><b>Paso 1.</b> Probamos con la recta <span class="mathi">y=mx</span>:</p>
+        $$\frac{x^2(mx)}{x^4+m^2x^2} = \frac{mx^3}{x^2(x^2+m^2)} = \frac{mx}{x^2+m^2} \xrightarrow[x\to0]{} 0$$
+        <p>Da 0 para cualquier valor de m (incluido m=0).</p>
+        <p><b>Paso 2.</b> Como el denominador tiene <span class="mathi">x^4</span> e <span class="mathi">y^2</span> (grados desparejos), probamos con la parábola <span class="mathi">y=x^2</span>:</p>
+        $$\frac{x^2(x^2)}{x^4+(x^2)^2} = \frac{x^4}{x^4+x^4} = \frac{x^4}{2x^4} = \frac12$$
+        <p><b>Paso 3.</b> Como el límite a lo largo de las rectas da 0, y a lo largo de la parábola <span class="mathi">y=x^2</span> da 1/2 (distinto), concluimos:</p>
+        <div class="example-answer">el límite no existe</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u3-continuidad" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
+    <div class="detail-header">CONTINUIDAD</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝᵐ, punto x₀ ∈ A.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Continuidad en un punto</div>
+          <p>f es continua en <span class="mathi">x_0\in A</span> si <span class="mathi">x_0</span> es punto de acumulación de A y:</p>
+          $$\lim_{x\to x_0} f(x) = f(x_0)$$
+          <p>f es continua en A si lo es en todo punto de A.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Propiedades</div>
+          <p>Una función vectorial es continua en <span class="mathi">x_0</span> sii cada una de sus componentes lo es. La suma, el producto, y (con denominador no nulo) el cociente de funciones continuas en <span class="mathi">x_0</span> son continuas en <span class="mathi">x_0</span>. La composición de funciones continuas también es continua.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué hace falta que x₀ sea punto de acumulación?</b> Porque si no lo fuera, no tendría sentido calcular un límite ahí (no habría manera de "acercarse" a <span class="mathi">x_0</span> dentro del dominio sin salirse de él).</p>
+        <p><b>¿Cómo estudio la continuidad en un punto "de empalme" de una función partida?</b> Ahí es donde realmente hay que calcular el límite (con el Módulo 1 o el Módulo 2, según convenga) y compararlo con el valor que la función tiene definido en ese punto por la otra rama de su fórmula. En el resto de los puntos del dominio, suele alcanzar con decir que f es composición/suma/producto de funciones continuas conocidas.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Si el punto no es un punto de empalme (la función está dada por una única fórmula "de las comunes" ahí), alcanza con verificar que sea composición/suma/producto/cociente de funciones continuas, con denominador no nulo si corresponde.
+        <p class="step-mini">Ejemplo: <span class="mathi">f(x,y)=x^2+\cos(y)</span> es continua en cualquier punto, por ser suma de funciones continuas conocidas.</p>
+      </div></li>
+      <li><div class="step-body">Si es un punto de empalme de una función partida, calcular <span class="mathi">\lim_{x\to x_0}f(x)</span> explícitamente (Módulo 1 o Módulo 2, según corresponda).
+        <p class="step-mini">Ejemplo: en <span class="mathi">f(x,y)=xy\sin(x)/(x^2+y^2)</span> si <span class="mathi">(x,y)\ne(0,0)</span>, calculamos el límite en el origen con acotación (Módulo 1).</p>
+      </div></li>
+      <li><div class="step-body">Comparar ese límite con el valor <span class="mathi">f(x_0)</span> dado en la otra rama de la definición de f.
+        <p class="step-mini">Ejemplo: si el límite dio 0 y la otra rama dice <span class="mathi">f(0,0)=0</span>, coinciden.</p>
+      </div></li>
+      <li><div class="step-body">Si el límite existe y coincide con <span class="mathi">f(x_0)</span>, f es continua ahí; si no existe o no coincide, no lo es.
+        <p class="step-mini">Ejemplo: como coinciden (0 = 0), f es continua en (0,0). Si f(0,0) hubiera sido, por ejemplo, 5, no sería continua ahí (aunque el límite exista igual).</p>
+      </div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: P1_061219.pdf (Recuperatorio del Primer Parcial, 06/12/2019), T1</span>
+        <p><b>Enunciado:</b> defina función continua para el caso de un campo escalar. Determine si la función</p>
+        $$f(x,y) = \begin{cases} \dfrac{xy\sin(x)}{x^2+y^2}, & (x,y)\ne(0,0) \\ 0, & (x,y)=(0,0)\end{cases}$$
+        <p>es continua en el origen.</p>
+        <p><b>Paso 1.</b> El valor de la función en el punto de empalme es <span class="mathi">f(0,0)=0</span> (dado).</p>
+        <p><b>Paso 2.</b> Para <span class="mathi">(x,y)\ne(0,0)</span>, reescribimos separando un factor que tiende a 0:</p>
+        $$f(x,y) = \frac{xy}{x^2+y^2}\cdot\sin(x)$$
+        <p><b>Paso 3.</b> Acotamos el primer factor: como <span class="mathi">(|x|-|y|)^2\ge0 \Rightarrow x^2+y^2\ge2|xy|</span>, entonces:</p>
+        $$\left|\frac{xy}{x^2+y^2}\right| \le \frac12$$
+        <p><b>Paso 4.</b> El segundo factor, <span class="mathi">\sin(x)</span>, tiende a <span class="mathi">\sin(0)=0</span> cuando <span class="mathi">(x,y)\to(0,0)</span> (pues <span class="mathi">x\to0</span>).</p>
+        <p><b>Paso 5.</b> Por el límite del producto de acotada por algo que tiende a 0:</p>
+        $$\lim_{(x,y)\to(0,0)} f(x,y) = 0 = f(0,0)$$
+        <p><b>Paso 6.</b> Como el límite existe y coincide con el valor de la función en el punto, f es continua en el origen.</p>
+        <div class="example-answer">f es continua en (0,0)</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u3" class="placeholder">Elegí CÓMO DEMOSTRAR QUE EXISTE, CÓMO DEMOSTRAR QUE NO EXISTE o CONTINUIDAD para ver los pasos</div>

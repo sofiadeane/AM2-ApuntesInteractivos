@@ -1,0 +1,204 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 10: Integrales de superficie y flujo</h2>
+    <p class="intro-line">¿Te piden el <b>área</b> de una superficie, la <b>masa</b> de una chapa (campo escalar), o el <b>flujo</b> de un campo vectorial?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad10.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 10 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u10-area" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u10','area')">
+      <span class="eyebrow">área(S)</span>
+      <p class="cc-title">ÁREA DE SUPERFICIE</p>
+      <p class="cc-desc">Norma del producto vectorial fundamental, integrada en el dominio de parámetros.</p>
+    </div>
+    <div class="choice-card" id="u10-masa" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u10','masa')">
+      <span class="eyebrow">campo escalar</span>
+      <p class="cc-title">MASA DE UNA CHAPA</p>
+      <p class="cc-desc">Integral de un campo escalar (densidad) sobre S.</p>
+    </div>
+    <div class="choice-card" id="u10-flujo" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u10','flujo')">
+      <span class="eyebrow">campo vectorial</span>
+      <p class="cc-title">FLUJO</p>
+      <p class="cc-desc">Integral de un campo vectorial a través de S, con orientación.</p>
+    </div>
+  </div>
+
+  <div id="panel-u10-area" class="detail-panel" style="--panel-color:#FFD23F; --panel-text:#1B2340;">
+    <div class="detail-header">ÁREA DE SUPERFICIE</div>
+    <div class="detail-sub">Superficie S parametrizada por T(u,v), (u,v)∈D.</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Superficie (paramétrica, simple y suave)</div>
+          <p>Decimos que S es una superficie si existe <span class="mathi">\vec T:D\subset\mathbb{R}^2\to\mathbb{R}^3</span>, C¹, con <span class="mathi">\text{Im}(\vec T)=S</span>, <span class="mathi">\vec T</span> inyectiva, y <span class="mathi">\vec T_u'\times\vec T_v'\ne\vec0</span> en todo punto.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Área de una superficie</div>
+          $$\text{área}(S) = \iint_D \|\vec T_u'\times \vec T_v'(u,v)\|\, du\, dv$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Qué es el "producto vectorial fundamental"?</b> <span class="mathi">\vec T_u'\times\vec T_v'</span>, perpendicular a la superficie en cada punto. Su norma mide cuánto "estira o encoge" la parametrización un pedacito de área del dominio D al mapearlo sobre S.</p>
+        <p><b>Si S es el gráfico de <span class="mathi">z=f(x,y)</span>:</b> se puede tomar <span class="mathi">\vec T(x,y)=(x,y,f(x,y))</span>, y se simplifica a <span class="mathi">\|\vec T_x'\times\vec T_y'\| = \sqrt{1+(f_x')^2+(f_y')^2}</span>.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Parametrizar S: encontrar <span class="mathi">\vec T(u,v)</span> y su dominio D (ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>).</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\vec T_u', \vec T_v'</span>, su producto vectorial y la norma de éste.</div></li>
+      <li><div class="step-body">Integrar sobre D:<br>$$\text{área}(S)=\iint_D \|\vec T_u'\times\vec T_v'\|\,du\,dv$$</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 29/11/2019, Tema 1, E2, Unidad 10)</span>
+        <p><b>Enunciado:</b> calcule el área de la superficie del primer octante definida por <span class="mathi">x^2+z^2=9,\ 0\le y\le x</span>.</p>
+        <p><b>Paso 1.</b> Es un cilindro de radio 3 con eje y. Parametrizamos: <span class="mathi">x=3\cos\theta,\ z=3\sin\theta,\ y=y</span>, con <span class="mathi">\theta\in[0,\pi/2]</span> (primer octante) y <span class="mathi">0\le y\le 3\cos\theta</span>.</p>
+        <p><b>Paso 2.</b> Derivamos respecto de cada parámetro:</p>
+        $$\vec T_\theta'=(-3\sin\theta,0,3\cos\theta) \qquad \vec T_y'=(0,1,0)$$
+        <p><b>Paso 3.</b> Calculamos el producto vectorial fundamental:</p>
+        $$\vec T_\theta'\times\vec T_y' = (-3\cos\theta,\ 0,\ -3\sin\theta)$$
+        <p><b>Paso 4.</b> Calculamos su norma:</p>
+        $$\|\vec T_\theta'\times\vec T_y'\| = \sqrt{9\cos^2\theta+9\sin^2\theta} = 3$$
+        <p><b>Paso 5.</b> Planteamos la integral doble:</p>
+        $$\text{área}(S) = \int_0^{\pi/2}\!\!\int_0^{3\cos\theta} 3\,dy\,d\theta$$
+        <p><b>Paso 6.</b> Integramos en y:</p>
+        $$\int_0^{3\cos\theta} 3\,dy = 9\cos\theta$$
+        <p><b>Paso 7.</b> Integramos en θ:</p>
+        $$\int_0^{\pi/2} 9\cos\theta\,d\theta = 9\big[\sin\theta\big]_0^{\pi/2} = 9$$
+        <div class="example-answer">área(S) = 9</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u10-masa" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+    <div class="detail-header">MASA DE UNA CHAPA (integral de campo escalar)</div>
+    <div class="detail-sub">Campo escalar f (densidad δ), superficie S parametrizada por T(u,v).</div>
+
+    <details class="block">
+      <summary>Definición que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Integral de un campo escalar sobre una superficie</div>
+          $$\iint_S f\, d\sigma = \iint_D f(\vec T(u,v))\,\|\vec T_u'\times\vec T_v'\|\, du\, dv$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>Masa de una chapa:</b> si f=δ es la densidad (masa por unidad de área), <span class="mathi">\iint_S \delta\,d\sigma</span> es la masa total.</p>
+        <p><b>¿Y el área?</b> Es el caso particular <span class="mathi">f=1</span>.</p>
+        <p><b>No importa la orientación:</b> igual que con curvas, no depende de qué normal elijas para S.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Parametrizar S: <span class="mathi">\vec T(u,v)</span>, dominio D.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\vec T_u'\times\vec T_v'</span> y su norma.</div></li>
+      <li><div class="step-body">Expresar f en términos de u,v y reemplazar todo:<br>$$\iint_S f\,d\sigma=\iint_D f(\vec T(u,v))\,\|\vec T_u'\times\vec T_v'\|\,du\,dv$$</div></li>
+      <li><div class="step-body">Resolver la integral doble resultante.</div></li>
+    </ol>
+
+    <div class="tip">A veces la densidad está "diseñada" para cancelar justo con la norma del producto vectorial fundamental: conviene reemplazar todo antes de simplificar.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 11/11/2019, curso semipresencial, P1, Unidad 10)</span>
+        <p><b>Enunciado:</b> calcule la masa de una chapa con forma de <span class="mathi">S:z=x^2+y^2,\ 1\le z\le4</span>, con densidad <span class="mathi">\delta(x,y,z)=\dfrac{z}{\sqrt{1+4x^2+4y^2}}</span>.</p>
+        <p><b>Paso 1.</b> Parametrizamos: <span class="mathi">\vec T(x,y) = (x,y,x^2+y^2)</span>.</p>
+        <p><b>Paso 2.</b> Derivamos: <span class="mathi">\vec T_x'=(1,0,2x)</span>, <span class="mathi">\vec T_y'=(0,1,2y)</span>.</p>
+        <p><b>Paso 3.</b> Calculamos el producto vectorial fundamental: <span class="mathi">\vec T_x'\times\vec T_y' = (-2x,-2y,1)</span>.</p>
+        <p><b>Paso 4.</b> Calculamos su norma: <span class="mathi">\|\vec T_x'\times\vec T_y'\| = \sqrt{1+4x^2+4y^2}</span>.</p>
+        <p><b>Paso 5.</b> Evaluamos la densidad sobre la superficie, reemplazando <span class="mathi">z=x^2+y^2</span>:</p>
+        $$\delta(\vec T(x,y)) = \frac{x^2+y^2}{\sqrt{1+4x^2+4y^2}}$$
+        <p><b>Paso 6.</b> Multiplicamos la densidad evaluada por la norma, sin simplificar todavía:</p>
+        $$\text{masa} = \iint_D \frac{x^2+y^2}{\sqrt{1+4x^2+4y^2}}\cdot\sqrt{1+4x^2+4y^2}\;dx\,dy$$
+        <p><b>Paso 7.</b> Simplificamos (la raíz se cancela):</p>
+        $$\text{masa} = \iint_D (x^2+y^2)\,dx\,dy$$
+        <p><b>Paso 8.</b> Identificamos D: <span class="mathi">1\le x^2+y^2\le4</span> (un anillo), conviene polares.</p>
+        <p><b>Paso 9.</b> Cambiamos a polares (<span class="mathi">x^2+y^2=r^2,\ dx\,dy=r\,dr\,d\theta</span>), con <span class="mathi">D^*: 1\le r\le2,\ 0\le\theta\le2\pi</span>:</p>
+        $$\text{masa} = \int_0^{2\pi}\!\!\int_1^2 r^3\,dr\,d\theta$$
+        <p><b>Paso 10.</b> Integramos en r:</p>
+        $$\int_1^2 r^3\,dr = \left[\frac{r^4}{4}\right]_1^2 = \frac{15}{4}$$
+        <p><b>Paso 11.</b> Integramos en θ:</p>
+        $$\int_0^{2\pi}\frac{15}{4}\,d\theta = 2\pi\cdot\frac{15}{4} = \frac{15\pi}{2}$$
+        <div class="example-answer">masa = 15π/2</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u10-flujo" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+    <div class="detail-header">FLUJO (integral de campo vectorial)</div>
+    <div class="detail-sub">Campo vectorial f, superficie S orientada, parametrizada por T(u,v).</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Flujo de un campo a través de una superficie orientada</div>
+          <p>Si S está orientada por un campo normal unitario <span class="mathi">\check n</span>, y <span class="mathi">\vec T</span> es una parametrización de S:</p>
+          $$\iint_S \vec f\cdot d\vec\sigma = \iint_D \vec f(\vec T(u,v))\cdot\left(\vec T_u'\times\vec T_v'\right) du\, dv$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>Si cambio la orientación de S, ¿qué pasa?</b> El flujo cambia de signo.</p>
+        <p><b>¿Cómo sé si <span class="mathi">\vec T_u'\times\vec T_v'</span> coincide con la orientación pedida?</b> Se mira el signo de la componente que el enunciado usa para describir la orientación (por ejemplo, "normal con tercera componente positiva"): si coincide, la parametrización ya está bien orientada; si no, se agrega un signo menos al resultado final.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Parametrizar S: <span class="mathi">\vec T(u,v)</span>, dominio D.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\vec T_u'\times\vec T_v'</span> y verificar si coincide con la orientación pedida.</div></li>
+      <li><div class="step-body">Reemplazar y resolver:<br>$$\iint_S \vec f\cdot d\vec\sigma = \iint_D \vec f(\vec T(u,v))\cdot(\vec T_u'\times\vec T_v')\, du\,dv$$</div></li>
+    </ol>
+
+    <div class="tip">Si S no es cerrada pero el campo tiene divergencia simple, puede convenir "cerrarla" con tapas y usar Gauss (ver Unidad 11).</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: integración_en_superficies_02_1.pdf (apunte de la cátedra, ejemplo 8)</span>
+        <p><b>Enunciado:</b> dado <span class="mathi">\vec f(x,y,z)=(2x,2y,3z)</span>, calcule el flujo de <span class="mathi">\vec f</span> a través de <span class="mathi">S:x=4-y^2</span>, con <span class="mathi">z\le x,\ x\ge0,\ z\ge0</span>, orientada con vectores normales con primera componente positiva.</p>
+        <p><b>Paso 1.</b> Parametrizamos (x depende de y): <span class="mathi">\vec T(u,v)=(4-u^2,\ u,\ v)</span>, con y=u, z=v.</p>
+        <p><b>Paso 2.</b> Determinamos el dominio D: de <span class="mathi">z\le x,\ z\ge0</span> obtenemos <span class="mathi">0\le v\le 4-u^2</span>; de <span class="mathi">x=4-u^2\ge0</span> obtenemos <span class="mathi">-2\le u\le2</span>.</p>
+        <p><b>Paso 3.</b> Derivamos: <span class="mathi">\vec T_u'=(-2u,1,0)</span>, <span class="mathi">\vec T_v'=(0,0,1)</span>.</p>
+        <p><b>Paso 4.</b> Calculamos el producto vectorial fundamental:</p>
+        $$\vec T_u'\times\vec T_v' = (1,\ 2u,\ 0)$$
+        <p><b>Paso 5.</b> Verificamos orientación: la primera componente es 1 > 0, coincide con "normal con primera componente positiva", no hace falta ajustar el signo.</p>
+        <p><b>Paso 6.</b> Evaluamos f sobre la superficie:</p>
+        $$\vec f(\vec T(u,v)) = (2x,2y,3z) = \big(2(4-u^2),\ 2u,\ 3v\big)$$
+        <p><b>Paso 7.</b> Planteamos el producto escalar, sin simplificar todavía:</p>
+        $$\big(2(4-u^2),\,2u,\,3v\big)\cdot(1,2u,0)$$
+        <p><b>Paso 8.</b> Resolvemos el producto escalar:</p>
+        $$2(4-u^2)+4u^2 = 8-2u^2+4u^2 = 8+2u^2$$
+        <p><b>Paso 9.</b> Planteamos la integral doble:</p>
+        $$\int_{-2}^{2}\!\!\int_0^{4-u^2} (8+2u^2)\,dv\,du$$
+        <p><b>Paso 10.</b> Integramos en v:</p>
+        $$\int_0^{4-u^2}(8+2u^2)\,dv = (8+2u^2)(4-u^2)$$
+        <p><b>Paso 11.</b> Expandimos el producto:</p>
+        $$(8+2u^2)(4-u^2) = 32-8u^2+8u^2-2u^4 = 32-2u^4$$
+        <p><b>Paso 12.</b> Integramos en u:</p>
+        $$\int_{-2}^2 (32-2u^4)\,du = \left[32u-\frac{2}{5}u^5\right]_{-2}^2$$
+        <p><b>Paso 13.</b> Evaluamos en los límites:</p>
+        $$\left(64-\frac{64}{5}\right) - \left(-64+\frac{64}{5}\right) = \frac{256}{5}+\frac{256}{5} = \frac{512}{5}$$
+        <div class="example-answer">flujo = 512/5</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u10" class="placeholder">Elegí ÁREA, MASA o FLUJO para ver los pasos</div>

@@ -1,0 +1,226 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 11: Teoremas integrales (Green, Stokes, Gauss)</h2>
+    <p class="intro-line">¿Te piden la <b>circulación</b> de un campo a lo largo de una curva cerrada, o el <b>flujo</b> por una superficie cerrada?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad11.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 11 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u11-green" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u11','green')">
+      <span class="eyebrow">Curva cerrada, plano xy</span>
+      <p class="cc-title">GREEN</p>
+      <p class="cc-desc">Circulación en 2D / integral doble sobre la región que encierra la curva.</p>
+    </div>
+    <div class="choice-card" id="u11-stokes" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u11','stokes')">
+      <span class="eyebrow">Curva cerrada, espacio 3D</span>
+      <p class="cc-title">STOKES</p>
+      <p class="cc-desc">Circulación en 3D / flujo del rotor a través de una superficie con ese borde.</p>
+    </div>
+    <div class="choice-card" id="u11-gauss" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u11','gauss')">
+      <span class="eyebrow">Superficie cerrada</span>
+      <p class="cc-title">GAUSS</p>
+      <p class="cc-desc">Flujo saliente / integral triple de la divergencia sobre el sólido que encierra.</p>
+    </div>
+  </div>
+
+  <div id="panel-u11-green" class="detail-panel" style="--panel-color:#D4FF3F; --panel-text:#1B2340;">
+    <div class="detail-header">GREEN (circulación en el plano)</div>
+    <div class="detail-sub">Campo f = (P, Q), curva C cerrada en el plano xy, D = región encerrada por C.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Teorema de Green</div>
+          <p>Sean <span class="mathi">A \subset \mathbb{R}^2</span> abierto, <span class="mathi">\vec f: A \to \mathbb{R}^2</span> un campo <span class="mathi">C^1</span>, <span class="mathi">\vec f=(P,Q)</span>, y <span class="mathi">D \subset A</span> un recinto de tipo I o II cuya frontera <span class="mathi">\partial D</span> es una curva suave a trozos. Si orientamos <span class="mathi">\partial D</span> en sentido antihorario, entonces:</p>
+          $$\oint_{\partial D} \vec f \cdot d\vec s = \iint_D (Q_x' - P_y')\, dA$$
+        </div>
+        <p><b>Versión generalizada</b> (para regiones con "agujeros", como cuando hay una singularidad): la fórmula sigue valiendo tomando <span class="mathi">\partial D</span> como la unión de todas las curvas de borde, cada una orientada de forma que D quede siempre a la izquierda.</p>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>"P y Q deben ser C¹ en todo el interior de C":</b> el teorema pide que el campo esté definido y sea derivable con continuidad en cada punto de la región D. Si hay un punto donde el campo no exista, no podés aplicar la fórmula tal cual.</p>
+        <p><b>¿Qué es una "singularidad"?</b> Un punto (o curva) donde el campo no está definido o no es C¹.</p>
+        <p><b>¿Qué significa "restar el aporte"?</b> Se excluye la singularidad con una curva auxiliar chica. En la región entre C y esa curva, el campo sí es C¹, así que ahí vale Green:</p>
+        $$\oint_{C^{\circlearrowleft}} \vec f \cdot d\vec s \;-\; \oint_{C_1^{\circlearrowleft}} \vec f \cdot d\vec s \;=\; \iint_{\text{anillo}} (Q_x' - P_y')\, dA$$
+        <p>Como conocés el lado derecho y podés calcular fácil la integral sobre la curva chica, despejás la que te interesa.</p>
+        <p><b>¿De dónde sale el truco del área con <span class="mathi">f=(-y/2, x/2)</span>?</b> Si <span class="mathi">Q_x' - P_y' = k</span> (constante):</p>
+        $$\text{área}(D) = \frac{1}{k}\oint_{\partial D} \vec f \cdot d\vec s$$
+        <p>Con <span class="mathi">f=(-y/2, x/2)</span>: <span class="mathi">k=1</span>, y el área queda directamente <span class="mathi">\oint f\cdot ds</span>.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Verificar hipótesis: P y Q deben ser C¹ en todo el interior de C. Si hay un punto singular dentro, usar curva auxiliar y restar.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">Q_x' - P_y'</span>.</div></li>
+      <li><div class="step-body">Aplicar Green:<br>$$\oint_{\partial D} \vec f \cdot d\vec s = \iint_D (Q_x'-P_y')\, dA$$</div></li>
+      <li><div class="step-body">Plantear D según la curva (ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>) y resolver la integral doble.</div></li>
+    </ol>
+
+    <div class="tip">Si te piden el área de la región encerrada por una curva, recordá el truco de <span class="mathi">f=(-y/2,x/2)</span>.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 11/11/2019, curso semipresencial, T2, Unidad 11)</span>
+        <p><b>Enunciado:</b> calcule el área de la región encerrada por <span class="mathi">\vec\alpha(t) = (t^3-4t,\ 16-t^4)</span>, <span class="mathi">-2\le t\le 2</span>.</p>
+        <p><b>Paso 1.</b> Verificamos que la curva es cerrada: <span class="mathi">\vec\alpha(-2)=(0,0)=\vec\alpha(2)</span> ✓.</p>
+        <p><b>Paso 2.</b> Elegimos el campo del truco de área: <span class="mathi">\vec f=(-y/2,x/2)</span>.</p>
+        <p><b>Paso 3.</b> Escribimos las componentes y sus derivadas: <span class="mathi">x(t)=t^3-4t</span>, <span class="mathi">y(t)=16-t^4</span>, <span class="mathi">x'(t)=3t^2-4</span>, <span class="mathi">y'(t)=-4t^3</span>.</p>
+        <p><b>Paso 4.</b> Planteamos el integrando <span class="mathi">xy'-yx'</span>, sin simplificar todavía:</p>
+        $$(t^3-4t)(-4t^3) - (16-t^4)(3t^2-4)$$
+        <p><b>Paso 5.</b> Expandimos cada producto por separado:</p>
+        $$(t^3-4t)(-4t^3) = -4t^6+16t^4$$
+        $$(16-t^4)(3t^2-4) = 48t^2-64-3t^6+4t^4$$
+        <p><b>Paso 6.</b> Restamos y agrupamos términos semejantes:</p>
+        $$-4t^6+16t^4-48t^2+64+3t^6-4t^4 = -t^6+12t^4-48t^2+64$$
+        <p><b>Paso 7.</b> Planteamos la integral:</p>
+        $$\text{área}(D) = \frac12\int_{-2}^{2}\left(-t^6+12t^4-48t^2+64\right)dt$$
+        <p><b>Paso 8.</b> Usamos que el integrando es par para simplificar los límites:</p>
+        $$\text{área}(D) = \int_0^2\left(-t^6+12t^4-48t^2+64\right)dt$$
+        <p><b>Paso 9.</b> Resolvemos la primitiva:</p>
+        $$\left[-\frac{t^7}{7}+\frac{12t^5}{5}-16t^3+64t\right]_0^2$$
+        <p><b>Paso 10.</b> Evaluamos en t=2:</p>
+        $$-\frac{128}{7}+\frac{384}{5}-128+128 = -\frac{128}{7}+\frac{384}{5}$$
+        <p><b>Paso 11.</b> Sumamos las fracciones (común denominador 35):</p>
+        $$\frac{-640+2688}{35} = \frac{2048}{35}$$
+        <div class="example-answer">área(D) = 2048/35 ≈ 58,51</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u11-stokes" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
+    <div class="detail-header">STOKES (circulación en el espacio)</div>
+    <div class="detail-sub">Campo f = (P, Q, R), curva C cerrada en R³.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Rotor de un campo</div>
+          <p>Si <span class="mathi">\vec f = (P,Q,R)</span> es <span class="mathi">C^1</span>:</p>
+          $$\operatorname{rot}(\vec f) = \left(R_y' - Q_z',\ P_z' - R_x',\ Q_x' - P_y'\right) = \nabla \times \vec f$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Teorema de Stokes (o del rotor)</div>
+          <p>Sean <span class="mathi">A \subset \mathbb{R}^3</span> abierto, <span class="mathi">\vec f: A \to \mathbb{R}^3</span> un campo <span class="mathi">C^1</span>, y <span class="mathi">S \subset A</span> una superficie orientable cuyo borde <span class="mathi">\partial S</span> es una curva suave a trozos, con orientaciones coherentes (regla de la mano derecha):</p>
+          $$\oint_{\partial S} \vec f \cdot d\vec s = \iint_S \operatorname{rot}(\vec f)\cdot d\vec\sigma$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>"Orientación coherente / regla de la mano derecha":</b> si caminás sobre C en el sentido dado, con la cabeza apuntando en la dirección del normal elegido para S, la superficie queda siempre a tu izquierda.</p>
+        <p><b>¿Por qué puedo elegir cualquier superficie con ese borde?</b> El flujo de rot(f) es el mismo para cualquier S con ese borde y esa orientación (mientras rot(f) sea C¹ en el sólido entre dos elecciones de S). Por eso conviene elegir la más fácil de parametrizar.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Elegir una superficie S cuyo borde sea C (la más simple posible, ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>).</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\operatorname{rot}(\vec f)</span>.</div></li>
+      <li><div class="step-body">Orientar S de forma coherente con la orientación dada de C.</div></li>
+      <li><div class="step-body">Aplicar Stokes:<br>$$\oint_C \vec f \cdot d\vec s = \iint_S \operatorname{rot}(\vec f)\cdot d\vec\sigma$$</div></li>
+    </ol>
+
+    <div class="tip">Si <span class="mathi">\operatorname{rot}(\vec f)</span> da algo simple, elegí S para que <span class="mathi">d\sigma</span> sea lo más fácil posible de calcular.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Ejercicios_resueltos_AM23889.pdf (ejercicio 19)</span>
+        <p><b>Enunciado:</b> calcule la circulación de <span class="mathi">\vec f(x,y,z)=(xy,\ y-x,\ yz^2)</span> a lo largo de la curva intersección de <span class="mathi">x^2+y^2+z^2=8</span> con <span class="mathi">x=\sqrt{y^2+z^2}</span>.</p>
+        <p><b>Paso 1.</b> Identificamos la curva: reemplazando <span class="mathi">x=\sqrt{y^2+z^2}</span> en la esfera, <span class="mathi">2x^2=8\Rightarrow x=2</span>, y entonces <span class="mathi">y^2+z^2=4</span>, la circunferencia de radio 2 en el plano x=2.</p>
+        <p><b>Paso 2.</b> Elegimos S = disco plano <span class="mathi">x=2,\,y^2+z^2\le4</span>.</p>
+        <p><b>Paso 3.</b> Calculamos cada componente del rotor por separado (<span class="mathi">P=xy,\ Q=y-x,\ R=yz^2</span>):</p>
+        $$R_y'-Q_z' = z^2-0 = z^2 \qquad P_z'-R_x' = 0-0=0 \qquad Q_x'-P_y' = -1-x$$
+        <p><b>Paso 4.</b> Entonces <span class="mathi">\operatorname{rot}(\vec f)=(z^2,\,0,\,-1-x)</span>.</p>
+        <p><b>Paso 5.</b> Parametrizamos S con polares en el plano yz: <span class="mathi">y=r\cos\sigma,\ z=r\sin\sigma,\ x=2</span>, con <span class="mathi">0\le r\le2,\ 0\le\sigma\le2\pi</span>, normal <span class="mathi">\hat n=(1,0,0)</span>.</p>
+        <p><b>Paso 6.</b> Como el normal es (1,0,0), sólo necesitamos la primera componente de <span class="mathi">\operatorname{rot}(\vec f)</span> evaluada sobre S:</p>
+        $$z^2 = (r\sin\sigma)^2 = r^2\sin^2\sigma$$
+        <p><b>Paso 7.</b> Planteamos la integral doble:</p>
+        $$\int_0^{2\pi}\!\!\int_0^2 r^2\sin^2\sigma\cdot r\,dr\,d\sigma = \int_0^{2\pi}\!\!\int_0^2 r^3\sin^2\sigma\,dr\,d\sigma$$
+        <p><b>Paso 8.</b> Integramos en r:</p>
+        $$\int_0^2 r^3\,dr = \left[\frac{r^4}{4}\right]_0^2 = 4$$
+        <p><b>Paso 9.</b> Integramos en σ (usando que el promedio de sen² en un período completo es 1/2):</p>
+        $$\int_0^{2\pi} 4\sin^2\sigma\,d\sigma = 4\pi$$
+        <div class="example-answer">circulación = 4π</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u11-gauss" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+    <div class="detail-header">GAUSS (flujo por superficie cerrada)</div>
+    <div class="detail-sub">Campo f = (P, Q, R), superficie S = ∂V cerrada (frontera de un sólido V).</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Divergencia de un campo</div>
+          <p>Si <span class="mathi">\vec f=(P,Q,R)</span> es <span class="mathi">C^1</span>:</p>
+          $$\operatorname{div}(\vec f) = P_x' + Q_y' + R_z' = \nabla \cdot \vec f$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Teorema de Gauss (o de la divergencia)</div>
+          <p>Sean <span class="mathi">A\subset\mathbb{R}^3</span> abierto, <span class="mathi">\vec f:A\to\mathbb{R}^3</span> un campo <span class="mathi">C^1</span>, y <span class="mathi">V\subset A</span> un sólido regular cuya frontera <span class="mathi">\partial V</span> es una superficie suave a trozos. Si orientamos <span class="mathi">\partial V</span> con el campo normal <b>exterior</b>:</p>
+          $$\iint_{\partial V} \vec f \cdot d\vec\sigma = \iiint_V \operatorname{div}(\vec f)\, dV$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>"Sólido regular" / "superficie suave a trozos":</b> un sólido con volumen bien definido cuya frontera se arma con una cantidad finita de superficies "lisas".</p>
+        <p><b>¿Cómo sé si una superficie es cerrada?</b> Si S es la frontera de un sólido (∂V), es cerrada.</p>
+        <p><b>"Singularidad dentro de V" y "restar el aporte":</b> la misma idea que en Green, en 3D. Se encierra la singularidad con una superficie auxiliar chica, y en la región entre <span class="mathi">\partial V</span> y esa superficie vale:</p>
+        $$\iint_{\partial V} \vec f\cdot d\vec\sigma \;-\; \iint_{\text{esfera}} \vec f\cdot d\vec\sigma \;=\; \iiint_{\text{región entre ambas}} \operatorname{div}(\vec f)\, dV$$
+        <p><b>"Agregar tapas":</b> si S no es cerrada pero conviene usar Gauss igual, se le "pegan" discos u otras superficies simples hasta formar la frontera de un sólido V. Al final se le resta al resultado el flujo por esas tapas (calculado aparte).</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Confirmar que S es cerrada. Si no lo es pero conviene cerrarla, agregar tapas.</div></li>
+      <li><div class="step-body">Verificar que f sea C¹ en todo V. Si hay singularidad, usar superficie auxiliar y restar su aporte.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\operatorname{div}(\vec f)</span>.</div></li>
+      <li><div class="step-body">Aplicar Gauss (normal exterior):<br>$$\iint_{\partial V} \vec f\cdot d\vec\sigma = \iiint_V \operatorname{div}(\vec f)\, dV$$</div></li>
+      <li><div class="step-body">Si agregaste tapas, restale al resultado el flujo por esas tapas.</div></li>
+    </ol>
+
+    <div class="caution">No siempre conviene aplicar Gauss: si armar el sólido V es más complicado que calcular el flujo directo, es mejor ir directo a la definición.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Recuperatorio del Segundo Parcial 23/07/2024, P3, Unidad 11)</span>
+        <p><b>Enunciado:</b> sea f C¹ y <span class="mathi">\vec g(x,y,z) = (f(yz)+x^2,\ f(xz)-2xy,\ f(xy)+z^2)</span>. Calcule el flujo de <span class="mathi">\vec g</span> a través de S = ∂V, con <span class="mathi">V=\{x+z\le4,\ x+y\le4,\ x\ge0,\ y\ge0,\ z\ge0\}</span>.</p>
+        <p><b>Paso 1.</b> Calculamos cada derivada parcial de g por separado:</p>
+        $$\frac{\partial}{\partial x}\big[f(yz)+x^2\big]=2x \qquad \frac{\partial}{\partial y}\big[f(xz)-2xy\big]=-2x \qquad \frac{\partial}{\partial z}\big[f(xy)+z^2\big]=2z$$
+        <p>(en cada caso, f depende sólo de las otras dos variables, así que su derivada respecto de ésta es 0)</p>
+        <p><b>Paso 2.</b> Sumamos las tres derivadas parciales:</p>
+        $$\operatorname{div}(\vec g) = 2x-2x+2z = 2z$$
+        <p><b>Paso 3.</b> Planteamos V: para <span class="mathi">0\le x\le4</span>, y y z van de 0 a <span class="mathi">4-x</span> cada uno.</p>
+        <p><b>Paso 4.</b> Planteamos la integral triple:</p>
+        $$\iiint_V 2z\,dV = \int_0^4\!\!\int_0^{4-x}\!\!\int_0^{4-x} 2z\,dz\,dy\,dx$$
+        <p><b>Paso 5.</b> Integramos en z:</p>
+        $$\int_0^{4-x} 2z\,dz = (4-x)^2$$
+        <p><b>Paso 6.</b> Integramos en y (el resultado anterior no depende de y):</p>
+        $$\int_0^{4-x}(4-x)^2\,dy = (4-x)^3$$
+        <p><b>Paso 7.</b> Planteamos la integral en x:</p>
+        $$\int_0^4 (4-x)^3\,dx$$
+        <p><b>Paso 8.</b> Sustituimos <span class="mathi">u=4-x</span>, <span class="mathi">du=-dx</span>; límites: <span class="mathi">x=0\to u=4</span>, <span class="mathi">x=4\to u=0</span>:</p>
+        $$\int_0^4 u^3\,du$$
+        <p><b>Paso 9.</b> Resolvemos:</p>
+        $$\left[\frac{u^4}{4}\right]_0^4 = \frac{256}{4} = 64$$
+        <div class="example-answer">flujo = 64</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u11" class="placeholder">Elegí GREEN, STOKES o GAUSS para ver los pasos</div>

@@ -1,0 +1,76 @@
+
+
+  <div class="page-header-box">
+    <h2>Tips y trucos</h2>
+    <p class="intro-line">Graficá en 3D y cambiá de coordenadas como un campeón.</p>
+  </div>
+
+  <details class="tip-block" id="tip-graficar3d" style="--tip-color:#FF6B35;">
+    <summary>Cómo graficar en 3D fácil y rápido</summary>
+    <div class="tip-inner">
+
+    <p class="coord-subtitle"><span style="background:#FF6B35; color:#fff;">Paso 1</span></p>
+    <p>Dibujá los 3 ejes teniendo en cuenta los límites del sólido. Si sólo te piden el primer octante, no dibujes los ejes negativos (o dibujalos punteados/tenues) para no confundirte con partes que no forman parte del recinto.</p>
+    <img class="tip-img" src="recursos/Graficar3D_paso1.png" alt="Paso 1: ejes según los límites del sólido">
+    <p class="tip-img-caption">Imagen: recursos/Graficar3D_paso1.png</p>
+
+    <p class="coord-subtitle"><span style="background:#FF6B35; color:#fff;">Paso 2</span></p>
+    <p>Identificá las condiciones del enunciado y traducilas a las fórmulas conocidas. Por ejemplo: <span class="mathi">x^2+y^2\le4</span> es un cilindro (o un círculo, si aparece sola en el plano xy); <span class="mathi">z=x^2+y^2</span> es un paraboloide; <span class="mathi">x+y+z=6</span> es un plano.</p>
+    <img class="tip-img" src="recursos/Graficar3D_paso2.png" alt="Paso 2: condiciones vs fórmulas conocidas">
+    <p class="tip-img-caption">Imagen: recursos/Graficar3D_paso2.png</p>
+
+    <p class="coord-subtitle"><span style="background:#FF6B35; color:#fff;">Paso 3</span></p>
+    <p>Usá esas fórmulas para construir las trazas (las curvas que se obtienen al cortar la superficie con cada plano coordenado). Si la fórmula involucra las 3 variables, anulá una a la vez y dibujá la traza resultante en el plano de las otras dos.</p>
+    <img class="tip-img" src="recursos/Graficar3D_paso3.png" alt="Paso 3: construcción de trazas">
+    <p class="tip-img-caption">Imagen: recursos/Graficar3D_paso3.png</p>
+
+    <p class="coord-subtitle"><span style="background:#FF6B35; color:#fff;">Paso 4</span></p>
+    <p>Uní las trazas (si son de la misma fórmula) o superponelas (si corresponden a fórmulas distintas) para visualizar el sólido completo.</p>
+    <img class="tip-img" src="recursos/Graficar3D_paso4.png" alt="Paso 4: unir o superponer trazas">
+    <p class="tip-img-caption">Imagen: recursos/Graficar3D_paso4.png</p>
+
+    <p class="coord-subtitle"><span style="background:#FF6B35; color:#fff;">Paso 5</span></p>
+    <p>Si tenés una inecuación y no sabés para qué lado pintar: elegí un punto de prueba (lo más simple, el origen, si no forma parte del borde) y reemplazalo en la inecuación. Si se verifica, pintá el lado que incluye ese punto; si no se verifica, pintá el lado que lo excluye.</p>
+    <img class="tip-img" src="recursos/Graficar3D_paso5.png" alt="Paso 5: punto de prueba para saber qué lado pintar">
+    <p class="tip-img-caption">Imagen: recursos/Graficar3D_paso5.png</p>
+    </div>
+  </details>
+
+  <details class="tip-block" id="tip-coordenadas" style="--tip-color:#7B5FFF;">
+    <summary>Coordenadas: cuándo usar cada una</summary>
+    <div class="tip-inner">
+
+    <p class="coord-subtitle"><span style="background:#33D6C0; color:#1B2340;">¿Qué es un cambio de variable?</span></p>
+    <p>Es sólo una forma más cómoda de describir la misma región y de escribir <span class="mathi">dA</span> o <span class="mathi">dV</span>. Elegís el sistema que hace que las superficies que limitan tu recinto se escriban lo más simple posible (idealmente, como una constante).</p>
+
+    <p class="coord-subtitle"><span style="background:#FF6B35; color:#fff;">Polares (integrales dobles)</span></p>
+    $$x = r\cos\theta$$
+    $$y = r\sin\theta$$
+    $$dA = r\,dr\,d\theta$$
+    <p><b>¿Cuándo conviene?</b> Si D está limitado por circunferencias centradas en el origen y/o semirrectas que parten del origen, o si el integrando tiene <span class="mathi">x^2+y^2</span>.</p>
+
+    <p class="coord-subtitle"><span style="background:#7B5FFF; color:#fff;">Cilíndricas (integrales triples)</span></p>
+    $$x = r\cos\theta \qquad y = r\sin\theta \qquad z = z$$
+    $$dV = r\,dr\,d\theta\,dz$$
+    <p><b>¿Cuándo conviene?</b> Cuando el sólido tiene simetría alrededor de un eje (típicamente z): cilindros, paraboloides con eje z, conos con eje z, o cuando el integrando tiene <span class="mathi">x^2+y^2</span>.</p>
+
+    <p class="coord-subtitle"><span style="background:#FF3E8E; color:#fff;">Esféricas (integrales triples)</span></p>
+    $$x = \rho\sin\varphi\cos\theta \qquad y = \rho\sin\varphi\sin\theta \qquad z = \rho\cos\varphi$$
+    $$dV = \rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$$
+    <p><b>¿Cuándo conviene?</b> Cuando el sólido tiene simetría alrededor de un punto (esferas o conos con vértice en el origen), o el integrando tiene <span class="mathi">x^2+y^2+z^2</span>.</p>
+
+    <p class="coord-subtitle"><span style="background:#C061FF; color:#fff;">El caso difícil: ¿cilíndricas o esféricas?</span></p>
+    <p>Acá es donde más se confunde, porque a veces literalmente hay una esfera en el enunciado y aun así conviene cilíndricas. El truco no es preguntarte "¿hay una esfera?", sino: <i>de todas las superficies que limitan el sólido, ¿cuál es la más incómoda de escribir, y en qué sistema esa superficie en particular se simplifica?</i></p>
+
+    <p>Ejemplo: <span class="mathi">V=\{x^2+y^2+z^2\le3,\ 0\le z\le x^2+y^2\}</span>, la intersección de una esfera con un paraboloide.</p>
+    <p>Probemos esféricas primero: la esfera es trivial (<span class="mathi">\rho\le\sqrt3</span>), pero el paraboloide <span class="mathi">z=x^2+y^2</span> se convierte en <span class="mathi">\rho\cos\varphi=\rho^2\sin^2\varphi</span>, es decir <span class="mathi">\rho=\dfrac{\cos\varphi}{\sin^2\varphi}</span>, un límite feo, con φ en el denominador. Mala señal.</p>
+    <p>Probemos cilíndricas: el paraboloide es <span class="mathi">z=r^2</span> (inmediato), y la esfera se despeja como <span class="mathi">z\le\sqrt{3-r^2}</span>, no tan trivial como en esféricas, pero perfectamente manejable. Como <i>ninguna</i> de las dos queda fea, y la superficie más problemática (el paraboloide) se resuelve mejor acá, cilíndricas gana.</p>
+
+    <p style="text-align:center; color:#7B5FFF; font-weight:700;">Regla práctica para decidir rápido:</p>
+    <p><span style="color:#7B5FFF; font-weight:700;">1.</span> Mirá cada superficie que limita el sólido por separado: ¿es una <b>esfera o un cono con vértice en el origen</b> (esféricas la deja como constante), o es un <b>paraboloide/cilindro/plano horizontal</b> (cilíndricas la deja como <span class="mathi">z=r^2</span>, <span class="mathi">r=\text{cte}</span> o <span class="mathi">z=\text{cte}</span>)?</p>
+    <p><span style="color:#7B5FFF; font-weight:700;">2.</span> Si todas las superficies son esferas/conos por el origen, <b>esféricas gana sin dudar</b>.</p>
+    <p><span style="color:#7B5FFF; font-weight:700;">3.</span> Si aparece aunque sea un paraboloide, un cilindro o un plano (incluso si también hay una esfera), <b>probá primero cilíndricas</b>: la esfera casi siempre se puede despejar sin drama, mientras que el paraboloide en esféricas suele quedar poco manejable.</p>
+    <p><span style="color:#7B5FFF; font-weight:700;">4.</span> Si una variable te queda despejada de forma rara (fracciones o funciones trigonométricas en el denominador, exponentes cruzados), es señal de que <b>probaste el sistema equivocado</b>: cambiá al otro.</p>
+    </div>
+  </details>
+

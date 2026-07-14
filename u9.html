@@ -1,0 +1,147 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 9: Integrales múltiples</h2>
+    <p class="intro-line">¿La integral (o el volumen/masa que te piden) es sobre una región del <b>plano</b>, o sobre un <b>sólido</b> en el espacio?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad9.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 9 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u9-doble" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u9','doble')">
+      <span class="eyebrow">Región del plano</span>
+      <p class="cc-title">INTEGRAL DOBLE</p>
+      <p class="cc-desc">Rectángulos, recintos tipo I/II, o cambio a coordenadas polares.</p>
+    </div>
+    <div class="choice-card" id="u9-triple" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u9','triple')">
+      <span class="eyebrow">Sólido en el espacio</span>
+      <p class="cc-title">INTEGRAL TRIPLE</p>
+      <p class="cc-desc">Cartesianas, cilíndricas o esféricas, según la simetría del sólido.</p>
+    </div>
+  </div>
+
+  <div id="panel-u9-doble" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+    <div class="detail-header">INTEGRAL DOBLE</div>
+    <div class="detail-sub">Función f(x,y), recinto D ⊂ plano xy.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Teorema de Fubini (rectángulos)</div>
+          <p>Si f es continua en <span class="mathi">R=[a,b]\times[c,d]</span>, entonces:</p>
+          $$\iint_R f(x,y)\,dA = \int_a^b\!\!\int_c^d f(x,y)\,dy\,dx = \int_c^d\!\!\int_a^b f(x,y)\,dx\,dy$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Extensión a recintos tipo I / tipo II</div>
+          <p><b>Tipo I</b> (<span class="mathi">a\le x\le b,\ g_1(x)\le y\le g_2(x)</span>):</p>
+          $$\iint_D f\,dA = \int_a^b\!\!\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx$$
+          <p><b>Tipo II</b> (<span class="mathi">c\le y\le d,\ h_1(y)\le x\le h_2(y)</span>):</p>
+          $$\iint_D f\,dA = \int_c^d\!\!\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy$$
+        </div>
+        <p>Para el cambio a coordenadas polares (sustitución, jacobiano y cuándo conviene usarlas), ver <a href="#" onclick="goToTips(event,'tip-coordenadas')">Tips y trucos: Coordenadas</a>.</p>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Qué hago si D no es tipo I ni tipo II?</b> Se parte D en una unión finita de subregiones que sí sean de alguno de los dos tipos, se calcula la integral en cada una por separado, y se suman los resultados.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Graficar D para entender su forma (ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>).</div></li>
+      <li><div class="step-body">¿Es un rectángulo? Fubini directo, en el orden que más convenga.</div></li>
+      <li><div class="step-body">¿Es tipo I o tipo II? Plantear los límites correspondientes. Si no es ninguno, partir en unión de subregiones.</div></li>
+      <li><div class="step-body">¿D tiene forma circular/anular/sectorial, o el integrando tiene <span class="mathi">x^2+y^2</span>? Cambiar a polares (ver <a href="#" onclick="goToTips(event,'tip-coordenadas')">Tips y trucos: Coordenadas</a>).</div></li>
+      <li><div class="step-body">Resolver la integral iterada resultante.</div></li>
+    </ol>
+
+    <div class="tip">Para un cambio de variables general (no polar), <span class="mathi">dA=|\det(Dg(u,v))|\,du\,dv</span>, con g la transformación y Dg su matriz jacobiana.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 04_polares_ejemplos.pdf (apunte de la cátedra, ejemplo 1)</span>
+        <p><b>Enunciado:</b> calcule <span class="mathi">\iint_D y^2x\,dx\,dy</span> con D definido por <span class="mathi">x^2+y^2\le 8,\ x\ge0</span>.</p>
+        <p><b>Paso 1.</b> Identificamos D: medio disco de radio <span class="mathi">\sqrt8</span> (mitad derecha), conviene polares.</p>
+        <p><b>Paso 2.</b> Planteamos el cambio de variable: <span class="mathi">x=r\cos\theta,\ y=r\sin\theta,\ dA=r\,dr\,d\theta</span>.</p>
+        <p><b>Paso 3.</b> Determinamos D*: como el origen pertenece a D, <span class="mathi">0\le r\le\sqrt8</span>; como D está en 1° y 4° cuadrante, <span class="mathi">-\pi/2\le\theta\le\pi/2</span>.</p>
+        <p><b>Paso 4.</b> Sustituimos en el integrando, sin simplificar todavía:</p>
+        $$y^2x = (r\sin\theta)^2(r\cos\theta)$$
+        <p><b>Paso 5.</b> Multiplicamos por el jacobiano r:</p>
+        $$y^2x\cdot r = r^4\sin^2\theta\cos\theta$$
+        <p><b>Paso 6.</b> Planteamos la integral iterada:</p>
+        $$\int_{-\pi/2}^{\pi/2}\!\!\int_0^{\sqrt8} r^4\sin^2\theta\cos\theta\; dr\,d\theta$$
+        <p><b>Paso 7.</b> Integramos primero en r:</p>
+        $$\int_0^{\sqrt8} r^4\,dr = \left[\frac{r^5}{5}\right]_0^{\sqrt8} = \frac{128\sqrt2}{5}$$
+        <p><b>Paso 8.</b> Integramos en θ:</p>
+        $$\int_{-\pi/2}^{\pi/2}\sin^2\theta\cos\theta\,d\theta = \left[\frac{\sin^3\theta}{3}\right]_{-\pi/2}^{\pi/2} = \frac23$$
+        <p><b>Paso 9.</b> Multiplicamos ambos resultados:</p>
+        $$\frac{128\sqrt2}{5}\cdot\frac23 = \frac{256}{15}\sqrt2$$
+        <div class="example-answer">resultado = (256/15)√2</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u9-triple" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+    <div class="detail-header">INTEGRAL TRIPLE</div>
+    <div class="detail-sub">Función f(x,y,z), sólido V ⊂ el espacio.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Teorema de Fubini (cajas)</div>
+          <p>Si f es continua en la caja <span class="mathi">B=[a,b]\times[c,d]\times[e,g]</span>, la integral triple se puede calcular como una integral iterada en cualquier orden. Por ejemplo:</p>
+          $$\iiint_B f(x,y,z)\,dV = \int_a^b\!\!\int_c^d\!\!\int_e^g f(x,y,z)\,dz\,dy\,dx$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Extensión a recintos elementales</div>
+          <p>Igual que en el caso doble (tipo I/II), si el sólido V tiene los límites de una variable expresados en función de las otras dos, se integra primero esa variable y después se resuelve la integral doble resultante sobre la proyección de V. Por ejemplo, si <span class="mathi">V=\{(x,y,z): (x,y)\in D,\ h_1(x,y)\le z\le h_2(x,y)\}</span>:</p>
+          $$\iiint_V f\,dV = \iint_D\left[\int_{h_1(x,y)}^{h_2(x,y)} f(x,y,z)\,dz\right] dA$$
+        </div>
+        <p>Para el cambio a cilíndricas o esféricas (sustitución, jacobiano y cómo elegir entre las dos), ver <a href="#" onclick="goToTips(event,'tip-coordenadas')">Tips y trucos: Coordenadas</a>.</p>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p>Las definiciones de simetría, el jacobiano de cada sistema, y cómo decidir entre cilíndricas y esféricas (incluido el caso ambiguo de un sólido con esfera y paraboloide a la vez) están en <a href="#" onclick="goToTips(event,'tip-coordenadas')">Tips y trucos: Coordenadas</a>.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Graficar el sólido V (ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>).</div></li>
+      <li><div class="step-body">¿V es una caja o tiene límites simples/independientes en x,y,z? Cartesianas directas.</div></li>
+      <li><div class="step-body">¿V tiene simetría alrededor de un eje, o el integrando tiene <span class="mathi">x^2+y^2</span>? Cilíndricas.</div></li>
+      <li><div class="step-body">¿V tiene simetría alrededor de un punto, o el integrando tiene <span class="mathi">x^2+y^2+z^2</span>? Esféricas (ver <a href="#" onclick="goToTips(event,'tip-coordenadas')">Tips y trucos: Coordenadas</a> si dudás entre las dos).</div></li>
+      <li><div class="step-body">Plantear los límites en el sistema elegido y resolver la integral iterada.</div></li>
+    </ol>
+
+    <div class="tip">Aplicaciones típicas: volumen = <span class="mathi">\iiint_V 1\,dV</span>; masa = <span class="mathi">\iiint_V \delta(x,y,z)\,dV</span>.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 01/07/2026, curso semipresencial, P2, Unidad 9)</span>
+        <p><b>Enunciado:</b> calcule el volumen del cuerpo dado por <span class="mathi">2x+y+z\le6,\ y\ge0,\ z\ge0,\ 1\le x\le2</span>.</p>
+        <p><b>Paso 1.</b> Es un recinto elemental en cartesianas (sin simetría circular).</p>
+        <p><b>Paso 2.</b> Para x fijo en [1,2], planteamos el recinto en y, z: <span class="mathi">y\ge0,\ z\ge0,\ y+z\le6-2x</span>.</p>
+        <p><b>Paso 3.</b> Reconocemos que es un triángulo rectángulo de catetos <span class="mathi">(6-2x)</span>, con área <span class="mathi">(6-2x)^2/2</span>.</p>
+        <p><b>Paso 4.</b> Planteamos la integral en x:</p>
+        $$V = \int_1^2 \frac{(6-2x)^2}{2}\,dx$$
+        <p><b>Paso 5.</b> Sustituimos <span class="mathi">u=6-2x</span>, <span class="mathi">du=-2dx</span>; límites: <span class="mathi">x=1\to u=4</span>, <span class="mathi">x=2\to u=2</span>.</p>
+        <p><b>Paso 6.</b> Reescribimos la integral:</p>
+        $$V = \int_2^4\frac{u^2}{4}\,du$$
+        <p><b>Paso 7.</b> Resolvemos la primitiva:</p>
+        $$\left[\frac{u^3}{12}\right]_2^4$$
+        <p><b>Paso 8.</b> Evaluamos:</p>
+        $$\frac{64}{12}-\frac{8}{12} = \frac{56}{12} = \frac{14}{3}$$
+        <div class="example-answer">volumen = 14/3</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u9" class="placeholder">Elegí INTEGRAL DOBLE o INTEGRAL TRIPLE para ver los pasos</div>

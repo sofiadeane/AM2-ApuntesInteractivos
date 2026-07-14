@@ -1,0 +1,198 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 5: Diferenciabilidad de campos escalares y vectoriales</h2>
+    <p class="intro-line">¿Te piden demostrar diferenciabilidad <b>por definición</b>, usar la <b>condición C¹ / matriz jacobiana</b>, o una <b>aproximación lineal</b>?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad5.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 5 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u5-definicion" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u5','definicion')">
+      <span class="eyebrow">lim [...] = 0</span>
+      <p class="cc-title">DIFERENCIABILIDAD POR DEFINICIÓN</p>
+      <p class="cc-desc">Para puntos de corte, o cuando te piden demostrarlo.</p>
+    </div>
+    <div class="choice-card" id="u5-jacobiana" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u5','jacobiana')">
+      <span class="eyebrow">f es C¹ ⇒ diferenciable</span>
+      <p class="cc-title">CONDICIÓN SUFICIENTE Y JACOBIANA</p>
+      <p class="cc-desc">El atajo que se usa casi siempre, y la matriz jacobiana.</p>
+    </div>
+    <div class="choice-card" id="u5-lineal" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u5','lineal')">
+      <span class="eyebrow">L(x) ≈ f(x)</span>
+      <p class="cc-title">APROXIMACIÓN LINEAL</p>
+      <p class="cc-desc">Estimar el valor de f cerca de un punto conocido.</p>
+    </div>
+  </div>
+
+  <div id="panel-u5-definicion" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
+    <div class="detail-header">DIFERENCIABILIDAD POR DEFINICIÓN</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝᵐ, A abierto, x₀ ∈ A.</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Diferenciabilidad (caso f: ℝ²→ℝ, para agarrar la idea)</div>
+          <p>f es diferenciable en <span class="mathi">x_0=(x_0,y_0)</span> si existen números a, b tales que:</p>
+          $$\lim_{(x,y)\to(x_0,y_0)} \frac{f(x,y)-f(x_0,y_0)-a(x-x_0)-b(y-y_0)}{\|(x,y)-(x_0,y_0)\|} = 0$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Diferenciabilidad (caso general)</div>
+          <p>f es diferenciable en <span class="mathi">x_0</span> si existe una transformación lineal <span class="mathi">T:\mathbb{R}^n\to\mathbb{R}^m</span> tal que:</p>
+          $$\lim_{x\to x_0} \frac{f(x)-f(x_0)-T(x-x_0)}{\|x-x_0\|} = \vec0$$
+          <p>Si f es vectorial, es diferenciable en <span class="mathi">x_0</span> si y sólo si cada una de sus componentes lo es.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>Importante:</b> para que f sea diferenciable en <span class="mathi">x_0</span> NO alcanza con que existan las derivadas parciales ahí. Pueden existir las parciales y aun así el límite de la definición no dar 0.</p>
+        <p><b>¿Qué números pongo como a, b (o como T)?</b> Las derivadas parciales de f en <span class="mathi">x_0</span>, si es que existen (son los únicos candidatos posibles, por unicidad de la diferencial). Por eso el primer paso siempre es calcularlas.</p>
+        <p><b>¿Y si no existen las derivadas parciales?</b> Entonces f ya no es diferenciable en <span class="mathi">x_0</span>: ni hace falta plantear el límite.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Calcular las derivadas parciales de f en <span class="mathi">x_0</span>. Si no existen, f no es diferenciable ahí (fin del ejercicio).</div></li>
+      <li><div class="step-body">Si existen, plantear el límite de la definición usando esas derivadas parciales como a, b.</div></li>
+      <li><div class="step-body">Simplificar el numerador todo lo posible (a menudo conviene sustituir <span class="mathi">h=x-x_0,\ k=y-y_0</span> para que quede más manejable).</div></li>
+      <li><div class="step-body">Calcular el límite con las técnicas de la Unidad 3 (acotación, generalmente).</div></li>
+      <li><div class="step-body">Si el límite da 0, f es diferenciable en <span class="mathi">x_0</span>; si da otra cosa o no existe, no lo es.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 05_diferenciación F.pdf (apunte de la cátedra, ejemplo 8)</span>
+        <p><b>Enunciado:</b> analice la diferenciabilidad de <span class="mathi">f(x,y)=x^2y</span> en <span class="mathi">x_0=(1,-1)</span>.</p>
+        <p><b>Paso 1.</b> Calculamos las derivadas parciales:</p>
+        $$f_x'(1,-1) = 2xy\big|_{(1,-1)} = -2 \qquad f_y'(1,-1) = x^2\big|_{(1,-1)} = 1$$
+        <p><b>Paso 2.</b> Planteamos el límite de la definición, sustituyendo <span class="mathi">x=1+h,\ y=-1+k</span> (con <span class="mathi">(h,k)\to(0,0)</span>):</p>
+        $$\lim_{(h,k)\to(0,0)} \frac{(1+h)^2(-1+k) - (-1) - (-2)h - (1)k}{\sqrt{h^2+k^2}}$$
+        <p><b>Paso 3.</b> Expandimos el numerador, sin simplificar todavía:</p>
+        $$(1+2h+h^2)(-1+k) + 1 + 2h - k$$
+        <p><b>Paso 4.</b> Distribuimos y agrupamos términos semejantes (varios se cancelan):</p>
+        $$-1+k-2h+2hk-h^2+h^2k+1+2h-k = 2hk - h^2 + h^2k$$
+        <p><b>Paso 5.</b> Reescribimos la expresión completa, separando en dos términos acotables:</p>
+        $$\frac{-h^2+2hk+h^2k}{\sqrt{h^2+k^2}} = \frac{-h^2}{\sqrt{h^2+k^2}} + (2+h)\cdot\frac{hk}{\sqrt{h^2+k^2}}$$
+        <p><b>Paso 6.</b> Acotamos cada término: <span class="mathi">|h^2/\sqrt{h^2+k^2}| \le |h| \to 0</span>, y <span class="mathi">|hk/\sqrt{h^2+k^2}|\le\sqrt{h^2+k^2}/2\to0</span> (con <span class="mathi">(2+h)</span> acotado cerca de <span class="mathi">h=0</span>).</p>
+        <p><b>Paso 7.</b> Como ambos términos tienden a 0, el límite completo es 0.</p>
+        <div class="example-answer">f es diferenciable en (1,-1)</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u5-jacobiana" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+    <div class="detail-header">CONDICIÓN SUFICIENTE Y MATRIZ JACOBIANA</div>
+    <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝᵐ, A abierto.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Condición suficiente de diferenciabilidad</div>
+          <p>Si las derivadas parciales de f existen en un entorno de <span class="mathi">x_0</span> y son continuas en <span class="mathi">x_0</span> (es decir, f es <span class="mathi">C^1</span> ahí), entonces f es diferenciable en <span class="mathi">x_0</span>. Esta es la vía que se usa en la gran mayoría de los ejercicios, evitando ir a la definición.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Toda transformación lineal es diferenciable</div>
+          <p>Si <span class="mathi">T</span> es una transformación lineal, T es diferenciable en cualquier punto y <span class="mathi">DT(x_0)=T</span> (su propia diferencial es ella misma).</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Matriz jacobiana</div>
+          <p>Si <span class="mathi">f=(f_1,\ldots,f_m):A\subset\mathbb{R}^n\to\mathbb{R}^m</span> es diferenciable en <span class="mathi">x_0</span>, la matriz de su diferencial es la matriz jacobiana (tamaño <span class="mathi">m\times n</span>, la fila i es el gradiente de <span class="mathi">f_i</span>):</p>
+          $$Df(x_0) = \begin{pmatrix} \dfrac{\partial f_1}{\partial x_1}(x_0) & \cdots & \dfrac{\partial f_1}{\partial x_n}(x_0) \\ \vdots & & \vdots \\ \dfrac{\partial f_m}{\partial x_1}(x_0) & \cdots & \dfrac{\partial f_m}{\partial x_n}(x_0) \end{pmatrix}$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué conviene usar la condición C¹ en vez de la definición?</b> Porque evita plantear y resolver un límite. Alcanza con reconocer que f es composición/suma/producto/cociente de funciones "conocidas" (polinomios, exponenciales, trigonométricas, etc.) en un entorno del punto, sin denominadores que se anulen ni operaciones prohibidas ahí.</p>
+        <p><b>¿Cuándo sí tengo que ir a la definición entonces?</b> Sólo en los puntos de "corte" de una función partida, donde la condición C¹ no se puede aplicar directamente (ver la otra rama).</p>
+        <p><b>¿Cómo armo la matriz jacobiana?</b> Cada fila corresponde a una componente de f, cada columna a una variable: la entrada (i,j) es la derivada parcial de la componente i respecto de la variable j, evaluada en el punto.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Verificar que f (o cada componente, si es vectorial) sea C¹ en un entorno del punto.</div></li>
+      <li><div class="step-body">Si lo es, f ya es diferenciable ahí automáticamente, sin necesidad de plantear ningún límite.</div></li>
+      <li><div class="step-body">Calcular todas las derivadas parciales de cada componente.</div></li>
+      <li><div class="step-body">Armar la matriz jacobiana: fila i = gradiente de la componente i, evaluado en el punto.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 05_diferenciación F.pdf (apunte de la cátedra, ejemplo 25)</span>
+        <p><b>Enunciado:</b> halle la matriz jacobiana de <span class="mathi">\vec f(x,y)=(x^2y,\ x-y^2,\ x^2+y^2)</span> en (1,-1).</p>
+        <p><b>Paso 1.</b> Cada componente es un polinomio, así que <span class="mathi">\vec f</span> es C¹ (y por lo tanto diferenciable) en todo <span class="mathi">\mathbb{R}^2</span>, en particular en (1,-1).</p>
+        <p><b>Paso 2.</b> La función depende de 2 variables y tiene 3 componentes, así que la matriz jacobiana va a ser de <span class="mathi">3\times2</span>.</p>
+        <p><b>Paso 3.</b> Calculamos las derivadas parciales de cada componente:</p>
+        $$\frac{\partial f_1}{\partial x}=2xy,\ \frac{\partial f_1}{\partial y}=x^2 \qquad \frac{\partial f_2}{\partial x}=1,\ \frac{\partial f_2}{\partial y}=-2y \qquad \frac{\partial f_3}{\partial x}=2x,\ \frac{\partial f_3}{\partial y}=2y$$
+        <p><b>Paso 4.</b> Evaluamos cada una en (1,-1) y armamos la matriz:</p>
+        $$D\vec f(1,-1) = \begin{pmatrix} -2 & 1 \\ 1 & 2 \\ 2 & -2 \end{pmatrix}$$
+        <div class="example-answer">Df(1,-1) = [[-2,1],[1,2],[2,-2]]</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u5-lineal" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+    <div class="detail-header">APROXIMACIÓN LINEAL</div>
+    <div class="detail-sub">Función f diferenciable en un punto x₀ "cercano" y fácil de evaluar.</div>
+
+    <details class="block">
+      <summary>Definición y observación que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Aproximación lineal (linealización)</div>
+          <p>Si f es diferenciable en <span class="mathi">x_0</span>, llamamos aproximación lineal o linealización de f en <span class="mathi">x_0</span> a:</p>
+          $$L(x) = f(x_0) + Df(x_0)(x-x_0)$$
+          <p>Para <span class="mathi">n=2</span>:</p>
+          $$L(x,y) = f(x_0,y_0) + f_x'(x_0,y_0)(x-x_0) + f_y'(x_0,y_0)(y-y_0)$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Todo ejercicio de linealización es, en el fondo, sobre diferenciabilidad</div>
+          <p>No alcanza con armar la fórmula: hay que justificar primero por qué f es diferenciable en <span class="mathi">x_0</span> (usualmente, indicando que es C¹ ahí).</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Para qué sirve esto en la práctica?</b> Para estimar el valor de f en un punto x "incómodo" de evaluar a mano, aproximándolo usando un punto <span class="mathi">x_0</span> cercano donde f y sus derivadas sí son fáciles de calcular (números enteros, valores conocidos de seno/coseno, exponente 0, etc.).</p>
+        <p><b>¿Por qué hay que justificar la diferenciabilidad antes de usar la fórmula?</b> Porque <span class="mathi">L(x)</span> sólo es una buena aproximación de f si f es diferenciable en <span class="mathi">x_0</span>; sin esa garantía, no habría por qué esperar que el plano (o hiperplano) tangente se parezca a la función cerca de ese punto.</p>
+        <p><b>¿Cómo elijo el punto <span class="mathi">x_0</span>?</b> Buscá el punto "más simple" que esté cerca del punto real que te piden evaluar, de forma que <span class="mathi">f(x_0)</span> y las derivadas en <span class="mathi">x_0</span> den números redondos.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Identificar la función f, el punto <span class="mathi">x_0</span> cercano y fácil de evaluar, y el punto real x donde hay que aproximar.</div></li>
+      <li><div class="step-body">Justificar que f es diferenciable en <span class="mathi">x_0</span> (típicamente: es C¹ ahí).</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">f(x_0)</span> y todas las derivadas parciales de f en <span class="mathi">x_0</span>.</div></li>
+      <li><div class="step-body">Armar <span class="mathi">L(x)=f(x_0)+Df(x_0)(x-x_0)</span> y evaluarla en el punto x pedido.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 05_diferenciación F.pdf (apunte de la cátedra, ejemplo 21)</span>
+        <p><b>Enunciado:</b> calcule, mediante una aproximación lineal conveniente, <span class="mathi">(0.97)^2(3.04)e^{0.05}</span>. Justifique.</p>
+        <p><b>Paso 1.</b> Reconocemos la expresión como <span class="mathi">f(x,y,z)=x^2ye^z</span> evaluada en <span class="mathi">(0.97,\ 3.04,\ 0.05)</span>, y elegimos el punto cercano y fácil <span class="mathi">x_0=(1,3,0)</span>.</p>
+        <p><b>Paso 2.</b> f es producto de un polinomio y una exponencial de un polinomio, así que es C¹ (y por lo tanto diferenciable) en todo <span class="mathi">\mathbb{R}^3</span>, en particular en <span class="mathi">x_0</span>.</p>
+        <p><b>Paso 3.</b> Calculamos <span class="mathi">f(x_0)</span> y las derivadas parciales en <span class="mathi">x_0</span>:</p>
+        $$f(1,3,0)=3 \qquad f_x'=2xye^z\big|_{x_0}=6 \qquad f_y'=x^2e^z\big|_{x_0}=1 \qquad f_z'=x^2ye^z\big|_{x_0}=3$$
+        <p><b>Paso 4.</b> Calculamos los incrementos: <span class="mathi">\Delta x=-0.03,\ \Delta y=0.04,\ \Delta z=0.05</span>.</p>
+        <p><b>Paso 5.</b> Armamos la aproximación lineal:</p>
+        $$L = f(x_0) + f_x'\Delta x + f_y'\Delta y + f_z'\Delta z = 3 + 6(-0.03) + 1(0.04) + 3(0.05)$$
+        <p><b>Paso 6.</b> Resolvemos:</p>
+        $$L = 3 - 0.18 + 0.04 + 0.15 = 3.01$$
+        <div class="example-answer">(0.97)²(3.04)e^0.05 ≈ 3.01</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u5" class="placeholder">Elegí DIFERENCIABILIDAD POR DEFINICIÓN, CONDICIÓN SUFICIENTE/JACOBIANA o APROXIMACIÓN LINEAL para ver los pasos</div>

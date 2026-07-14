@@ -1,0 +1,214 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 8: Integración sobre curvas</h2>
+    <p class="intro-line">¿Te piden la <b>longitud</b> de una curva, integrar un <b>campo escalar</b> (por ejemplo una masa), o integrar un <b>campo vectorial</b> (trabajo/circulación)?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad8.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 8 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u8-longitud" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u8','longitud')">
+      <span class="eyebrow">long(C)</span>
+      <p class="cc-title">LONGITUD DE ARCO</p>
+      <p class="cc-desc">Integrar la norma de la derivada de la parametrización.</p>
+    </div>
+    <div class="choice-card" id="u8-escalar" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u8','escalar')">
+      <span class="eyebrow">campo escalar</span>
+      <p class="cc-title">MASA DE UN ALAMBRE</p>
+      <p class="cc-desc">Integral de un campo escalar (densidad) a lo largo de C.</p>
+    </div>
+    <div class="choice-card" id="u8-vectorial" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u8','vectorial')">
+      <span class="eyebrow">campo vectorial</span>
+      <p class="cc-title">TRABAJO / CIRCULACIÓN</p>
+      <p class="cc-desc">Integral de un campo vectorial a lo largo de C, orientada.</p>
+    </div>
+  </div>
+
+  <div id="panel-u8-longitud" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+    <div class="detail-header">LONGITUD DE ARCO</div>
+    <div class="detail-sub">Curva C parametrizada por α(t), t∈[a,b].</div>
+
+    <details class="block">
+      <summary>Definiciones que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Curva (paramétrica, simple y suave)</div>
+          <p>Decimos que <span class="mathi">C\subset\mathbb{R}^n</span> es una curva si existe <span class="mathi">\vec\alpha:[a,b]\to\mathbb{R}^n</span> tal que <span class="mathi">\text{Im}(\vec\alpha)=C</span>, <span class="mathi">\vec\alpha</span> es inyectiva, y <span class="mathi">\vec\alpha</span> es C¹ con <span class="mathi">\vec\alpha'(t)\ne\vec0</span> para todo t.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Longitud de una curva</div>
+          $$\text{long}(C) = \int_a^b \|\vec\alpha'(t)\|\, dt$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué la norma de la derivada?</b> <span class="mathi">\vec\alpha'(t)</span> es el vector velocidad al recorrer la curva; su norma es la "rapidez" instantánea. Integrar la rapidez en el tiempo da la distancia total recorrida.</p>
+        <p><b>Curva "suave a trozos":</b> unión finita de curvas suaves pegadas por sus extremos. Se calcula la longitud de cada tramo por separado y se suman.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Parametrizar C: encontrar <span class="mathi">\vec\alpha(t)</span>, <span class="mathi">t\in[a,b]</span>.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\vec\alpha'(t)</span> y su norma <span class="mathi">\|\vec\alpha'(t)\|</span>.</div></li>
+      <li><div class="step-body">Integrar:<br>$$\text{long}(C)=\int_a^b\|\vec\alpha'(t)\|\,dt$$</div></li>
+    </ol>
+
+    <div class="tip">No siempre esta integral tiene primitiva elemental: es común (y está bien) resolverla numéricamente cuando no se puede a mano.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 08_integración_en_curvas.pdf (apunte de la cátedra, ejemplos 4 y 5)</span>
+        <p><b>Enunciado:</b> calcule la longitud de la curva <span class="mathi">C\subset\mathbb{R}^2</span> definida por <span class="mathi">x^2+(y-1)^2=2,\ x+1\le y</span>.</p>
+        <p><b>Paso 1.</b> Identificamos la curva: circunferencia de centro (0,1) y radio <span class="mathi">\sqrt2</span>, restringida al semiplano <span class="mathi">x+1\le y</span>.</p>
+        <p><b>Paso 2.</b> Parametrizamos: <span class="mathi">\vec\alpha(t)=(\sqrt2\cos t,\ 1+\sqrt2\sin t)</span>, con <span class="mathi">t\in[\pi/4,\ 5\pi/4]</span>.</p>
+        <p><b>Paso 3.</b> Derivamos: <span class="mathi">\vec\alpha'(t)=(-\sqrt2\sin t,\ \sqrt2\cos t)</span>.</p>
+        <p><b>Paso 4.</b> Calculamos la norma:</p>
+        $$\|\vec\alpha'(t)\| = \sqrt{2\sin^2t+2\cos^2t} = \sqrt2$$
+        <p>(constante, no depende de t)</p>
+        <p><b>Paso 5.</b> Planteamos la integral:</p>
+        $$\text{long}(C) = \int_{\pi/4}^{5\pi/4} \sqrt2\, dt$$
+        <p><b>Paso 6.</b> Resolvemos:</p>
+        $$\text{long}(C) = \sqrt2\cdot\left(\frac{5\pi}{4}-\frac{\pi}{4}\right) = \sqrt2\,\pi$$
+        <div class="example-answer">longitud = √2 π</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u8-escalar" class="detail-panel" style="--panel-color:#D4FF3F; --panel-text:#1B2340;">
+    <div class="detail-header">MASA DE UN ALAMBRE (integral de campo escalar)</div>
+    <div class="detail-sub">Campo escalar f (por ejemplo, densidad δ), curva C parametrizada por α(t).</div>
+
+    <details class="block">
+      <summary>Definición que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Integral de un campo escalar sobre una curva</div>
+          <p>Sean <span class="mathi">f:A\subset\mathbb{R}^n\to\mathbb{R}</span> continuo y C una curva contenida en A:</p>
+          $$\int_C f\, ds = \int_a^b f(\vec\alpha(t))\,\|\vec\alpha'(t)\|\, dt$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué no importa la orientación acá?</b> Esta integral no depende del sentido en que recorras la curva: si la recorrés al revés, <span class="mathi">\|\vec\alpha'(t)\|</span> no cambia de signo (una norma nunca es negativa).</p>
+        <p><b>Masa de un alambre:</b> si f es la densidad (masa por unidad de longitud) en cada punto, <span class="mathi">\int_C f\,ds</span> es la masa total.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Parametrizar C: <span class="mathi">\vec\alpha(t)</span>, <span class="mathi">t\in[a,b]</span>.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\vec\alpha'(t)</span> y <span class="mathi">\|\vec\alpha'(t)\|</span>.</div></li>
+      <li><div class="step-body">Reemplazar y resolver:<br>$$\int_C f\,ds=\int_a^b f(\vec\alpha(t))\,\|\vec\alpha'(t)\|\,dt$$</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 08_integración_en_curvas.pdf (apunte de la cátedra, ejemplo 7)</span>
+        <p><b>Enunciado:</b> calcule la integral de <span class="mathi">f(x,y,z)=xz-y</span> sobre el segmento determinado por <span class="mathi">A=(1,-1,2)</span> y <span class="mathi">B=(3,0,2)</span>.</p>
+        <p><b>Paso 1.</b> Parametrizamos el segmento:</p>
+        $$\vec\alpha(t)=A+t(B-A)=(1+2t,\ -1+t,\ 2), \quad t\in[0,1]$$
+        <p><b>Paso 2.</b> Derivamos: <span class="mathi">\vec\alpha'(t)=(2,1,0)</span>.</p>
+        <p><b>Paso 3.</b> Calculamos la norma: <span class="mathi">\|\vec\alpha'(t)\|=\sqrt{2^2+1^2+0^2}=\sqrt5</span>.</p>
+        <p><b>Paso 4.</b> Evaluamos f sobre la curva, reemplazando x, y, z por las componentes de <span class="mathi">\vec\alpha(t)</span> (sin simplificar todavía):</p>
+        $$f(\vec\alpha(t)) = xz-y = (1+2t)(2)-(-1+t)$$
+        <p><b>Paso 5.</b> Simplificamos:</p>
+        $$f(\vec\alpha(t)) = 2+4t+1-t = 3+3t$$
+        <p><b>Paso 6.</b> Planteamos la integral:</p>
+        $$\int_C f\,ds = \int_0^1 (3+3t)\sqrt5\,dt$$
+        <p><b>Paso 7.</b> Resolvemos la primitiva:</p>
+        $$\sqrt5\int_0^1(3+3t)\,dt = \sqrt5\left[3t+\frac{3}{2}t^2\right]_0^1$$
+        <p><b>Paso 8.</b> Evaluamos en los límites:</p>
+        $$\sqrt5\left(3+\frac32\right) = \frac{9}{2}\sqrt5$$
+        <div class="example-answer">resultado = (9/2)√5</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u8-vectorial" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
+    <div class="detail-header">TRABAJO / CIRCULACIÓN (integral de campo vectorial)</div>
+    <div class="detail-sub">Campo vectorial f, curva C orientada, parametrizada por α(t).</div>
+
+    <div class="lead-note">Antes de arrancar a resolver este ejercicio conviene chequear si f es conservativo. Por eso recomendamos intentar primero el <b>Camino A</b>, y usar el <b>Camino B</b> sólo cuando el A no se pueda aplicar o no convenga. Esta guía sólo contempla el caso de dos dimensiones (para 3D, o para dominios que no sean simplemente conexos, ver la definición en "Términos que conviene tener claros" y la Unidad 11).</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Integral de un campo vectorial sobre una curva</div>
+          $$\int_C \vec f\cdot d\vec s = \int_a^b \vec f(\vec\alpha(t))\cdot\vec\alpha'(t)\, dt$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Campo conservativo / función potencial</div>
+          <p>Si <span class="mathi">\vec f=\nabla\varphi</span> en un dominio que contiene a C (con <span class="mathi">\vec\alpha(a)=\mathbf{x}_1</span>, <span class="mathi">\vec\alpha(b)=\mathbf{x}_2</span>):</p>
+          $$\int_C \vec f\cdot d\vec s = \varphi(\mathbf{x}_2)-\varphi(\mathbf{x}_1)$$
+          <p>es decir, la integral sólo depende de los extremos de C, no del camino recorrido entre ellos.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué SÍ importa la orientación acá?</b> Si recorrés C en sentido contrario, <span class="mathi">\vec\alpha'(t)</span> cambia de signo, y con él el producto escalar <span class="mathi">\vec f\cdot\vec\alpha'(t)</span>, por lo tanto la integral cambia de signo también.</p>
+        <p><b>¿Cómo verifico la orientación?</b> Evaluá <span class="mathi">\vec\alpha(a)</span> y <span class="mathi">\vec\alpha(b)</span> y comparalos con el sentido que pide el enunciado. Si coincide, calculá directo; si es opuesto, cambiá el signo del resultado al final.</p>
+        <p><b>¿Qué es una función potencial de f?</b> Es una función escalar φ tal que <span class="mathi">\nabla\varphi=\vec f</span> en todo el dominio. Si existe una, decimos que f es un campo conservativo.</p>
+        <p><b>¿Qué significa que un dominio sea "simplemente conexo"?</b> Informalmente, que no tiene "agujeros": toda curva cerrada contenida en el dominio se puede contraer de forma continua a un punto sin salir de él. Por ejemplo, todo <span class="mathi">\mathbb{R}^2</span> es simplemente conexo, pero <span class="mathi">\mathbb{R}^2</span> menos un punto no lo es. Esta condición es clave porque <span class="mathi">P_y'=Q_x'</span> en todo el dominio garantiza que f es conservativo <i>sólo si además</i> el dominio es simplemente conexo. Si tiene un punto excluido, hace falta un análisis más cuidadoso (ver Unidad 11, el caso de "singularidad" en Green).</p>
+      </div>
+    </details>
+
+    <p class="plan-heading">CAMINO A (chequear si f es conservativo)</p>
+    <p class="plan-sub">Conviene intentarlo primero: si funciona, el cálculo se simplifica mucho, sobre todo si el camino dado es complicado.</p>
+    <ol class="steps">
+      <li><div class="step-body">Asumiendo que <span class="mathi">\text{Dom}(f)</span> es simplemente conexo, para confirmar que f es conservativo puedo buscar directamente la función potencial φ, o demostrar que Df es simétrica.</div></li>
+      <li><div class="step-body">
+        <p><b>(a) Vía Df simétrica:</b> chequeo si <span class="mathi">P_y'=Q_x'</span> en todo el dominio.</p>
+        <p><b>(b) Vía función potencial:</b> busco φ tal que <span class="mathi">\nabla\varphi=\vec f</span>.</p>
+      </div></li>
+      <li><div class="step-body">Una vez confirmado que f es conservativo (por (a) o por (b)) y hallada φ, calculo directamente:<br>$$\varphi(\mathbf{x}_2)-\varphi(\mathbf{x}_1)$$</div></li>
+    </ol>
+
+    <p class="plan-heading">CAMINO B (integrar directamente)</p>
+    <p class="plan-sub">Si no pudiste demostrar que f es conservativo, o considerás que intentarlo te va a complicar la vida, seguí con estos pasos.</p>
+    <ol class="steps">
+      <li><div class="step-body">Parametrizar C. Si es un segmento entre A y B, podés usar <span class="mathi">\vec\alpha(t)=A+(B-A)t,\ t\in[0,1]</span>, pero cuidado con la orientación. Si C no es un segmento, parametrizamos intentando dejar todas las expresiones en función de una sola variable.</div></li>
+      <li><div class="step-body">Verificar si la orientación de la parametrización coincide con la pedida (comparando <span class="mathi">\vec\alpha(a),\vec\alpha(b)</span> con el sentido dado). Si es opuesta, se agregará un signo menos al resultado.</div></li>
+      <li><div class="step-body">Reemplazar y resolver:<br>$$\int_C \vec f\cdot d\vec s=\int_a^b \vec f(\vec\alpha(t))\cdot\vec\alpha'(t)\,dt$$
+        <p>(nota: acá va <span class="mathi">\vec\alpha'(t)</span> completo, no su norma, a diferencia de LONGITUD o MASA, porque estamos haciendo un producto escalar con el campo, no midiendo una distancia.)</p>
+      </div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (Camino B)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: 08_integración_en_curvas.pdf (apunte de la cátedra, ejemplo 10)</span>
+        <p><b>Enunciado:</b> calcule la circulación de <span class="mathi">\vec f(x,y,z)=(-y,z,x)</span> a lo largo de la curva C del primer octante definida por <span class="mathi">x+y+z=6,\ y=2x</span>, orientada de <span class="mathi">A=(2,4,0)</span> a <span class="mathi">B=(0,0,6)</span>.</p>
+        <p><b>Paso 1.</b> C es la intersección de dos planos, entonces es un segmento entre A y B.</p>
+        <p><b>Paso 2.</b> Parametrizamos con la fórmula del segmento:</p>
+        $$\vec\alpha(t) = A+t(B-A) = (2,4,0)+t(-2,-4,6) = (2-2t,\ 4-4t,\ 6t), \quad t\in[0,1]$$
+        <p><b>Paso 3.</b> Verificamos la orientación: <span class="mathi">\vec\alpha(0)=(2,4,0)=A</span> ✓, <span class="mathi">\vec\alpha(1)=(0,0,6)=B</span> ✓ (coincide, no hace falta signo menos).</p>
+        <p><b>Paso 4.</b> Derivamos: <span class="mathi">\vec\alpha'(t)=(-2,-4,6)</span>.</p>
+        <p><b>Paso 5.</b> Evaluamos f sobre la curva, reemplazando x, y, z (sin simplificar todavía):</p>
+        $$\vec f(\vec\alpha(t)) = (-y,z,x) = \big(-(4-4t),\ 6t,\ 2-2t\big)$$
+        <p><b>Paso 6.</b> Simplificamos cada componente:</p>
+        $$\vec f(\vec\alpha(t)) = (4t-4,\ 6t,\ 2-2t)$$
+        <p><b>Paso 7.</b> Calculamos el producto escalar <span class="mathi">\vec f(\vec\alpha(t))\cdot\vec\alpha'(t)</span> término a término:</p>
+        $$(4t-4)(-2) = -8t+8 \qquad (6t)(-4)=-24t \qquad (2-2t)(6)=12-12t$$
+        <p><b>Paso 8.</b> Sumamos los tres términos:</p>
+        $$-8t+8-24t+12-12t = -44t+20$$
+        <p><b>Paso 9.</b> Planteamos la integral:</p>
+        $$\int_0^1(-44t+20)\,dt$$
+        <p><b>Paso 10.</b> Resolvemos:</p>
+        $$\big[-22t^2+20t\big]_0^1 = -22+20 = -2$$
+        <div class="example-answer">circulación = -2</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u8" class="placeholder">Elegí LONGITUD, MASA o TRABAJO/CIRCULACIÓN para ver los pasos</div>

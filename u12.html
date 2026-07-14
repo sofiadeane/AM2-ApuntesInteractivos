@@ -1,0 +1,157 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 12: Ecuaciones diferenciales ordinarias de 2° orden</h2>
+    <p class="intro-line">Tenés una ecuación <span class="mathi">y'' + a\,y' + b\,y = f(x)</span> con a, b constantes. ¿El lado derecho <span class="mathi">f(x)</span> es cero o no?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad12.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 12 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u12-homog" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u12','homog')">
+      <span class="eyebrow">f(x) = 0</span>
+      <p class="cc-title">HOMOGÉNEA</p>
+      <p class="cc-desc">y'' + a y' + b y = 0. Resolver vía polinomio característico.</p>
+    </div>
+    <div class="choice-card" id="u12-nohomog" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u12','nohomog')">
+      <span class="eyebrow">f(x) ≠ 0</span>
+      <p class="cc-title">NO HOMOGÉNEA</p>
+      <p class="cc-desc">y'' + a y' + b y = f(x). Homogénea asociada + solución particular.</p>
+    </div>
+  </div>
+
+  <div id="panel-u12-homog" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+    <div class="detail-header">HOMOGÉNEA (y'' + a y' + b y = 0)</div>
+    <div class="detail-sub">Ecuación lineal de 2° orden, coeficientes constantes, lado derecho nulo.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Estructura de la solución general</div>
+          <p>Si <span class="mathi">y_1</span> e <span class="mathi">y_2</span> son dos soluciones de la homogénea, linealmente independientes:</p>
+          $$y_{gen} = c_1 y_1 + c_2 y_2, \qquad c_1, c_2 \in \mathbb{R} \text{ arbitrarias}$$
+        </div>
+        <div class="theorem-box">
+          <div class="name">Polinomio característico</div>
+          <p>Proponiendo <span class="mathi">y=e^{rx}</span> en <span class="mathi">y''+ay'+by=0</span>, todos los términos quedan multiplicados por <span class="mathi">e^{rx}</span> (nunca cero), así que la ecuación se reduce a:</p>
+          $$P(r) = r^2 + ar + b = 0$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué proponer <span class="mathi">y=e^{rx}</span>?</b> Es esencialmente la única función cuyas derivadas son siempre un múltiplo de sí misma, lo que permite que todos los términos compartan el factor <span class="mathi">e^{rx}</span> y se cancele.</p>
+        <p><b>"Linealmente independientes":</b> ninguna de las dos funciones es un múltiplo constante de la otra.</p>
+        <p><b>¿Por qué en la raíz doble se usa <span class="mathi">y_2=xe^{rx}</span>?</b> Con raíz doble, <span class="mathi">e^{rx}</span> sólo da una solución. Se puede demostrar que <span class="mathi">xe^{rx}</span> también es solución e independiente de <span class="mathi">e^{rx}</span>.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Plantear <span class="mathi">P(r)=r^2+ar+b</span> y hallar sus raíces con la resolvente (mirá el signo del discriminante).</div></li>
+      <li><div class="step-body">
+        <div class="theorem-box" style="margin:6px 0 10px;">
+          <div class="name">Discriminante positivo (dos raíces reales distintas)</div>
+          $$y_1=e^{r_1x}, \qquad y_2=e^{r_2x}$$
+        </div>
+        <div class="theorem-box" style="margin:6px 0 10px;">
+          <div class="name">Discriminante nulo (una raíz real doble)</div>
+          $$y_1=e^{rx}, \qquad y_2=xe^{rx}$$
+        </div>
+        <div class="theorem-box" style="margin:6px 0 0;">
+          <div class="name">Discriminante negativo (raíces complejas conjugadas)</div>
+          $$y_1=e^{\alpha x}\cos(\beta x), \qquad y_2=e^{\alpha x}\sin(\beta x)$$
+        </div>
+      </div></li>
+      <li><div class="step-body">Armar <span class="mathi">y_{gen}=c_1y_1+c_2y_2</span>.</div></li>
+      <li><div class="step-body">Si hay condiciones iniciales: reemplazar en y, y', armar el sistema y despejar <span class="mathi">c_1, c_2</span>.</div></li>
+    </ol>
+
+    <div class="tip">Estos mismos <span class="mathi">y_1, y_2</span> son los que necesitás como "homogénea asociada" si la ecuación no es homogénea, ver la otra rama.</div>
+  </div>
+
+  <div id="panel-u12-nohomog" class="detail-panel" style="--panel-color:#FFD23F; --panel-text:#1B2340;">
+    <div class="detail-header">NO HOMOGÉNEA (y'' + a y' + b y = f(x))</div>
+    <div class="detail-sub">Coeficientes constantes, f(x) ≠ 0.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Estructura de la solución ("fórmula madre")</div>
+          $$y_{gen} = y_h + y_p$$
+          <p>donde <span class="mathi">y_h=c_1y_1+c_2y_2</span> se obtiene como en la rama HOMOGÉNEA, e <span class="mathi">y_p</span> es cualquier función que verifique la ecuación completa.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>Coeficientes indeterminados:</b> se "adivina" la forma de <span class="mathi">y_p</span> a partir de <span class="mathi">f(x)</span>, con coeficientes sin determinar, y se reemplaza en la ecuación para encontrarlos:</p>
+        <table>
+          <tr><th>f(x)</th><th>y_p propuesta</th></tr>
+          <tr><td>polinomio de grado n</td><td>polinomio genérico de grado n (todos los coeficientes)</td></tr>
+          <tr><td>e<sup>kx</sup></td><td>A e<sup>kx</sup></td></tr>
+          <tr><td>sen(kx) o cos(kx)</td><td>A cos(kx) + B sen(kx) (siempre las dos)</td></tr>
+          <tr><td>producto de las anteriores</td><td>producto correspondiente, con coeficientes en cada factor</td></tr>
+        </table>
+        <p><b>¿Qué pasa si un término de <span class="mathi">y_p</span> coincide con <span class="mathi">y_1</span> o <span class="mathi">y_2</span>?</b> Ese término se anula solo al reemplazar y no se puede despejar. Se multiplica toda la <span class="mathi">y_p</span> propuesta por x, y se repite el chequeo.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">
+        <p>Resolver la homogénea asociada: plantear <span class="mathi">r^2+ar+b=0</span> y hallar <span class="mathi">y_1,y_2</span> según el discriminante:</p>
+        <div class="theorem-box">
+          <p><b>Positivo:</b> $$y_1=e^{r_1x}, \quad y_2=e^{r_2x}$$</p>
+          <p><b>Nulo:</b> $$y_1=e^{rx}, \quad y_2=xe^{rx}$$</p>
+          <p><b>Negativo:</b> $$y_1=e^{\alpha x}\cos(\beta x), \quad y_2=e^{\alpha x}\sin(\beta x)$$</p>
+        </div>
+      </div></li>
+      <li><div class="step-body">Identificar la forma de <span class="mathi">f(x)</span> y proponer <span class="mathi">y_p</span> según la tabla.</div></li>
+      <li><div class="step-body">Chequear coincidencia con <span class="mathi">y_1, y_2</span>: si coincide, multiplicar por x.</div></li>
+      <li><div class="step-body">Reemplazar <span class="mathi">y_p</span> en la ecuación completa y despejar coeficientes.</div></li>
+      <li><div class="step-body">Armar <span class="mathi">y = y_h + y_p</span>.</div></li>
+      <li><div class="step-body">Si hay condiciones iniciales: reemplazar, armar el sistema y despejar <span class="mathi">c_1, c_2</span>.</div></li>
+    </ol>
+
+    <div class="caution">Las condiciones iniciales se aplican siempre sobre la solución completa (<span class="mathi">y_h + y_p</span> juntas), nunca sobre <span class="mathi">y_h</span> sola.</div>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 01/07/2026, curso semipresencial, P4, Unidad 12)</span>
+        <p><b>Enunciado:</b> halle la solución de <span class="mathi">y''+4y=10+20x^2</span> que verifica <span class="mathi">y(0)=0</span>, <span class="mathi">y'(0)=6</span>.</p>
+        <p><b>Paso 1.</b> Planteamos el polinomio característico de la homogénea: <span class="mathi">r^2+4=0</span>.</p>
+        <p><b>Paso 2.</b> Resolvemos: <span class="mathi">r^2=-4 \Rightarrow r=\pm2i</span> (discriminante negativo, <span class="mathi">\alpha=0,\ \beta=2</span>).</p>
+        <p><b>Paso 3.</b> Armamos <span class="mathi">y_1,y_2</span>: <span class="mathi">y_1=\cos(2x)</span>, <span class="mathi">y_2=\sin(2x)</span>.</p>
+        <p><b>Paso 4.</b> Escribimos <span class="mathi">y_h</span>:</p>
+        $$y_h = c_1\cos(2x)+c_2\sin(2x)$$
+        <p><b>Paso 5.</b> Identificamos la forma de <span class="mathi">f(x)=10+20x^2</span> (polinomio de grado 2) y proponemos <span class="mathi">y_p=Ax^2+Bx+C</span>.</p>
+        <p><b>Paso 6.</b> Chequeamos coincidencia con <span class="mathi">y_1,y_2</span> (trigonométricas): no coincide, no hace falta multiplicar por x.</p>
+        <p><b>Paso 7.</b> Derivamos <span class="mathi">y_p</span>: <span class="mathi">y_p'=2Ax+B</span>, <span class="mathi">y_p''=2A</span>.</p>
+        <p><b>Paso 8.</b> Reemplazamos en la ecuación completa, sin simplificar todavía:</p>
+        $$2A + 4(Ax^2+Bx+C) = 10+20x^2$$
+        <p><b>Paso 9.</b> Agrupamos los términos del lado izquierdo:</p>
+        $$4Ax^2 + 4Bx + (2A+4C) = 20x^2+0x+10$$
+        <p><b>Paso 10.</b> Igualamos coeficiente a coeficiente:</p>
+        $$4A=20 \qquad 4B=0 \qquad 2A+4C=10$$
+        <p><b>Paso 11.</b> Resolvemos el sistema: <span class="mathi">A=5</span>; <span class="mathi">B=0</span>; de <span class="mathi">2(5)+4C=10</span>, <span class="mathi">C=0</span>.</p>
+        <p><b>Paso 12.</b> Entonces:</p>
+        $$y_p=5x^2$$
+        <p><b>Paso 13.</b> Armamos la solución general:</p>
+        $$y_{gen} = c_1\cos(2x)+c_2\sin(2x)+5x^2$$
+        <p><b>Paso 14.</b> Aplicamos <span class="mathi">y(0)=0</span>:</p>
+        $$c_1\cos(0)+c_2\sin(0)+5(0)^2 = c_1 = 0$$
+        <p><b>Paso 15.</b> Derivamos y:</p>
+        $$y'(x)=-2c_1\sin(2x)+2c_2\cos(2x)+10x$$
+        <p><b>Paso 16.</b> Aplicamos <span class="mathi">y'(0)=6</span>:</p>
+        $$2c_2 = 6 \;\Rightarrow\; c_2=3$$
+        <div class="example-answer">y(x) = 3 sen(2x) + 5x²</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u12" class="placeholder">Elegí HOMOGÉNEA o NO HOMOGÉNEA para ver los pasos</div>

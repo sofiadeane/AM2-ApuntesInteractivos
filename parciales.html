@@ -1,0 +1,161 @@
+
+
+  <div class="page-header-box">
+    <h2>Exámenes</h2>
+    <p class="intro-line">Parciales viejos para practicar, y un quiz de teoría con tarjetas para repasar antes de rendir.</p>
+  </div>
+
+  <div class="parcial-switch" id="parcial-switch">
+    <div class="parcial-switch-thumb" id="parcial-switch-thumb"></div>
+    <button id="btn-primero" class="active" onclick="showParcial('primero')" aria-pressed="true">1er Parcial</button>
+    <button id="btn-segundo" onclick="showParcial('segundo')" aria-pressed="false">2do Parcial</button>
+  </div>
+
+  <!-- ---------- 1er Parcial ---------- -->
+  <div id="parcial-primero" class="parcial-content" style="display:block;">
+    <p class="exam-section-title">Exámenes viejos (1er Parcial)</p>
+    <div class="exam-grid" style="--exam-color:#C061FF;">
+      <div class="exam-embed">
+        <p class="exam-label">examenes/1parcial_ejemplo1.pdf</p>
+        <iframe src="examenes/1parcial_ejemplo1.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/1parcial_ejemplo1.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/1parcial_ejemplo2.pdf</p>
+        <iframe src="examenes/1parcial_ejemplo2.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/1parcial_ejemplo2.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/1parcial_ejemplo3.pdf</p>
+        <iframe src="examenes/1parcial_ejemplo3.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/1parcial_ejemplo3.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/1parcial_ejemplo4.pdf</p>
+        <iframe src="examenes/1parcial_ejemplo4.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/1parcial_ejemplo4.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/1parcial_ejemplo5.pdf</p>
+        <iframe src="examenes/1parcial_ejemplo5.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/1parcial_ejemplo5.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+    </div>
+    <div class="tip" style="margin:14px 0 0;">Para agregar más, subí el PDF a una carpeta <span class="mathi">\text{examenes/}</span> junto al HTML y copiá uno de estos bloques cambiando el nombre de archivo en el <span class="mathi">\text{src}</span> del iframe y en el link de abajo.</div>
+
+    <p class="exam-section-title">Teoría del Primer Parcial</p>
+    <div class="quiz-wrap">
+
+      <div class="progress-row">
+        <button class="quiz-prev-btn" id="quiz1-prev-btn" onclick="prevQuiz1Question()" title="Pregunta anterior">←</button>
+        <span class="progress-label" id="quiz1-progress-label">1 / 14</span>
+        <div class="progress-bar"><div class="progress-fill" id="quiz1-progress-fill" style="width:7%;"></div></div>
+      </div>
+
+      <div id="quiz1-area">
+        <div style="text-align:center;"><span class="quiz-unit-tag" id="quiz1-unit-tag">Unidad 1</span></div>
+        <div class="card-scene">
+          <div class="quiz-card" id="quiz1-card">
+            <div class="quiz-face quiz-front">
+              <p class="quiz-qtext" id="quiz1-qtext"></p>
+              <div class="quiz-options" id="quiz1-options"></div>
+              <button class="quiz-flip-btn" id="quiz1-flip-btn" onclick="flipQuiz1Card()">Dar vuelta</button>
+            </div>
+            <div class="quiz-face quiz-back" id="quiz1-card-back">
+              <div>
+                <p class="quiz-back-title" id="quiz1-back-title"></p>
+                <p class="quiz-back-text" id="quiz1-back-text"></p>
+              </div>
+              <div class="quiz-back-footer">
+                <button class="quiz-next-btn" onclick="nextQuiz1Question()">Siguiente →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-final-card" id="quiz1-final-card">
+        <p style="font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:12px; margin:0;">RESULTADO</p>
+        <p class="quiz-final-pct" id="quiz1-final-pct">0%</p>
+        <p id="quiz1-final-sub" style="color:var(--ink-soft); font-size:13.5px; margin:0;"></p>
+        <div class="quiz-final-reco" id="quiz1-final-reco"></div>
+        <button class="quiz-retry-btn" onclick="restartQuiz1()">Volver a intentar</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ---------- 2do Parcial ---------- -->
+  <div id="parcial-segundo" class="parcial-content" style="display:none;">
+    <p class="exam-section-title">Exámenes viejos (2do Parcial)</p>
+    <div class="exam-grid" style="--exam-color:#33D6C0;">
+      <div class="exam-embed">
+        <p class="exam-label">examenes/2parcial_ejemplo1.pdf</p>
+        <iframe src="examenes/2parcial_ejemplo1.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/2parcial_ejemplo1.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/2parcial_ejemplo2.pdf</p>
+        <iframe src="examenes/2parcial_ejemplo2.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/2parcial_ejemplo2.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/2parcial_ejemplo3.pdf</p>
+        <iframe src="examenes/2parcial_ejemplo3.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/2parcial_ejemplo3.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/2parcial_ejemplo4.pdf</p>
+        <iframe src="examenes/2parcial_ejemplo4.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/2parcial_ejemplo4.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+      <div class="exam-embed">
+        <p class="exam-label">examenes/2parcial_ejemplo5.pdf</p>
+        <iframe src="examenes/2parcial_ejemplo5.pdf"></iframe>
+        <a class="exam-fallback" href="examenes/2parcial_ejemplo5.pdf" target="_blank" rel="noopener noreferrer">Abrir en pestaña nueva</a>
+      </div>
+    </div>
+    <div class="tip" style="margin:14px 0 0;">Mismo sistema: poné los PDFs en <span class="mathi">\text{examenes/}</span> y copiá un bloque cambiando el nombre de archivo.</div>
+
+    <p class="exam-section-title">Teoría del Segundo Parcial</p>
+    <div class="quiz-wrap">
+
+      <div class="progress-row">
+        <button class="quiz-prev-btn" id="quiz-prev-btn" onclick="prevQuizQuestion()" title="Pregunta anterior">←</button>
+        <span class="progress-label" id="quiz-progress-label">1 / 20</span>
+        <div class="progress-bar"><div class="progress-fill" id="quiz-progress-fill" style="width:5%;"></div></div>
+      </div>
+
+      <div id="quiz-area">
+        <div style="text-align:center;"><span class="quiz-unit-tag" id="quiz-unit-tag">Unidad 8</span></div>
+        <div class="card-scene">
+          <div class="quiz-card" id="quiz-card">
+            <div class="quiz-face quiz-front">
+              <p class="quiz-qtext" id="quiz-qtext"></p>
+              <div class="quiz-options" id="quiz-options"></div>
+              <button class="quiz-flip-btn" id="quiz-flip-btn" onclick="flipQuizCard()">Dar vuelta</button>
+            </div>
+            <div class="quiz-face quiz-back" id="quiz-card-back">
+              <div>
+                <p class="quiz-back-title" id="quiz-back-title"></p>
+                <p class="quiz-back-text" id="quiz-back-text"></p>
+              </div>
+              <div class="quiz-back-footer">
+                <button class="quiz-next-btn" onclick="nextQuizQuestion()">Siguiente →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz-final-card" id="quiz-final-card">
+        <p style="font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:12px; margin:0;">RESULTADO</p>
+        <p class="quiz-final-pct" id="quiz-final-pct">0%</p>
+        <p id="quiz-final-sub" style="color:var(--ink-soft); font-size:13.5px; margin:0;"></p>
+        <div class="quiz-final-reco" id="quiz-final-reco"></div>
+        <button class="quiz-retry-btn" onclick="restartQuiz()">Volver a intentar</button>
+      </div>
+
+    </div>
+  </div>
+

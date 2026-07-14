@@ -1,0 +1,199 @@
+
+
+  <div class="page-header-box">
+    <h2>Unidad 7: Polinomio de Taylor, extremos de funciones de varias variables</h2>
+    <p class="intro-line">¿Necesitás el <b>polinomio de Taylor</b>, clasificar <b>extremos relativos</b>, o hallar <b>extremos absolutos</b> (con Lagrange en la frontera)?</p>
+    <div class="apuntes-link"><a href="apuntes/unidad7.pdf" target="_blank" rel="noopener noreferrer">Descargar apunte de la Unidad 7 (PDF)</a></div>
+  </div>
+
+  <div class="card-grid">
+    <div class="choice-card" id="u7-taylor" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u7','taylor')">
+      <span class="eyebrow">P₂(x,y)</span>
+      <p class="cc-title">POLINOMIO DE TAYLOR</p>
+      <p class="cc-desc">Armar el polinomio de orden 2, o leer f/∇f/Hessiano de uno ya dado.</p>
+    </div>
+    <div class="choice-card" id="u7-relativos" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u7','relativos')">
+      <span class="eyebrow">∇f = 0, criterio de Hf</span>
+      <p class="cc-title">EXTREMOS RELATIVOS</p>
+      <p class="cc-desc">Puntos críticos y clasificación con el criterio del Hessiano.</p>
+    </div>
+    <div class="choice-card" id="u7-absolutos" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u7','absolutos')">
+      <span class="eyebrow">Weierstrass + Lagrange</span>
+      <p class="cc-title">EXTREMOS ABSOLUTOS</p>
+      <p class="cc-desc">En un conjunto cerrado y acotado: interior + frontera.</p>
+    </div>
+  </div>
+
+  <div id="panel-u7-taylor" class="detail-panel" style="--panel-color:#FFD23F; --panel-text:#1B2340;">
+    <div class="detail-header">POLINOMIO DE TAYLOR</div>
+    <div class="detail-sub">Función f: A ⊂ ℝ² → ℝ, f de clase C² cerca de (x₀,y₀).</div>
+
+    <details class="block">
+      <summary>Definición que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Polinomio de Taylor de orden 2</div>
+          $$P_2(x,y) = f(x_0,y_0) + f_x'(x_0,y_0)(x-x_0) + f_y'(x_0,y_0)(y-y_0)$$
+          $$+ \frac12 f_{xx}''(x_0,y_0)(x-x_0)^2 + f_{xy}''(x_0,y_0)(x-x_0)(y-y_0) + \frac12 f_{yy}''(x_0,y_0)(y-y_0)^2$$
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Para qué sirve esto?</b> Es la mejor aproximación de f cerca de <span class="mathi">(x_0,y_0)</span> usando un polinomio cuadrático (en vez de sólo lineal, como en la aproximación de la Unidad 5). Da más precisión, a costa de necesitar también las derivadas segundas.</p>
+        <p><b>¿Cómo leo f, el gradiente y el Hessiano de un polinomio de Taylor que ya me dan?</b> (Este es el tipo de ejercicio más común en los parciales.) Sustituí <span class="mathi">u=x-x_0,\ v=y-y_0</span> en el polinomio dado, expandí, y agrupá por potencias de u, v. Comparando con la fórmula: el término constante es <span class="mathi">f(x_0,y_0)</span>; los coeficientes de u y v son <span class="mathi">f_x'</span> y <span class="mathi">f_y'</span>; los coeficientes de <span class="mathi">u^2</span> y <span class="mathi">v^2</span> son la <b>mitad</b> de <span class="mathi">f_{xx}''</span> y <span class="mathi">f_{yy}''</span> (¡ojo con ese factor 1/2!); y el coeficiente de uv es directamente <span class="mathi">f_{xy}''</span> (sin dividir por nada).</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Si te dan f y piden el polinomio: calcular <span class="mathi">f(x_0,y_0)</span>, el gradiente y el Hessiano en <span class="mathi">(x_0,y_0)</span>, y reemplazar en la fórmula.</div></li>
+      <li><div class="step-body">Si te dan el polinomio y piden información sobre f: sustituir <span class="mathi">u=x-x_0,\ v=y-y_0</span>, expandir y agrupar por potencias de u, v.</div></li>
+      <li><div class="step-body">Comparar coeficiente a coeficiente con la fórmula general para leer <span class="mathi">f(x_0,y_0)</span>, <span class="mathi">\nabla f(x_0,y_0)</span>, y las derivadas segundas.</div></li>
+      <li><div class="step-body">Usar esos datos para lo que te pidan (típicamente, hallar un parámetro para que el punto sea crítico, y clasificar el extremo con el criterio del Hessiano, ver la otra rama).</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto (parcial real)</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: P1_121021.pdf (Primer Parcial, 12/10/2021), Ejercicio 4</span>
+        <p><b>Enunciado:</b> sea <span class="mathi">f:\mathbb{R}^2\to\mathbb{R}</span> diferenciable tal que <span class="mathi">P(x,y)=7-8x+y+\alpha x^2-xy+2y^2</span> es el polinomio de Taylor de orden 2 de f en (1,0). Determine <span class="mathi">\alpha</span> de modo que <span class="mathi">f(1,0)</span> resulte un extremo local de f, y clasifique ese extremo.</p>
+        <p><b>Paso 1.</b> Sustituimos <span class="mathi">u=x-1,\ v=y</span> (así <span class="mathi">x=u+1</span>) en P(x,y), sin simplificar todavía:</p>
+        $$P = 7-8(u+1)+v+\alpha(u+1)^2-(u+1)v+2v^2$$
+        <p><b>Paso 2.</b> Expandimos cada término:</p>
+        $$7-8u-8+v+\alpha(u^2+2u+1)-uv-v+2v^2$$
+        <p><b>Paso 3.</b> Agrupamos por potencias de u, v:</p>
+        $$P = (\alpha-1) + (2\alpha-8)u + 0\cdot v + \alpha u^2 - uv + 2v^2$$
+        <p><b>Paso 4.</b> Comparamos con la fórmula general y leemos los datos de f en (1,0):</p>
+        $$f(1,0)=\alpha-1 \qquad f_x'(1,0)=2\alpha-8 \qquad f_y'(1,0)=0$$
+        $$f_{xx}''(1,0)=2\alpha \qquad f_{xy}''(1,0)=-1 \qquad f_{yy}''(1,0)=4$$
+        <p><b>Paso 5.</b> Para que (1,0) sea un punto crítico, necesitamos <span class="mathi">\nabla f(1,0)=(0,0)</span>: como <span class="mathi">f_y'(1,0)=0</span> ya se cumple siempre, sólo falta <span class="mathi">f_x'(1,0)=2\alpha-8=0 \Rightarrow \alpha=4</span>.</p>
+        <p><b>Paso 6.</b> Con <span class="mathi">\alpha=4</span>, armamos la matriz Hessiana en (1,0):</p>
+        $$Hf(1,0) = \begin{pmatrix} 8 & -1 \\ -1 & 4 \end{pmatrix}$$
+        <p><b>Paso 7.</b> Aplicamos el criterio del Hessiano: <span class="mathi">\det(Hf(1,0))=8\cdot4-(-1)(-1)=31&gt;0</span>, y <span class="mathi">f_{xx}''(1,0)=8&gt;0</span>.</p>
+        <div class="example-answer">α = 4; f(1,0) es un mínimo local</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u7-relativos" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+    <div class="detail-header">EXTREMOS RELATIVOS</div>
+    <div class="detail-sub">Función f: A ⊂ ℝ² → ℝ, f de clase C² en A abierto.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Matriz Hessiana</div>
+          $$Hf(x_0) = \begin{pmatrix} f_{xx}''(x_0) & f_{xy}''(x_0) \\ f_{yx}''(x_0) & f_{yy}''(x_0) \end{pmatrix}$$
+          <p>(simétrica si f es C², por el teorema de Schwarz de la Unidad 4.)</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Criterio del Hessiano (n=2)</div>
+          <p>Sea <span class="mathi">x_0</span> tal que <span class="mathi">\nabla f(x_0)=(0,0)</span>:</p>
+          <p>1. Si <span class="mathi">\det(Hf(x_0))&gt;0</span> y <span class="mathi">f_{xx}''(x_0)&gt;0</span>: <span class="mathi">f(x_0)</span> es un <b>mínimo local</b>.</p>
+          <p>2. Si <span class="mathi">\det(Hf(x_0))&gt;0</span> y <span class="mathi">f_{xx}''(x_0)&lt;0</span>: <span class="mathi">f(x_0)</span> es un <b>máximo local</b>.</p>
+          <p>3. Si <span class="mathi">\det(Hf(x_0))&lt;0</span>: <span class="mathi">f(x_0)</span> <b>no</b> es un extremo local (es un <b>punto de ensilladura</b>).</p>
+          <p>4. Si <span class="mathi">\det(Hf(x_0))=0</span>: el criterio no decide nada.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Qué son los "puntos críticos"?</b> Los candidatos a extremo local: los puntos donde <span class="mathi">\nabla f=\vec0</span> (si f es diferenciable ahí), más los puntos donde alguna derivada parcial no existe.</p>
+        <p><b>¿Qué hago si <span class="mathi">\det(Hf(x_0))=0</span>?</b> El criterio no dice nada: puede ser extremo o no. Hay que analizarlo por otra vía, típicamente comparando <span class="mathi">f(x_0)</span> directamente con <span class="mathi">f(x)</span> para x cerca de <span class="mathi">x_0</span> (por ejemplo, si f es una suma de términos siempre no negativos, es fácil ver si <span class="mathi">f(x_0)</span> es el menor valor posible).</p>
+        <p><b>Orden de los pasos:</b> primero se buscan los puntos críticos (resolviendo <span class="mathi">\nabla f=\vec0</span>), y recién en esos puntos tiene sentido calcular el Hessiano y aplicar el criterio.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Hallar los puntos críticos: resolver <span class="mathi">\nabla f(x,y)=(0,0)</span> (y considerar aparte los puntos donde no existan las parciales).</div></li>
+      <li><div class="step-body">Calcular la matriz Hessiana en cada punto crítico.</div></li>
+      <li><div class="step-body">Calcular <span class="mathi">\det(Hf)</span> y <span class="mathi">f_{xx}''</span> en cada uno, y aplicar el criterio del Hessiano.</div></li>
+      <li><div class="step-body">Si <span class="mathi">\det(Hf)=0</span> en algún punto, buscar otro método para decidir (comparación directa de valores de f cerca del punto).</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: extremos.pdf (apunte de la cátedra, ejemplo 11)</span>
+        <p><b>Enunciado:</b> halle y clasifique los extremos locales de <span class="mathi">f(x,y)=\frac13x^3+y^2+2xy-6x-3y</span>.</p>
+        <p><b>Paso 1.</b> Planteamos las derivadas parciales e igualamos a 0:</p>
+        $$f_x' = x^2+2y-6=0 \qquad f_y' = 2y+2x-3=0$$
+        <p><b>Paso 2.</b> De la segunda ecuación despejamos <span class="mathi">y=\frac{3-2x}{2}</span>, y de la primera <span class="mathi">y=\frac{6-x^2}{2}</span>.</p>
+        <p><b>Paso 3.</b> Igualamos ambas expresiones de y y resolvemos para x:</p>
+        $$\frac{3-2x}{2} = \frac{6-x^2}{2} \;\Rightarrow\; x^2-2x-3=0 \;\Rightarrow\; (x-3)(x+1)=0$$
+        <p><b>Paso 4.</b> Obtenemos <span class="mathi">x=3\Rightarrow y=-3/2</span>, y <span class="mathi">x=-1\Rightarrow y=5/2</span>. Puntos críticos: <span class="mathi">(3,-3/2)</span> y <span class="mathi">(-1,5/2)</span>.</p>
+        <p><b>Paso 5.</b> Calculamos las derivadas segundas: <span class="mathi">f_{xx}''=2x,\ f_{xy}''=2,\ f_{yy}''=2</span>.</p>
+        <p><b>Paso 6.</b> Evaluamos el Hessiano en <span class="mathi">(-1,5/2)</span>:</p>
+        $$Hf(-1,5/2) = \begin{pmatrix}-2&2\\2&2\end{pmatrix}, \quad \det = -4-4=-8&lt;0 \Rightarrow \text{silla}$$
+        <p><b>Paso 7.</b> Evaluamos el Hessiano en <span class="mathi">(3,-3/2)</span>:</p>
+        $$Hf(3,-3/2) = \begin{pmatrix}6&2\\2&2\end{pmatrix}, \quad \det=12-4=8&gt;0,\ f_{xx}''=6&gt;0 \Rightarrow \text{mínimo local}$$
+        <div class="example-answer">(-1,5/2) es punto silla; (3,-3/2) es mínimo local</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="panel-u7-absolutos" class="detail-panel" style="--panel-color:#D4FF3F; --panel-text:#1B2340;">
+    <div class="detail-header">EXTREMOS ABSOLUTOS</div>
+    <div class="detail-sub">Función f continua en un conjunto A cerrado y acotado.</div>
+
+    <details class="block">
+      <summary>Teoría que vamos a usar</summary>
+      <div class="inner">
+        <div class="theorem-box">
+          <div class="name">Teorema de Weierstrass</div>
+          <p>Si f es continua en un conjunto A cerrado y acotado (compacto), entonces f alcanza un máximo y un mínimo absolutos en A.</p>
+        </div>
+        <div class="theorem-box">
+          <div class="name">Multiplicadores de Lagrange (para candidatos en la frontera)</div>
+          <p>Si la frontera de A está dada por una restricción <span class="mathi">g(x,y)=0</span> (con <span class="mathi">\nabla g\ne\vec0</span>), los candidatos a extremo de f sujeta a esa restricción son los puntos donde:</p>
+          $$\nabla f = \lambda \nabla g \qquad \text{y} \qquad g(x,y)=0$$
+          <p>para algún <span class="mathi">\lambda\in\mathbb{R}</span>. El método sólo se aplica con restricciones dadas por ecuaciones, no por inecuaciones.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Términos que conviene tener claros</summary>
+      <div class="inner">
+        <p><b>¿Por qué separar en "interior" y "frontera"?</b> Porque son técnicas distintas: en el interior de A, un extremo absoluto también es un extremo local, así que se buscan puntos críticos (∇f=0⃗) como en la otra rama. En la frontera, f está "restringida" a moverse sobre esa curva, y ahí se usa Lagrange (o, si la frontera es simple, sustitución directa).</p>
+        <p><b>¿Qué significa <span class="mathi">\nabla f=\lambda\nabla g</span> geométricamente?</b> Que en un extremo condicionado, el gradiente de f es paralelo al gradiente de la restricción: las curvas de nivel de f son tangentes a la curva de restricción ahí.</p>
+        <p><b>Al final, ¿hay que clasificar cada candidato con el Hessiano?</b> No. Gracias a Weierstrass ya sabés que el máximo y el mínimo absolutos existen entre los candidatos que encontraste (interior + frontera): alcanza con evaluar f en cada uno y comparar los valores numéricos.</p>
+      </div>
+    </details>
+
+    <ol class="steps">
+      <li><div class="step-body">Verificar que A sea cerrado y acotado, y f continua en A (para poder aplicar Weierstrass).</div></li>
+      <li><div class="step-body">Buscar candidatos en el interior de A: puntos críticos de f que caigan estrictamente dentro de A.</div></li>
+      <li><div class="step-body">Buscar candidatos en la frontera de A: si es simple (un segmento, por ejemplo), a veces alcanza con sustituir directamente; si no, plantear el sistema de Lagrange <span class="mathi">\nabla f=\lambda\nabla g,\ g=0</span>.</div></li>
+      <li><div class="step-body">Evaluar f en todos los candidatos (interior + frontera) y comparar: el mayor valor es el máximo absoluto, el menor es el mínimo absoluto.</div></li>
+    </ol>
+
+    <details class="block">
+      <summary>Ejemplo resuelto</summary>
+      <div class="inner">
+        <span class="example-source">Fuente: extremos.pdf (apunte de la cátedra, ejemplo 19)</span>
+        <p><b>Enunciado:</b> halle, si existen, los extremos absolutos de <span class="mathi">f(x,y)=(x-1)^2+y^2</span> en <span class="mathi">A=\{|y|\le x\le4\}</span> (un triángulo de vértices (0,0), (4,4) y (4,-4)).</p>
+        <p><b>Paso 1.</b> f es continua (polinomio) y A es cerrado y acotado, así que por Weierstrass existen los extremos absolutos.</p>
+        <p><b>Paso 2. Interior:</b> <span class="mathi">\nabla f=(2(x-1),2y)=(0,0)\Rightarrow(x,y)=(1,0)</span>, que está estrictamente dentro de A.</p>
+        <p><b>Paso 3. Frontera, lado <span class="mathi">y=x</span> (<span class="mathi">0\le x\le4</span>):</p>
+        $$f(x,x) = (x-1)^2+x^2 = 2x^2-2x+1 \;\Rightarrow\; \frac{d}{dx}=4x-2=0 \Rightarrow x=\tfrac12$$
+        <p>Candidato <span class="mathi">(1/2,1/2)</span>, más los extremos del segmento (0,0) y (4,4).</p>
+        <p><b>Paso 4. Frontera, lado <span class="mathi">y=-x</span>:</p>
+        <p>Por simetría (f depende de <span class="mathi">y^2</span>), da el candidato <span class="mathi">(1/2,-1/2)</span>, más los extremos (0,0) y (4,-4).</p>
+        <p><b>Paso 5. Frontera, lado <span class="mathi">x=4</span> (<span class="mathi">-4\le y\le4</span>):</p>
+        $$f(4,y)=9+y^2 \;\Rightarrow\; \text{mínimo en } y=0,\ \text{máximo en los extremos } y=\pm4$$
+        <p>Candidato <span class="mathi">(4,0)</span> (los extremos ya están contados).</p>
+        <p><b>Paso 6.</b> Evaluamos f en todos los candidatos:</p>
+        $$f(1,0)=0 \quad f(\tfrac12,\pm\tfrac12)=\tfrac12 \quad f(0,0)=1 \quad f(4,0)=9 \quad f(4,\pm4)=25$$
+        <p><b>Paso 7.</b> Comparamos: el mayor valor es 25 y el menor es 0.</p>
+        <div class="example-answer">máximo absoluto = 25 en (4,4) y (4,-4); mínimo absoluto = 0 en (1,0)</div>
+      </div>
+    </details>
+  </div>
+
+  <div id="empty-u7" class="placeholder">Elegí POLINOMIO DE TAYLOR, EXTREMOS RELATIVOS o EXTREMOS ABSOLUTOS para ver los pasos</div>
