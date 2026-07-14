@@ -186,11 +186,9 @@
   .parcial-switch button{ position:relative; z-index:1; flex:1; border:none; background:transparent; padding:12px 18px; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13.5px; cursor:pointer; color:rgba(255,255,255,0.75); border-radius:999px; transition:color .2s ease; }
   .parcial-switch button.active{ color:var(--ink); }
   .parcial-content{ margin-top:28px; }
-  .exam-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px; margin-bottom:10px; }
-  .exam-embed{ background:#fff; border:1px solid var(--grid); border-top:4px solid var(--exam-color, var(--ink)); border-radius:12px; padding:14px; box-shadow:var(--card-shadow); }
-  .exam-embed p.exam-label{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); margin:0 0 8px; }
-  .exam-embed iframe{ width:100%; height:420px; border:1px solid var(--grid); border-radius:8px; }
-  .exam-embed .exam-fallback{ display:block; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:11.5px; margin-top:8px; color:var(--ink); }
+  .exam-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:14px; margin-bottom:10px; }
+  .exam-btn{ display:block; text-align:center; background:#fff; border:1px solid var(--grid); border-top:4px solid var(--exam-color, var(--ink)); border-radius:12px; padding:20px 14px; font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:13px; color:var(--ink); text-decoration:none; box-shadow:var(--card-shadow); transition:transform .15s ease; }
+  .exam-btn:hover{ transform:translateY(-3px); }
   .exam-section-title{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:18px; margin:30px 0 14px; }
 
   /* ---- Quiz teórico: tarjetas flip ---- */
