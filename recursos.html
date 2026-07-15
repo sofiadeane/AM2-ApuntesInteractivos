@@ -43,6 +43,19 @@
   </div>
   <p style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft); margin:8px 2px 0;">crédito: <a href="https://www.utnianos.com.ar/foro/usuario-jaxdeltemplo" target="_blank" rel="noopener noreferrer" style="color:var(--ink);">JaxDelTemplo</a></p>
 
+  <p class="resource-category" style="background:#1B2340;">Tu progreso</p>
+  <div class="feedback-box">
+    <h3>Exportar / importar progreso</h3>
+    <p>Las unidades vistas, el historial de quizzes y tu racha de estudio se guardan sólo en este navegador. Si cambiás de compu o de navegador, exportalo acá y después importalo del otro lado para no perderlo.</p>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+      <button type="button" class="feedback-submit" style="margin-top:0;" onclick="exportProgress()">Exportar progreso (.json)</button>
+      <label class="feedback-submit" style="margin-top:0; background:transparent; color:var(--ink); border:1.5px solid var(--ink); cursor:pointer;">
+        Importar progreso
+        <input type="file" accept="application/json" style="display:none;" onchange="importProgress(this)">
+      </label>
+    </div>
+  </div>
+
   <p class="resource-category" style="background:#FFD23F; color:#1B2340;">¿Te sirvió esta guía?</p>
   <div class="feedback-box">
     <h3>Contanos qué mejorarías</h3>

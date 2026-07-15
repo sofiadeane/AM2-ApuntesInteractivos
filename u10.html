@@ -56,11 +56,12 @@
       <li><div class="step-body">Integrar sobre D:<br>$$\text{área}(S)=\iint_D \|\vec T_u'\times\vec T_v'\|\,du\,dv$$</div></li>
     </ol>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto (parcial real)</summary>
       <div class="inner">
         <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 29/11/2019, Tema 1, E2, Unidad 10)</span>
         <p><b>Enunciado:</b> calcule el área de la superficie del primer octante definida por <span class="mathi">x^2+z^2=9,\ 0\le y\le x</span>.</p>
+        <div class="ggb-viewer" id="ggb-u10-area" style="margin:16px 0; min-height:400px;"></div>
         <p><b>Paso 1.</b> Es un cilindro de radio 3 con eje y. Parametrizamos: <span class="mathi">x=3\cos\theta,\ z=3\sin\theta,\ y=y</span>, con <span class="mathi">\theta\in[0,\pi/2]</span> (primer octante) y <span class="mathi">0\le y\le 3\cos\theta</span>.</p>
         <p><b>Paso 2.</b> Derivamos respecto de cada parámetro:</p>
         $$\vec T_\theta'=(-3\sin\theta,0,3\cos\theta) \qquad \vec T_y'=(0,1,0)$$
@@ -111,11 +112,12 @@
 
     <div class="tip">A veces la densidad está "diseñada" para cancelar justo con la norma del producto vectorial fundamental: conviene reemplazar todo antes de simplificar.</div>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto (parcial real)</summary>
       <div class="inner">
         <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 11/11/2019, curso semipresencial, P1, Unidad 10)</span>
         <p><b>Enunciado:</b> calcule la masa de una chapa con forma de <span class="mathi">S:z=x^2+y^2,\ 1\le z\le4</span>, con densidad <span class="mathi">\delta(x,y,z)=\dfrac{z}{\sqrt{1+4x^2+4y^2}}</span>.</p>
+        <div class="ggb-viewer" id="ggb-u10-masa" style="margin:16px 0; min-height:400px;"></div>
         <p><b>Paso 1.</b> Parametrizamos: <span class="mathi">\vec T(x,y) = (x,y,x^2+y^2)</span>.</p>
         <p><b>Paso 2.</b> Derivamos: <span class="mathi">\vec T_x'=(1,0,2x)</span>, <span class="mathi">\vec T_y'=(0,1,2y)</span>.</p>
         <p><b>Paso 3.</b> Calculamos el producto vectorial fundamental: <span class="mathi">\vec T_x'\times\vec T_y' = (-2x,-2y,1)</span>.</p>
@@ -169,11 +171,12 @@
 
     <div class="tip">Si S no es cerrada pero el campo tiene divergencia simple, puede convenir "cerrarla" con tapas y usar Gauss (ver Unidad 11).</div>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto</summary>
       <div class="inner">
         <span class="example-source">Fuente: integración_en_superficies_02_1.pdf (apunte de la cátedra, ejemplo 8)</span>
         <p><b>Enunciado:</b> dado <span class="mathi">\vec f(x,y,z)=(2x,2y,3z)</span>, calcule el flujo de <span class="mathi">\vec f</span> a través de <span class="mathi">S:x=4-y^2</span>, con <span class="mathi">z\le x,\ x\ge0,\ z\ge0</span>, orientada con vectores normales con primera componente positiva.</p>
+        <div class="ggb-viewer" id="ggb-u10-flujo" style="margin:16px 0; min-height:400px;"></div>
         <p><b>Paso 1.</b> Parametrizamos (x depende de y): <span class="mathi">\vec T(u,v)=(4-u^2,\ u,\ v)</span>, con y=u, z=v.</p>
         <p><b>Paso 2.</b> Determinamos el dominio D: de <span class="mathi">z\le x,\ z\ge0</span> obtenemos <span class="mathi">0\le v\le 4-u^2</span>; de <span class="mathi">x=4-u^2\ge0</span> obtenemos <span class="mathi">-2\le u\le2</span>.</p>
         <p><b>Paso 3.</b> Derivamos: <span class="mathi">\vec T_u'=(-2u,1,0)</span>, <span class="mathi">\vec T_v'=(0,0,1)</span>.</p>

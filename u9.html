@@ -59,11 +59,12 @@
 
     <div class="tip">Para un cambio de variables general (no polar), <span class="mathi">dA=|\det(Dg(u,v))|\,du\,dv</span>, con g la transformación y Dg su matriz jacobiana.</div>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto</summary>
       <div class="inner">
         <span class="example-source">Fuente: 04_polares_ejemplos.pdf (apunte de la cátedra, ejemplo 1)</span>
         <p><b>Enunciado:</b> calcule <span class="mathi">\iint_D y^2x\,dx\,dy</span> con D definido por <span class="mathi">x^2+y^2\le 8,\ x\ge0</span>.</p>
+        <div class="ggb-viewer" id="ggb-u9-doble" style="margin:16px 0; min-height:400px;"></div>
         <p><b>Paso 1.</b> Identificamos D: medio disco de radio <span class="mathi">\sqrt8</span> (mitad derecha), conviene polares.</p>
         <p><b>Paso 2.</b> Planteamos el cambio de variable: <span class="mathi">x=r\cos\theta,\ y=r\sin\theta,\ dA=r\,dr\,d\theta</span>.</p>
         <p><b>Paso 3.</b> Determinamos D*: como el origen pertenece a D, <span class="mathi">0\le r\le\sqrt8</span>; como D está en 1° y 4° cuadrante, <span class="mathi">-\pi/2\le\theta\le\pi/2</span>.</p>
@@ -113,20 +114,23 @@
     </details>
 
     <ol class="steps">
-      <li><div class="step-body">Graficar el sólido V (ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>).</div></li>
-      <li><div class="step-body">¿V es una caja o tiene límites simples/independientes en x,y,z? Cartesianas directas.</div></li>
-      <li><div class="step-body">¿V tiene simetría alrededor de un eje, o el integrando tiene <span class="mathi">x^2+y^2</span>? Cilíndricas.</div></li>
+      <li><div class="step-body">Lo mas importante en estos ejercicios es graficar correctamente el sólido V (ver <a href="#" onclick="goToTips(event)">Tips y trucos: cómo graficar rápido</a>).</div></li>
+      <li><div class="step-body">¿V es una caja o tiene límites simples/independientes en x,y,z? Conviene usar coordenadas cartesianas.</div></li>
+      <li><div class="step-body">¿V tiene simetría alrededor de un eje, o el integrando tiene <span class="mathi">x^2+y^2</span>? Conviene usar Cilíndricas.</div></li>
       <li><div class="step-body">¿V tiene simetría alrededor de un punto, o el integrando tiene <span class="mathi">x^2+y^2+z^2</span>? Esféricas (ver <a href="#" onclick="goToTips(event,'tip-coordenadas')">Tips y trucos: Coordenadas</a> si dudás entre las dos).</div></li>
       <li><div class="step-body">Plantear los límites en el sistema elegido y resolver la integral iterada.</div></li>
     </ol>
 
+    <div class="tip">Si te está costando identificar el solido te recomiendo ver la seccion dedicada en recursos</span>.</div>
     <div class="tip">Aplicaciones típicas: volumen = <span class="mathi">\iiint_V 1\,dV</span>; masa = <span class="mathi">\iiint_V \delta(x,y,z)\,dV</span>.</div>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto (parcial real)</summary>
       <div class="inner">
-        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 01/07/2026, curso semipresencial, P2, Unidad 9)</span>
+        <span class="example-source">Fuente: Parciales_AM2_UTN_Completo.pdf (Segundo Parcial 01/07/2026, curso semipresencial Martín Pavón, P2, Unidad 9)</span>
         <p><b>Enunciado:</b> calcule el volumen del cuerpo dado por <span class="mathi">2x+y+z\le6,\ y\ge0,\ z\ge0,\ 1\le x\le2</span>.</p>
+        <p><b>Paso 0.</b> Siempre que puedas, acompañá con un gráfico.</p>
+        <div class="ggb-viewer" id="ggb-u9-triple" style="margin:16px 0; min-height:400px;"></div>
         <p><b>Paso 1.</b> Es un recinto elemental en cartesianas (sin simetría circular).</p>
         <p><b>Paso 2.</b> Para x fijo en [1,2], planteamos el recinto en y, z: <span class="mathi">y\ge0,\ z\ge0,\ y+z\le6-2x</span>.</p>
         <p><b>Paso 3.</b> Reconocemos que es un triángulo rectángulo de catetos <span class="mathi">(6-2x)</span>, con área <span class="mathi">(6-2x)^2/2</span>.</p>

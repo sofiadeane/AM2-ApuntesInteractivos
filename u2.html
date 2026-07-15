@@ -58,7 +58,7 @@
       <li><div class="step-body">Graficar el conjunto resultante y, si te lo piden, indicar si es abierto o cerrado.</div></li>
     </ol>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto</summary>
       <div class="inner">
         <span class="example-source">Fuente: 03_limite.pdf (apunte de la cátedra, ejemplo 32)</span>
@@ -123,7 +123,7 @@
       <li><div class="step-body">Si piden puntos de acumulación específicos, chequear si toda bola reducida centrada ahí toca al conjunto, sin importar qué tan chica sea.</div></li>
     </ol>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto</summary>
       <div class="inner">
         <span class="example-source">Elaboración propia (ejercicio tipo, usando las definiciones de la cátedra)</span>
@@ -169,16 +169,16 @@
       <li><div class="step-body">Si piden el mapa de contorno, dibujar varias curvas de nivel juntas, etiquetando cada una con su valor de k.</div></li>
     </ol>
 
-    <details class="block">
+    <details class="block example-block">
       <summary>Ejemplo resuelto</summary>
       <div class="inner">
         <span class="example-source">Fuente: 01_funciones.pdf (apunte de la cátedra, ejemplo 8)</span>
         <p><b>Enunciado:</b> trace un mapa de contorno de la función <span class="mathi">f(x,y)=x^2+y^2</span>.</p>
         <p><b>Paso 1.</b> Elegimos algunos valores de k para trazar: <span class="mathi">k=-1,\ 0,\ 1,\ 2,\ 4</span>.</p>
         <p><b>Paso 2.</b> Planteamos <span class="mathi">f(x,y)=k</span> para cada uno:</p>
-        <p><span class="mathi">k=-1</span>: <span class="mathi">x^2+y^2=-1</span>, no tiene solución (una suma de cuadrados nunca es negativa), así que <span class="mathi">C_{-1}=\emptyset</span>.</p>
-        <p><span class="mathi">k=0</span>: <span class="mathi">x^2+y^2=0</span>, sólo se cumple en el origen, así que <span class="mathi">C_0=\{(0,0)\}</span> (un único punto).</p>
-        <p><span class="mathi">k=1,2,4</span>: <span class="mathi">x^2+y^2=k</span> es una circunferencia centrada en el origen de radio <span class="mathi">\sqrt k</span>.</p>
+        <p class="k-row"><span class="k-label"><span class="mathi">k=-1</span>:</span> <span>Da <span class="mathi">x^2+y^2=-1</span>, no tiene solución (una suma de cuadrados nunca es negativa), así que <span class="mathi">C_{-1}=\emptyset</span>.</span></p>
+        <p class="k-row"><span class="k-label"><span class="mathi">k=0</span>:</span> <span>Da <span class="mathi">x^2+y^2=0</span>, sólo se cumple en el origen, así que <span class="mathi">C_0=\{(0,0)\}</span> (un único punto).</span></p>
+        <p class="k-row"><span class="k-label"><span class="mathi">k=1,2,4</span>:</span> <span>Da <span class="mathi">x^2+y^2=k</span>, una circunferencia centrada en el origen de radio <span class="mathi">\sqrt k</span>.</span></p>
         <p><b>Paso 3.</b> El mapa de contorno queda formado por circunferencias concéntricas de radio creciente (más juntas cerca del origen, porque ahí f crece más rápido en proporción), con el origen como caso degenerado.</p>
         <div class="example-answer">Circunferencias concéntricas de radio √k (k&gt;0); un punto en k=0; vacío para k&lt;0.</div>
       </div>

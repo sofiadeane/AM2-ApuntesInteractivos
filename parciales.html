@@ -43,6 +43,7 @@
               </div>
               <div class="quiz-back-footer">
                 <button class="quiz-next-btn" onclick="nextQuiz1Question()">Siguiente →</button>
+                <span class="quiz-reread-link" role="button" tabindex="0" onclick="unflipQuiz1Card()">Releer pregunta</span>
               </div>
             </div>
           </div>
@@ -54,7 +55,11 @@
         <p class="quiz-final-pct" id="quiz1-final-pct">0%</p>
         <p id="quiz1-final-sub" style="color:var(--ink-soft); font-size:13.5px; margin:0;"></p>
         <div class="quiz-final-reco" id="quiz1-final-reco"></div>
-        <button class="quiz-retry-btn" onclick="restartQuiz1()">Volver a intentar</button>
+        <div class="pill-row" id="quiz1-history-badge"></div>
+        <div class="quiz-final-actions">
+          <button class="quiz-retry-btn" onclick="restartQuiz1()">Volver a intentar</button>
+          <button class="quiz-retry-btn quiz-review-btn" onclick="startQuiz1Review()">Repasar solo lo pendiente</button>
+        </div>
       </div>
 
     </div>
@@ -70,8 +75,7 @@
       <a class="exam-btn" href="examenes/2doParcial/2parcial_ejemplo5.pdf" target="_blank" rel="noopener noreferrer" title="2do Parcial, examen viejo de ejemplo 5 (PDF)">P2 ejemplo 4</a>
       <a class="exam-btn" href="examenes/2doParcial/2parcial_compilado.pdf" target="_blank" rel="noopener noreferrer" title="2do Parcial, compilado de exámenes viejos (PDF)">P2 compilado</a>
     </div>
-    <div class="tip" style="margin:14px 0 0;">Mismo sistema: poné los PDFs en <span class="mathi">\text{examenes/2doParcial/}</span> y copiá un bloque cambiando el nombre de archivo.</div>
-
+      
     <p class="exam-section-title">Teoría del Segundo Parcial</p>
     <div class="quiz-wrap">
 
@@ -97,6 +101,7 @@
               </div>
               <div class="quiz-back-footer">
                 <button class="quiz-next-btn" onclick="nextQuizQuestion()">Siguiente →</button>
+                <span class="quiz-reread-link" role="button" tabindex="0" onclick="unflipQuizCard()">Releer pregunta</span>
               </div>
             </div>
           </div>
@@ -108,7 +113,11 @@
         <p class="quiz-final-pct" id="quiz-final-pct">0%</p>
         <p id="quiz-final-sub" style="color:var(--ink-soft); font-size:13.5px; margin:0;"></p>
         <div class="quiz-final-reco" id="quiz-final-reco"></div>
-        <button class="quiz-retry-btn" onclick="restartQuiz()">Volver a intentar</button>
+        <div class="pill-row" id="quiz-history-badge"></div>
+        <div class="quiz-final-actions">
+          <button class="quiz-retry-btn" onclick="restartQuiz()">Volver a intentar</button>
+          <button class="quiz-retry-btn quiz-review-btn" onclick="startQuizReview()">Repasar solo lo pendiente</button>
+        </div>
       </div>
 
     </div>
