@@ -11,6 +11,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 <script src="https://www.geogebra.org/apps/deployggb.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.9.1/math.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraphcore.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraph.css">
 <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
@@ -527,6 +530,51 @@
     });
   }
 
+  /* ================= EJERCICIO GUIADO U1: verificación de EDO con math.js =================
+     El alumno propone y(x) para la EDO y'+3y=xe^(-3x) (la misma del ejemplo resuelto de la
+     unidad). Derivamos su propuesta con math.derivative, armamos el residuo
+     y'+3y-xe^(-3x) y chequeamos si es idénticamente 0: primero con math.simplify(), y si
+     eso no alcanza a reducirlo del todo, con muestreo numérico en varios puntos de respaldo
+     (simplify() no garantiza detectar toda equivalencia simbólica posible). */
+  function checkU1Practice(){
+    const input = document.getElementById('u1-practice-input');
+    const resultEl = document.getElementById('u1-practice-result');
+    const raw = input.value.trim();
+    resultEl.className = 'practice-result';
+    if(!raw){
+      resultEl.classList.add('bad');
+      resultEl.textContent = 'Escribí primero tu propuesta de y(x).';
+      return;
+    }
+    try{
+      const exprStr = raw.replace(/^\s*y\s*(\(\s*x\s*\))?\s*=\s*/i, '');
+      const yNode = math.parse(exprStr);
+      const dyNode = math.derivative(yNode, 'x');
+      const residualStr = '(' + dyNode.toString() + ') + 3*(' + exprStr + ') - (x*exp(-3*x))';
+      let isZero = false;
+      try{ isZero = math.simplify(residualStr).toString() === '0'; }
+      catch(e){ /* si simplify falla, probamos numéricamente igual */ }
+      if(!isZero){
+        const compiled = math.compile(residualStr);
+        const testPoints = [0.3, 1.1, 2.7, -0.6, 4.2];
+        isZero = testPoints.every(function(xv){
+          const v = compiled.evaluate({x:xv});
+          return typeof v === 'number' && Math.abs(v) < 1e-6;
+        });
+      }
+      if(isZero){
+        resultEl.classList.add('ok');
+        resultEl.textContent = "¡Sí! Tu propuesta resuelve la ecuación: y'+3y-xe⁻³ˣ da 0 en todos los puntos que probamos.";
+      } else {
+        resultEl.classList.add('bad');
+        resultEl.textContent = "Todavía no. Derivá tu y(x), reemplazá en y'+3y, y fijate si realmente te queda xe⁻³ˣ.";
+      }
+    }catch(e){
+      resultEl.classList.add('bad');
+      resultEl.textContent = 'No pude interpretar esa expresión. Revisá la sintaxis de la pista de abajo.';
+    }
+  }
+
   const loadedSections = new Set(['home']);
   // La sección "examenes" (id interno, usado por el sidebar/JS) vive en el archivo
   // parciales.html (nombre distinto al id). El resto usa el mismo nombre
@@ -775,6 +823,7 @@
     document.getElementById('empty-'+unit).style.display = 'none';
     document.getElementById('panel-'+unit+'-'+name).scrollIntoView({behavior:'smooth', block:'nearest'});
     ensureGeoGebraMounted(unit, name);
+    ensureJSXMounted(unit, name);
   }
 
   /* ================= VISUALIZACIONES GEOGEBRA (lazy, una vez por panel) =================
@@ -851,6 +900,74 @@
     if(!cfg || ggbMountedKeys.has(key)) return;
     ggbMountedKeys.add(key);
     mountGeoGebra(cfg.containerId, {}, cfg.build);
+  }
+
+  /* ================= VISUALIZACIONES JSXGRAPH (lazy, una vez por panel) =================
+     Mismo patrón que ggbMounts: jxgMounts mapea "unidad-subtema" -> {containerId, build()}.
+  ============================================================================ */
+  const jxgMountedKeys = new Set();
+  const jxgMounts = {
+    'u2-nivel': {
+      containerId: 'jxg-u2-nivel',
+      build(){
+        const board = JXG.JSXGraph.initBoard('jxg-u2-nivel', {
+          boundingbox: [-3.5, 4, 3.5, -3.5], axis:true, showCopyright:false, showNavigation:false
+        });
+        const c = board.create('slider', [[-3, 3.6], [1, 3.6], [-2, 4, 8]], {name:'c', snapWidth:0.2});
+        const center = board.create('point', [0, 0], {visible:false, fixed:true});
+        const circle = board.create('circle', [center, function(){ return Math.sqrt(Math.max(c.Value(), 0)); }],
+          {strokeColor:'#7B5FFF', strokeWidth:3, fillColor:'none'});
+        const glider = board.create('glider', [1, 0, circle], {name:'P', size:4, color:'#FF3E8E'});
+        const gradTip = board.create('point', [
+          function(){ const x=glider.X(), y=glider.Y(); const n=Math.sqrt(x*x+y*y)||1; return x + x/n; },
+          function(){ const x=glider.X(), y=glider.Y(); const n=Math.sqrt(x*x+y*y)||1; return y + y/n; }
+        ], {visible:false});
+        board.create('arrow', [glider, gradTip], {strokeColor:'#FF6B35', strokeWidth:3});
+      }
+    },
+    'u11-green': {
+      containerId: 'jxg-u11-green',
+      build(){
+        const board = JXG.JSXGraph.initBoard('jxg-u11-green', {
+          boundingbox: [-5, 5, 5, -5], axis:true, showCopyright:false, showNavigation:false
+        });
+        const a = board.create('point', [-2, -1], {name:'', size:3, color:'#7B5FFF'});
+        const b = board.create('point', [3, -2], {name:'', size:3, color:'#7B5FFF'});
+        const c = board.create('point', [2, 3], {name:'', size:3, color:'#7B5FFF'});
+        const d = board.create('point', [-3, 2], {name:'', size:3, color:'#7B5FFF'});
+        const poly = board.create('polygon', [a, b, c, d], {fillColor:'#D4FF3F', fillOpacity:0.3});
+
+        // Circulación de f=(-y/2,x/2) sobre el borde del polígono: es exactamente
+        // la fórmula del área de Gauss (shoelace), Paso a paso ya explicado arriba.
+        function circulacion(){
+          const pts = [a, b, c, d];
+          let sum = 0;
+          for(let i=0;i<pts.length;i++){
+            const p1 = pts[i], p2 = pts[(i+1)%pts.length];
+            sum += p1.X()*p2.Y() - p2.X()*p1.Y();
+          }
+          // Valor absoluto: si el alumno arrastra los vértices a orden horario el signo
+          // se invierte (orientación de Green), pero acá nos interesa mostrar que
+          // coincide en magnitud con el área, no enseñar la convención de signo.
+          return Math.abs(sum/2);
+        }
+
+        board.create('text', [-4.7, 4.5, function(){
+          return 'Circulación ∮f·ds: ' + circulacion().toFixed(2);
+        }], {fontSize:13, cssStyle:'font-family:IBM Plex Mono,monospace;'});
+        board.create('text', [-4.7, 4.0, function(){
+          return 'Área ∬1 dA: ' + poly.Area().toFixed(2);
+        }], {fontSize:13, cssStyle:'font-family:IBM Plex Mono,monospace;'});
+      }
+    }
+  };
+
+  function ensureJSXMounted(unit, name){
+    const key = unit+'-'+name;
+    const cfg = jxgMounts[key];
+    if(!cfg || jxgMountedKeys.has(key)) return;
+    jxgMountedKeys.add(key);
+    cfg.build();
   }
 
   function showParcial(which){

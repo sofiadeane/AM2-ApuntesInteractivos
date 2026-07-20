@@ -144,6 +144,20 @@
         <div class="example-answer">y = (k + x²/2)e⁻³ˣ</div>
       </div>
     </details>
+
+    <details class="block practice-block">
+      <summary>🧪 Practicá: proponé una solución y comprobala vos mismo/a</summary>
+      <div class="inner">
+        <p>Es la misma EDO del ejemplo de arriba: <span class="mathi">y'+3y=xe^{-3x}</span>. Proponé una función <span class="mathi">y(x)</span> (probá con distintos valores de k, o incluso con algo que creas que está mal) y el sistema deriva tu propuesta, la reemplaza en la ecuación, y te dice si el resultado da 0 en todos lados o no.</p>
+        <div class="practice-input-row">
+          <span class="practice-label">y(x) =</span>
+          <input type="text" id="u1-practice-input" placeholder="ej: (x^2/2 + 3)*exp(-3*x)" autocomplete="off" spellcheck="false">
+          <button class="practice-check-btn" onclick="checkU1Practice()">Comprobar</button>
+        </div>
+        <p class="practice-hint">Sintaxis: <code>*</code> para multiplicar, <code>^</code> para potencias, <code>exp(...)</code> para exponencial, <code>.</code> para decimales (no coma).</p>
+        <div id="u1-practice-result" class="practice-result"></div>
+      </div>
+    </details>
   </div>
 
   <div id="panel-u1-familia" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
