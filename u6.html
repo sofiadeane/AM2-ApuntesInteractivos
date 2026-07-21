@@ -7,24 +7,24 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u6-general" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u6','general')">
+    <button type="button" class="choice-card" id="u6-general" style="--card-color:#FF6B35; --card-text:#1B2340; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u6','general')">
       <span class="eyebrow">D(g∘f) = Dg·Df</span>
       <p class="cc-title">REGLA DE LA CADENA GENERAL</p>
       <p class="cc-desc">Composición de dos funciones diferenciables cualesquiera.</p>
-    </div>
-    <div class="choice-card" id="u6-particular" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u6','particular')">
+    </button>
+    <button type="button" class="choice-card" id="u6-particular" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u6','particular')">
       <span class="eyebrow">(f∘r)' = ∇f·r'</span>
       <p class="cc-title">CAMPO ESCALAR ∘ CURVA</p>
       <p class="cc-desc">Caso particular: composición de un campo escalar con una trayectoria.</p>
-    </div>
-    <div class="choice-card" id="u6-tfi" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u6','tfi')">
+    </button>
+    <button type="button" class="choice-card" id="u6-tfi" style="--card-color:#AD31FF; --card-text:#fff; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u6','tfi')">
       <span class="eyebrow">F(x,y,z) = k</span>
       <p class="cc-title">TEOREMA DE LA FUNCIÓN IMPLÍCITA</p>
       <p class="cc-desc">Derivar una variable definida implícitamente, sin despejarla.</p>
-    </div>
+    </button>
   </div>
 
-  <div id="panel-u6-general" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+  <div id="panel-u6-general" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#1B2340;">
     <div class="detail-header">REGLA DE LA CADENA GENERAL</div>
     <div class="detail-sub">f: A ⊂ ℝⁿ → ℝᵐ, g: B ⊂ ℝᵐ → ℝᵏ, con f(A) ⊂ B.</div>
 
@@ -122,7 +122,7 @@
     </details>
   </div>
 
-  <div id="panel-u6-tfi" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+  <div id="panel-u6-tfi" class="detail-panel" style="--panel-color:#AD31FF; --panel-text:#fff;">
     <div class="detail-header">TEOREMA DE LA FUNCIÓN IMPLÍCITA</div>
     <div class="detail-sub">Ecuación F(x,y,z) = k (o F(x,y) = k), en un entorno de un punto dado.</div>
 

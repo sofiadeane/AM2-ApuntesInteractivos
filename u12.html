@@ -7,19 +7,19 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u12-homog" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u12','homog')">
+    <button type="button" class="choice-card" id="u12-homog" style="--card-color:#7659FF; --card-text:#fff; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u12','homog')">
       <span class="eyebrow">f(x) = 0</span>
       <p class="cc-title">HOMOGÉNEA</p>
       <p class="cc-desc">y'' + a y' + b y = 0. Resolver vía polinomio característico.</p>
-    </div>
-    <div class="choice-card" id="u12-nohomog" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u12','nohomog')">
+    </button>
+    <button type="button" class="choice-card" id="u12-nohomog" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u12','nohomog')">
       <span class="eyebrow">f(x) ≠ 0</span>
       <p class="cc-title">NO HOMOGÉNEA</p>
       <p class="cc-desc">y'' + a y' + b y = f(x). Homogénea asociada + solución particular.</p>
-    </div>
+    </button>
   </div>
 
-  <div id="panel-u12-homog" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+  <div id="panel-u12-homog" class="detail-panel" style="--panel-color:#7659FF; --panel-text:#fff;">
     <div class="detail-header">HOMOGÉNEA (y'' + a y' + b y = 0)</div>
     <div class="detail-sub">Ecuación lineal de 2° orden, coeficientes constantes, lado derecho nulo.</div>
 

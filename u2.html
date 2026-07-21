@@ -7,24 +7,24 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u2-dominio" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u2','dominio')">
+    <button type="button" class="choice-card" id="u2-dominio" style="--card-color:#FF6B35; --card-text:#1B2340; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u2','dominio')">
       <span class="eyebrow">Dom(f)</span>
       <p class="cc-title">DOMINIO</p>
       <p class="cc-desc">Dominio natural de una función o campo, y si es abierto/cerrado.</p>
-    </div>
-    <div class="choice-card" id="u2-conjuntos" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u2','conjuntos')">
+    </button>
+    <button type="button" class="choice-card" id="u2-conjuntos" style="--card-color:#7659FF; --card-text:#fff; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u2','conjuntos')">
       <span class="eyebrow">Topología</span>
       <p class="cc-title">CONJUNTOS: ABIERTO, CERRADO, ACOTADO</p>
       <p class="cc-desc">Interior, frontera, exterior, punto de acumulación.</p>
-    </div>
-    <div class="choice-card" id="u2-nivel" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u2','nivel')">
+    </button>
+    <button type="button" class="choice-card" id="u2-nivel" style="--card-color:#EA0061; --card-text:#fff; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u2','nivel')">
       <span class="eyebrow">Ck = {f(x)=k}</span>
       <p class="cc-title">CURVAS Y SUPERFICIES DE NIVEL</p>
       <p class="cc-desc">Mapa de contorno de una función.</p>
-    </div>
+    </button>
   </div>
 
-  <div id="panel-u2-dominio" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+  <div id="panel-u2-dominio" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#1B2340;">
     <div class="detail-header">DOMINIO</div>
     <div class="detail-sub">Función escalar f, o campo (escalar o vectorial) f.</div>
 
@@ -74,7 +74,7 @@
     </details>
   </div>
 
-  <div id="panel-u2-conjuntos" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+  <div id="panel-u2-conjuntos" class="detail-panel" style="--panel-color:#7659FF; --panel-text:#fff;">
     <div class="detail-header">CONJUNTOS: ABIERTO, CERRADO, ACOTADO</div>
     <div class="detail-sub">Un conjunto A ⊂ ℝⁿ.</div>
 
@@ -138,7 +138,7 @@
     </details>
   </div>
 
-  <div id="panel-u2-nivel" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+  <div id="panel-u2-nivel" class="detail-panel" style="--panel-color:#EA0061; --panel-text:#fff;">
     <div class="detail-header">CURVAS Y SUPERFICIES DE NIVEL</div>
     <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ.</div>
 

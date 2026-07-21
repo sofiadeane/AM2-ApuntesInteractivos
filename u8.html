@@ -7,24 +7,24 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u8-longitud" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u8','longitud')">
+    <button type="button" class="choice-card" id="u8-longitud" style="--card-color:#EA0061; --card-text:#fff; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u8','longitud')">
       <span class="eyebrow">long(C)</span>
       <p class="cc-title">LONGITUD DE ARCO</p>
       <p class="cc-desc">Integrar la norma de la derivada de la parametrización.</p>
-    </div>
-    <div class="choice-card" id="u8-escalar" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u8','escalar')">
+    </button>
+    <button type="button" class="choice-card" id="u8-escalar" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u8','escalar')">
       <span class="eyebrow">campo escalar</span>
       <p class="cc-title">MASA DE UN ALAMBRE</p>
       <p class="cc-desc">Integral de un campo escalar (densidad) a lo largo de C.</p>
-    </div>
-    <div class="choice-card" id="u8-vectorial" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u8','vectorial')">
+    </button>
+    <button type="button" class="choice-card" id="u8-vectorial" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u8','vectorial')">
       <span class="eyebrow">campo vectorial</span>
       <p class="cc-title">TRABAJO / CIRCULACIÓN</p>
       <p class="cc-desc">Integral de un campo vectorial a lo largo de C, orientada.</p>
-    </div>
+    </button>
   </div>
 
-  <div id="panel-u8-longitud" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+  <div id="panel-u8-longitud" class="detail-panel" style="--panel-color:#EA0061; --panel-text:#fff;">
     <div class="detail-header">LONGITUD DE ARCO</div>
     <div class="detail-sub">Curva C parametrizada por α(t), t∈[a,b].</div>
 

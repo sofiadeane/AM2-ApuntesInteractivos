@@ -7,21 +7,21 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u5-definicion" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u5','definicion')">
+    <button type="button" class="choice-card" id="u5-definicion" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u5','definicion')">
       <span class="eyebrow">lim [...] = 0</span>
       <p class="cc-title">DIFERENCIABILIDAD POR DEFINICIÓN</p>
       <p class="cc-desc">Para puntos de corte, o cuando te piden demostrarlo.</p>
-    </div>
-    <div class="choice-card" id="u5-jacobiana" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u5','jacobiana')">
+    </button>
+    <button type="button" class="choice-card" id="u5-jacobiana" style="--card-color:#FF6B35; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u5','jacobiana')">
       <span class="eyebrow">f es C¹ ⇒ diferenciable</span>
       <p class="cc-title">CONDICIÓN SUFICIENTE Y JACOBIANA</p>
       <p class="cc-desc">El atajo que se usa casi siempre, y la matriz jacobiana.</p>
-    </div>
-    <div class="choice-card" id="u5-lineal" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u5','lineal')">
+    </button>
+    <button type="button" class="choice-card" id="u5-lineal" style="--card-color:#AD31FF; --card-text:#fff; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u5','lineal')">
       <span class="eyebrow">L(x) ≈ f(x)</span>
       <p class="cc-title">APROXIMACIÓN LINEAL</p>
       <p class="cc-desc">Estimar el valor de f cerca de un punto conocido.</p>
-    </div>
+    </button>
   </div>
 
   <div id="panel-u5-definicion" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
@@ -84,7 +84,7 @@
     </details>
   </div>
 
-  <div id="panel-u5-jacobiana" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+  <div id="panel-u5-jacobiana" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#1B2340;">
     <div class="detail-header">CONDICIÓN SUFICIENTE Y MATRIZ JACOBIANA</div>
     <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝᵐ, A abierto.</div>
 
@@ -139,7 +139,7 @@
     </details>
   </div>
 
-  <div id="panel-u5-lineal" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+  <div id="panel-u5-lineal" class="detail-panel" style="--panel-color:#AD31FF; --panel-text:#fff;">
     <div class="detail-header">APROXIMACIÓN LINEAL</div>
     <div class="detail-sub">Función f diferenciable en un punto x₀ "cercano" y fácil de evaluar.</div>
 

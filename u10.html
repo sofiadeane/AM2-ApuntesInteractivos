@@ -7,21 +7,21 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u10-area" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u10','area')">
+    <button type="button" class="choice-card" id="u10-area" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u10','area')">
       <span class="eyebrow">área(S)</span>
       <p class="cc-title">ÁREA DE SUPERFICIE</p>
       <p class="cc-desc">Norma del producto vectorial fundamental, integrada en el dominio de parámetros.</p>
-    </div>
-    <div class="choice-card" id="u10-masa" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u10','masa')">
+    </button>
+    <button type="button" class="choice-card" id="u10-masa" style="--card-color:#AD31FF; --card-text:#fff; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u10','masa')">
       <span class="eyebrow">campo escalar</span>
       <p class="cc-title">MASA DE UNA CHAPA</p>
       <p class="cc-desc">Integral de un campo escalar (densidad) sobre S.</p>
-    </div>
-    <div class="choice-card" id="u10-flujo" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u10','flujo')">
+    </button>
+    <button type="button" class="choice-card" id="u10-flujo" style="--card-color:#EA0061; --card-text:#fff; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u10','flujo')">
       <span class="eyebrow">campo vectorial</span>
       <p class="cc-title">FLUJO</p>
       <p class="cc-desc">Integral de un campo vectorial a través de S, con orientación.</p>
-    </div>
+    </button>
   </div>
 
   <div id="panel-u10-area" class="detail-panel" style="--panel-color:#FFD23F; --panel-text:#1B2340;">
@@ -80,7 +80,7 @@
     </details>
   </div>
 
-  <div id="panel-u10-masa" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+  <div id="panel-u10-masa" class="detail-panel" style="--panel-color:#AD31FF; --panel-text:#fff;">
     <div class="detail-header">MASA DE UNA CHAPA (integral de campo escalar)</div>
     <div class="detail-sub">Campo escalar f (densidad δ), superficie S parametrizada por T(u,v).</div>
 
@@ -140,7 +140,7 @@
     </details>
   </div>
 
-  <div id="panel-u10-flujo" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+  <div id="panel-u10-flujo" class="detail-panel" style="--panel-color:#EA0061; --panel-text:#fff;">
     <div class="detail-header">FLUJO (integral de campo vectorial)</div>
     <div class="detail-sub">Campo vectorial f, superficie S orientada, parametrizada por T(u,v).</div>
 

@@ -7,24 +7,24 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u4-direccional" style="--card-color:#FF3E8E; --card-text:#fff; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u4','direccional')">
+    <button type="button" class="choice-card" id="u4-direccional" style="--card-color:#EA0061; --card-text:#fff; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u4','direccional')">
       <span class="eyebrow">∂f/∂v (x₀) = lim...</span>
       <p class="cc-title">DERIVADA POR DEFINICIÓN</p>
       <p class="cc-desc">Derivada respecto a un vector o direccional, usando el límite.</p>
-    </div>
-    <div class="choice-card" id="u4-parciales" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u4','parciales')">
+    </button>
+    <button type="button" class="choice-card" id="u4-parciales" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u4','parciales')">
       <span class="eyebrow">∇f</span>
       <p class="cc-title">PARCIALES Y GRADIENTE</p>
       <p class="cc-desc">Regla práctica, derivada direccional máxima y direcciones de derivada nula.</p>
-    </div>
-    <div class="choice-card" id="u4-superior" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u4','superior')">
+    </button>
+    <button type="button" class="choice-card" id="u4-superior" style="--card-color:#7659FF; --card-text:#fff; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u4','superior')">
       <span class="eyebrow">∂²f/∂x∂y</span>
       <p class="cc-title">DERIVADAS DE ORDEN SUPERIOR</p>
       <p class="cc-desc">Derivadas segundas y el teorema de Schwarz.</p>
-    </div>
+    </button>
   </div>
 
-  <div id="panel-u4-direccional" class="detail-panel" style="--panel-color:#FF3E8E; --panel-text:#fff;">
+  <div id="panel-u4-direccional" class="detail-panel" style="--panel-color:#EA0061; --panel-text:#fff;">
     <div class="detail-header">DERIVADA POR DEFINICIÓN</div>
     <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ, A abierto, x₀ ∈ A, vector v ≠ 0.</div>
 
@@ -149,7 +149,7 @@
     </details>
   </div>
 
-  <div id="panel-u4-superior" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+  <div id="panel-u4-superior" class="detail-panel" style="--panel-color:#7659FF; --panel-text:#fff;">
     <div class="detail-header">DERIVADAS DE ORDEN SUPERIOR</div>
     <div class="detail-sub">Función f: A ⊂ ℝⁿ → ℝ, A abierto.</div>
 

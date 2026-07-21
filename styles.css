@@ -4,10 +4,9 @@
     --card-shadow: 0 2px 0 rgba(27,35,64,0.08), 0 8px 20px -12px rgba(27,35,64,0.25);
   }
   *{box-sizing:border-box;}
-  [role="button"]{ cursor:pointer; }
-  [role="button"]:focus-visible{ outline:3px solid #1B2340; outline-offset:3px; }
-  .sb-item[role="button"]:focus-visible{ outline-color:#fff; }
+  button{ cursor:pointer; font:inherit; color:inherit; text-align:inherit; background:none; border:none; appearance:none; -webkit-appearance:none; }
   button:focus-visible{ outline:3px solid #1B2340; outline-offset:2px; }
+  .sb-item:focus-visible{ outline-color:#fff; }
   body{ margin:0; background-color:var(--paper);
     background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 28px 28px; color:var(--ink); font-family:'IBM Plex Sans', sans-serif; min-height:100vh; }
@@ -47,13 +46,13 @@
   .tile-num{ font-family:'IBM Plex Mono', monospace; font-size:12px; opacity:.65; margin:0 0 8px; font-weight:600; }
   .tile-title{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:20px; margin:0 0 6px; }
   .tile-desc{ font-size:13px; opacity:.85; margin:0; line-height:1.4; }
-  .tile-pink{ background:#FF3E8E; color:#fff; }
+  .tile-pink{ background:#EA0061; color:#fff; }
   .tile-lime{ background:#D4FF3F; color:var(--ink); }
   .tile-teal{ background:#33D6C0; color:var(--ink); }
-  .tile-orange{ background:#FF6B35; color:#fff; }
-  .tile-purple{ background:#7B5FFF; color:#fff; }
+  .tile-orange{ background:#FF6B35; color:#1B2340; }
+  .tile-purple{ background:#7659FF; color:#fff; }
   .tile-yellow{ background:#FFD23F; color:var(--ink); }
-  .tile-violet{ background:#C061FF; color:#fff; }
+  .tile-violet{ background:#AD31FF; color:#fff; }
 
   .pill-row{ display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:14px 0 24px; }
   .mini-pill{ font-family:'IBM Plex Mono', monospace; font-size:11px; background:#EDEAE0; border:1px solid var(--grid); color:var(--ink-soft); padding:6px 13px; border-radius:16px; }
@@ -205,9 +204,8 @@
   .tip-img{ display:block; max-width:100%; border:1px dashed var(--grid); border-radius:8px; margin:6px 0 16px; padding:4px; background:var(--paper); min-height:60px; }
   .tip-img-caption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft); margin:-10px 0 16px; }
 
-  .coord-subtitle{ display:block; text-align:center; }
+  .coord-subtitle{ display:block; text-align:center; margin:22px 0 10px; }
   .coord-subtitle span{ display:inline-block; font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:15px; color:#fff; padding:5px 12px; border-radius:7px; }
-  .coord-subtitle{ margin:22px 0 10px; }
   .coord-subtitle:first-child{ margin-top:0; }
 
   /* ---- Exámenes: parciales y PDFs embebidos ---- */

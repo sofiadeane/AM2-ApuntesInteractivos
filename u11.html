@@ -7,21 +7,21 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u11-green" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u11','green')">
+    <button type="button" class="choice-card" id="u11-green" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u11','green')">
       <span class="eyebrow">Curva cerrada, plano xy</span>
       <p class="cc-title">GREEN</p>
       <p class="cc-desc">Circulación en 2D / integral doble sobre la región que encierra la curva.</p>
-    </div>
-    <div class="choice-card" id="u11-stokes" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u11','stokes')">
+    </button>
+    <button type="button" class="choice-card" id="u11-stokes" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u11','stokes')">
       <span class="eyebrow">Curva cerrada, espacio 3D</span>
       <p class="cc-title">STOKES</p>
       <p class="cc-desc">Circulación en 3D / flujo del rotor a través de una superficie con ese borde.</p>
-    </div>
-    <div class="choice-card" id="u11-gauss" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u11','gauss')">
+    </button>
+    <button type="button" class="choice-card" id="u11-gauss" style="--card-color:#FF6B35; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u11','gauss')">
       <span class="eyebrow">Superficie cerrada</span>
       <p class="cc-title">GAUSS</p>
       <p class="cc-desc">Flujo saliente / integral triple de la divergencia sobre el sólido que encierra.</p>
-    </div>
+    </button>
   </div>
 
   <div id="panel-u11-green" class="detail-panel" style="--panel-color:#D4FF3F; --panel-text:#1B2340;">
@@ -172,7 +172,7 @@
     </details>
   </div>
 
-  <div id="panel-u11-gauss" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+  <div id="panel-u11-gauss" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#1B2340;">
     <div class="detail-header">GAUSS (flujo por superficie cerrada)</div>
     <div class="detail-sub">Campo f = (P, Q, R), superficie S = ∂V cerrada (frontera de un sólido V).</div>
 

@@ -7,21 +7,21 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u7-taylor" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u7','taylor')">
+    <button type="button" class="choice-card" id="u7-taylor" style="--card-color:#FFD23F; --card-text:#1B2340; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u7','taylor')">
       <span class="eyebrow">P₂(x,y)</span>
       <p class="cc-title">POLINOMIO DE TAYLOR</p>
       <p class="cc-desc">Armar el polinomio de orden 2, o leer f/∇f/Hessiano de uno ya dado.</p>
-    </div>
-    <div class="choice-card" id="u7-relativos" style="--card-color:#C061FF; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u7','relativos')">
+    </button>
+    <button type="button" class="choice-card" id="u7-relativos" style="--card-color:#AD31FF; --card-text:#fff; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u7','relativos')">
       <span class="eyebrow">∇f = 0, criterio de Hf</span>
       <p class="cc-title">EXTREMOS RELATIVOS</p>
       <p class="cc-desc">Puntos críticos y clasificación con el criterio del Hessiano.</p>
-    </div>
-    <div class="choice-card" id="u7-absolutos" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u7','absolutos')">
+    </button>
+    <button type="button" class="choice-card" id="u7-absolutos" style="--card-color:#D4FF3F; --card-text:#1B2340; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u7','absolutos')">
       <span class="eyebrow">Weierstrass + Lagrange</span>
       <p class="cc-title">EXTREMOS ABSOLUTOS</p>
       <p class="cc-desc">En un conjunto cerrado y acotado: interior + frontera.</p>
-    </div>
+    </button>
   </div>
 
   <div id="panel-u7-taylor" class="detail-panel" style="--panel-color:#FFD23F; --panel-text:#1B2340;">
@@ -77,7 +77,7 @@
     </details>
   </div>
 
-  <div id="panel-u7-relativos" class="detail-panel" style="--panel-color:#C061FF; --panel-text:#fff;">
+  <div id="panel-u7-relativos" class="detail-panel" style="--panel-color:#AD31FF; --panel-text:#fff;">
     <div class="detail-header">EXTREMOS RELATIVOS</div>
     <div class="detail-sub">Función f: A ⊂ ℝ² → ℝ, f de clase C² en A abierto.</div>
 

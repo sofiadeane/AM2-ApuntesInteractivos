@@ -7,21 +7,21 @@
   </div>
 
   <div class="card-grid">
-    <div class="choice-card" id="u1-separables" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u1','separables')">
+    <button type="button" class="choice-card" id="u1-separables" style="--card-color:#33D6C0; --card-text:#1B2340; transform:rotate(-2deg)" aria-pressed="false" onclick="showPanel('u1','separables')">
       <span class="eyebrow">y' = g(x)h(y)</span>
       <p class="cc-title">VARIABLES SEPARABLES</p>
       <p class="cc-desc">Separar x de y e integrar cada lado (incluye el caso homogéneo de grado 0).</p>
-    </div>
-    <div class="choice-card" id="u1-lineal" style="--card-color:#FF6B35; --card-text:#fff; transform:rotate(2deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u1','lineal')">
+    </button>
+    <button type="button" class="choice-card" id="u1-lineal" style="--card-color:#FF6B35; --card-text:#1B2340; transform:rotate(2deg)" aria-pressed="false" onclick="showPanel('u1','lineal')">
       <span class="eyebrow">y' + a(x)y = b(x)</span>
       <p class="cc-title">LINEAL DE ORDEN 1</p>
       <p class="cc-desc">Fórmula madre: y = k·y1 + y0.</p>
-    </div>
-    <div class="choice-card" id="u1-familia" style="--card-color:#7B5FFF; --card-text:#fff; transform:rotate(-1.5deg)" role="button" tabindex="0" aria-pressed="false" onclick="showPanel('u1','familia')">
+    </button>
+    <button type="button" class="choice-card" id="u1-familia" style="--card-color:#7659FF; --card-text:#fff; transform:rotate(-1.5deg)" aria-pressed="false" onclick="showPanel('u1','familia')">
       <span class="eyebrow">F(x,y) = C</span>
       <p class="cc-title">FAMILIA DE CURVAS / HAZ ORTOGONAL</p>
       <p class="cc-desc">De la familia a su EDO, y de ahí a la familia ortogonal.</p>
-    </div>
+    </button>
   </div>
 
   <div id="panel-u1-separables" class="detail-panel" style="--panel-color:#33D6C0; --panel-text:#1B2340;">
@@ -81,7 +81,7 @@
     </details>
   </div>
 
-  <div id="panel-u1-lineal" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
+  <div id="panel-u1-lineal" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#1B2340;">
     <div class="detail-header">LINEAL DE ORDEN 1</div>
     <div class="detail-sub">EDO de la forma y' + a(x)y = b(x).</div>
 
@@ -160,7 +160,7 @@
     </details>
   </div>
 
-  <div id="panel-u1-familia" class="detail-panel" style="--panel-color:#7B5FFF; --panel-text:#fff;">
+  <div id="panel-u1-familia" class="detail-panel" style="--panel-color:#7659FF; --panel-text:#fff;">
     <div class="detail-header">FAMILIA DE CURVAS / HAZ ORTOGONAL</div>
     <div class="detail-sub">Dada una familia F(x,y)=C, hallar su EDO y, si lo piden, la del haz ortogonal.</div>
 
