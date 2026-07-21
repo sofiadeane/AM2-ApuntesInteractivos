@@ -2,6 +2,12 @@
     --paper:#F7F5EE; --grid:#DCD9CD; --ink:#1B2340; --ink-soft:#4A5170; --warn:#B33A3A;
     --ok:#2E7D46; --bad:#B33A3A;
     --card-shadow: 0 2px 0 rgba(27,35,64,0.08), 0 8px 20px -12px rgba(27,35,64,0.25);
+    /* Ancho del riel colapsado del sidebar = lo que su propio contenido necesita
+       (icono + padding + margen del item), nunca un valor de viewport arbitrario. */
+    --sb-rail-icon: 22px;
+    --sb-rail-pad-x: 12px;
+    --sb-rail-margin-x: 10px;
+    --sb-rail-width: calc(var(--sb-rail-icon) + 2*var(--sb-rail-pad-x) + 2*var(--sb-rail-margin-x));
   }
   *{box-sizing:border-box;}
   button{ cursor:pointer; font:inherit; color:inherit; text-align:inherit; background:none; border:none; appearance:none; -webkit-appearance:none; }
@@ -60,16 +66,17 @@
   @media (max-width:560px){ .org-tile.featured{ flex-basis:100%; max-width:100%; } }
 
   /* ---- menu flotante ---- */
-  #sidebar{ position:fixed; top:0; left:0; bottom:0; width:68px; background:var(--ink); z-index:100; overflow-y:auto; overflow-x:hidden; transition:width .2s ease; display:flex; flex-direction:column; padding:14px 0; border-radius:0 10px 10px 0; }
+  #sidebar{ position:fixed; top:0; left:0; bottom:0; width:var(--sb-rail-width); background:var(--ink); z-index:100; overflow-y:auto; overflow-x:hidden; transition:width .2s ease; display:flex; flex-direction:column; padding:14px 0; border-radius:0 10px 10px 0; }
   #sidebar.expanded{ width:280px; }
-  .sb-toggle{ background:none; border:none; color:#fff; width:100%; display:flex; align-items:center; padding:8px 22px 18px; cursor:pointer; gap:12px; }
+  .sb-toggle{ background:none; border:none; color:#fff; width:100%; display:flex; align-items:center; padding:8px 22px 18px; cursor:pointer; gap:0; }
   .sb-toggle svg{ width:20px; height:20px; flex:0 0 20px; transition:transform .2s ease; }
   #sidebar.expanded .sb-toggle svg.chevron{ transform:rotate(180deg); }
-  .sb-item{ display:flex; align-items:center; gap:12px; padding:9px 12px; margin:2px 10px; border-radius:12px; cursor:pointer; color:rgba(255,255,255,0.75); white-space:nowrap; }
+  .sb-item{ display:flex; align-items:center; gap:0; padding:9px var(--sb-rail-pad-x); margin:2px var(--sb-rail-margin-x); border-radius:12px; cursor:pointer; color:rgba(255,255,255,0.75); white-space:nowrap; }
   .sb-item:hover{ background:rgba(255,255,255,0.07); color:#fff; }
   .sb-item.active{ background:rgba(255,255,255,0.12); color:#fff; }
   .sb-item.disabled{ cursor:not-allowed; opacity:0.38; }
-  .sb-icon{ width:22px; height:22px; flex:0 0 22px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700; border-radius:7px; color:var(--ink); }
+  #sidebar.expanded .sb-item, #sidebar.expanded .sb-toggle{ gap:12px; }
+  .sb-icon{ width:var(--sb-rail-icon); height:var(--sb-rail-icon); flex:0 0 var(--sb-rail-icon); display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700; border-radius:7px; color:var(--ink); }
   .sb-icon.sb-plain{ background:transparent; color:inherit; }
   .sb-icon svg{ width:20px; height:20px; stroke:currentColor; }
   .sb-label-group{ opacity:0; max-width:0; overflow:hidden; transition:opacity .15s ease; }
@@ -77,15 +84,15 @@
   .sb-title{ font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:13.5px; margin:0; color:#fff; }
   .sb-desc{ font-size:10.5px; color:rgba(255,255,255,0.55); margin:2px 0 0; line-height:1.3; }
   .sb-divider{ height:1px; background:rgba(255,255,255,0.12); margin:10px 20px; }
-  .sb-check{ margin-left:auto; color:#33D6C0; font-size:11px; }
 
-  #content-wrap{ margin-left:68px; transition:margin-left .2s ease; }
+  #content-wrap{ margin-left:var(--sb-rail-width); transition:margin-left .2s ease; }
   #sidebar.expanded ~ #content-wrap{ margin-left:280px; }
 
   @media (max-width:700px){
-    #sidebar{ width:56px; }
     #sidebar.expanded{ width:230px; box-shadow:8px 0 26px rgba(0,0,0,0.35); }
-    #content-wrap, #sidebar.expanded ~ #content-wrap{ margin-left:56px; }
+    /* En mobile el flyout expandido se superpone al contenido en vez de correrlo
+       (el contenido queda con el margen del riel colapsado). */
+    #sidebar.expanded ~ #content-wrap{ margin-left:var(--sb-rail-width); }
   }
 
   .card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:18px; }

@@ -340,7 +340,6 @@
 
   function defaultProgress(){
     return {
-      unitsSeen: {},
       quizHistory: {},
       streak: { lastDate: null, current: 0, best: 0 },
       leitner: {}
@@ -372,34 +371,6 @@
     const d = new Date(dateStr+'T00:00:00');
     d.setDate(d.getDate()+days);
     return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-
-  /* ---- 1) Progreso por unidad (visto/no visto) ---- */
-  function markUnitSeen(unit){
-    const store = getStore();
-    if(store.unitsSeen[unit]) return;
-    store.unitsSeen[unit] = true;
-    saveStore(store);
-    renderSidebarProgress();
-  }
-
-  function renderSidebarProgress(){
-    const store = getStore();
-    Object.keys(unitPanels).forEach(function(unit){
-      const item = document.getElementById('sb-'+unit);
-      if(!item) return;
-      let check = item.querySelector('.sb-check');
-      if(store.unitsSeen[unit]){
-        if(!check){
-          check = document.createElement('span');
-          check.className = 'sb-check';
-          check.textContent = '✓';
-          item.appendChild(check);
-        }
-      } else if(check){
-        check.remove();
-      }
-    });
   }
 
   /* ---- 3) Racha de días de estudio ---- */
@@ -496,7 +467,6 @@
       try{
         const parsed = Object.assign(defaultProgress(), JSON.parse(e.target.result));
         saveStore(parsed);
-        renderSidebarProgress();
         renderStreakBadge();
         alert('¡Progreso importado correctamente!');
       }catch(err){
@@ -785,7 +755,6 @@
     await ensureSectionLoaded(unit);
     showUnit(unit);
     setActiveSidebar(unit);
-    if(unitPanels[unit]) markUnitSeen(unit);
     if(window.innerWidth <= 700){
       document.getElementById('sidebar').classList.remove('expanded');
     }
@@ -1543,7 +1512,6 @@
 
   document.addEventListener('DOMContentLoaded', function(){
     setActiveSidebar('home');
-    renderSidebarProgress();
     updateStreak();
     renderExamTimer();
     renderMathInElement(document.body, {
