@@ -161,6 +161,15 @@
         <div class="example-answer">circulación = 4π</div>
       </div>
     </details>
+
+    <details class="block practice-block">
+      <summary>🔍 Explorá: Stokes en vivo (mismo campo y superficie del ejemplo)</summary>
+      <div class="inner">
+        <p>Corte del plano <span class="mathi">x=2</span> (el mismo del ejemplo): un disco de radio <span class="mathi">R</span> ajustable. Con <span class="mathi">\vec f=(xy,\,y-x,\,yz^2)</span>, arrastrá el slider R y mirá cómo la circulación <span class="mathi">\oint_{\partial S}\vec f\cdot d\vec s</span> y el flujo del rotor <span class="mathi">\iint_S \operatorname{rot}(\vec f)\cdot d\vec\sigma</span> cambian juntos: los dos valen exactamente <span class="mathi">\pi R^4/4</span>.</p>
+        <div id="jxg-u11-stokes" class="jxg-viewer" style="width:100%; max-width:460px; aspect-ratio:1; margin:16px auto;"></div>
+        <p class="practice-hint">Ejes y, z del corte en x=2. Los dos valores de arriba siempre coinciden — esa igualdad ES el teorema de Stokes para esta superficie plana.</p>
+      </div>
+    </details>
   </div>
 
   <div id="panel-u11-gauss" class="detail-panel" style="--panel-color:#FF6B35; --panel-text:#fff;">
@@ -228,6 +237,19 @@
         <p><b>Paso 9.</b> Resolvemos:</p>
         $$\left[\frac{u^4}{4}\right]_0^4 = \frac{256}{4} = 64$$
         <div class="example-answer">flujo = 64</div>
+      </div>
+    </details>
+
+    <details class="block practice-block">
+      <summary>🔍 Explorá: Gauss en vivo (cubo de lado L)</summary>
+      <div class="inner">
+        <p>Sólido V = cubo <span class="mathi">[0,L]^3</span>, campo <span class="mathi">\vec f=(x,y,z)</span> (así <span class="mathi">\operatorname{div}(\vec f)=3</span>, constante). Arrastrá el slider L y mirá cómo el flujo saliente <span class="mathi">\iint_{\partial V}\vec f\cdot d\vec\sigma</span> y la integral de la divergencia <span class="mathi">\iiint_V 3\,dV=3L^3</span> cambian juntos.</p>
+        <div class="ggb-viewer" id="ggb-u11-gauss" style="margin:16px 0; min-height:400px;"></div>
+        <div class="pill-row">
+          <span class="mini-pill" id="u11-gauss-flux">Flujo: —</span>
+          <span class="mini-pill" id="u11-gauss-div">3·Volumen(V): —</span>
+        </div>
+        <p class="practice-hint">Los dos valores de arriba siempre coinciden — esa igualdad ES el teorema de Gauss para este sólido.</p>
       </div>
     </details>
   </div>

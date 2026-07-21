@@ -830,6 +830,10 @@
      ggbMounts mapea "unidad-subtema" -> {containerId, build(applet)}. build() corre una sola
      vez, recién cuando el applet termina de cargar (appletOnLoad), y ahí es donde se pueden
      usar applet.evalCommand(...) con seguridad.
+     TODO: u11-gauss usa GeoGebra (sólido 3D real) en vez de JSXGraph porque un cubo
+     genuinamente 3D no tiene una reducción 2D fiel como sí la tienen Green y Stokes
+     (superficie plana). Si en el futuro se decide sacar la dependencia de GeoGebra
+     del todo, evaluar el soporte 3D experimental de JSXGraph (view3d) como reemplazo.
   ============================================================================ */
   const ggbMountedKeys = new Set();
   const ggbMounts = {
@@ -890,6 +894,23 @@
       build(applet){
         // S: x=4-y^2, con z<=x, x>=0, z>=0 — T(u,v)=(4-u^2, u, v).
         applet.evalCommand('S=Surface(4-u^2,u,v,u,-2,2,v,0,4-u^2)');
+      }
+    },
+    'u11-gauss': {
+      containerId: 'ggb-u11-gauss',
+      build(applet){
+        // V = cubo [0,L]^3, f=(x,y,z) => div(f)=3. Flujo saliente = 3*Volumen(V) = 3L^3.
+        applet.evalCommand('L=Slider(0.5,3,0.1)');
+        applet.evalCommand('cubo=Cube((0,0,0),(L,0,0),(L,L,0))');
+        const fluxEl = document.getElementById('u11-gauss-flux');
+        const divEl = document.getElementById('u11-gauss-div');
+        function update(){
+          const val = (3 * Math.pow(applet.getValue('L'), 3)).toFixed(2);
+          fluxEl.textContent = 'Flujo: ' + val;
+          divEl.textContent = '3·Volumen(V): ' + val;
+        }
+        applet.registerObjectUpdateListener('L', update);
+        update();
       }
     }
   };
@@ -957,6 +978,29 @@
         }], {fontSize:13, cssStyle:'font-family:IBM Plex Mono,monospace;'});
         board.create('text', [-4.7, 4.0, function(){
           return 'Área ∬1 dA: ' + poly.Area().toFixed(2);
+        }], {fontSize:13, cssStyle:'font-family:IBM Plex Mono,monospace;'});
+      }
+    },
+    'u11-stokes': {
+      containerId: 'jxg-u11-stokes',
+      build(){
+        // Corte del plano x=2 (mismo ejemplo del panel): disco y^2+z^2<=R^2, normal (1,0,0).
+        // f=(xy,y-x,yz^2) => rot(f)=(z^2,0,-1-x); sobre x=2 sólo importa la 1a componente.
+        // Circulación y flujo del rotor dan ambos exactamente pi*R^4/4 (verificado a mano).
+        const board = JXG.JSXGraph.initBoard('jxg-u11-stokes', {
+          boundingbox: [-3.5, 4, 3.5, -3.5], axis:true, showCopyright:false, showNavigation:false,
+          defaultAxes: { x:{name:'y', withLabel:true}, y:{name:'z', withLabel:true} }
+        });
+        const R = board.create('slider', [[-3, 3.6], [1, 3.6], [0.2, 1.2, 2.5]], {name:'R', snapWidth:0.1});
+        const center = board.create('point', [0, 0], {visible:false, fixed:true});
+        board.create('circle', [center, function(){ return R.Value(); }],
+          {strokeColor:'#33D6C0', strokeWidth:3, fillColor:'#33D6C0', fillOpacity:0.15});
+        function value(){ return Math.PI * Math.pow(R.Value(), 4) / 4; }
+        board.create('text', [-3.4, -2.6, function(){
+          return 'Circulación ∮f·ds: ' + value().toFixed(2);
+        }], {fontSize:13, cssStyle:'font-family:IBM Plex Mono,monospace;'});
+        board.create('text', [-3.4, -3.1, function(){
+          return 'Flujo rot(f): ' + value().toFixed(2);
         }], {fontSize:13, cssStyle:'font-family:IBM Plex Mono,monospace;'});
       }
     }
