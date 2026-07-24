@@ -73,3 +73,421 @@
     </div>
   </details>
 
+  <details class="tip-block" id="tip-limites" style="--tip-color:#AD31FF;">
+    <summary>No encuentro los límites de integración: ¿qué puedo mirar ahora?</summary>
+    <div class="tip-inner">
+
+    <p>Esto <b>no</b> es una teoría más para leer de corrido. Es una lista ordenada de preguntas para cuando te trabás con los límites de una integral doble, triple, o con un cambio de variables. No te va a resolver "el ejercicio", pero sí te va a decir <b>dónde mirar</b> — que la mayoría de las veces es lo único que falta.</p>
+    <p>Usala de dos formas: la primera vez, leé las 6 preguntas en orden, como un procedimiento. Después, cuando ya la conozcas, saltá directo a la que te haga falta, como una referencia rápida.</p>
+
+    <p class="coord-subtitle"><span style="background:#AD31FF; color:#fff;">Checklist: antes de abandonar el ejercicio</span></p>
+    <ul class="tip-checklist">
+      <li>☐ <a href="#lim-eliminar-variable">¿Puedo eliminar una variable?</a></li>
+      <li>☐ <a href="#lim-transitividad">¿Comparé los extremos (transitividad)?</a></li>
+      <li>☐ <a href="#lim-dominio">¿Alguna expresión me obliga un dominio?</a></li>
+      <li>☐ <a href="#lim-parametrizacion">¿La parametrización restringe los parámetros?</a></li>
+      <li>☐ <a href="#lim-geometria">¿Reconozco la superficie o región?</a></li>
+      <li>☐ <a href="#lim-interseccion">¿La región es la intersección de varias superficies?</a></li>
+    </ul>
+    <p>Y si ninguna de esas seis te cierra, siempre podés volver a la que las resume a todas: <a href="#lim-condiciones-necesarias">¿qué necesita un punto para existir en la región?</a></p>
+
+    <details class="block" style="--panel-color:#33D6C0;">
+      <summary>¿Puedo eliminar una variable?</summary>
+      <div class="inner" id="lim-eliminar-variable">
+
+        <span class="example-source">La idea</span>
+        <p>Cuando una variable queda acotada arriba y abajo por expresiones de las otras (algo como <span class="mathi">A(x,y)\le z\le B(x,y)</span>), la primera pregunta NO es "¿cuánto vale z?". Es más básica: <b>¿puede existir algún valor de z ahí?</b> Si la respuesta es no para cierto <span class="mathi">(x,y)</span>, ese punto ni siquiera pertenece a la proyección de la región. Preguntarte eso es lo que te da, gratis, el dominio de las variables que quedan.</p>
+
+        <span class="example-source">Paso a paso</span>
+        <ol class="steps">
+          <li><div class="step-body">Ubicá la variable acotada entre dos expresiones de las demás: <span class="mathi">A(\text{resto})\le v\le B(\text{resto})</span>.</div></li>
+          <li><div class="step-body">Preguntate qué tiene que pasar para que ese intervalo no esté vacío: necesariamente <span class="mathi">A(\text{resto})\le B(\text{resto})</span>.</div></li>
+          <li><div class="step-body">Esa desigualdad ya no tiene a <span class="mathi">v</span>: es una condición pura sobre el resto de las variables. Ésa es la proyección (o el dominio) que buscabas.</div></li>
+          <li><div class="step-body">Usá esa condición para armar los límites de las variables restantes, con cualquiera de las otras ramas de este árbol si hace falta.</div></li>
+        </ol>
+
+        <div class="theorem-box">
+          <div class="name">Regla general</div>
+          <p>Si una variable <span class="mathi">v</span> aparece acotada como <span class="mathi">f(\text{resto})\le v\le g(\text{resto})</span>, una condición <b>necesaria</b> para que exista algún valor de <span class="mathi">v</span> es <span class="mathi">f(\text{resto})\le g(\text{resto})</span>. Esa desigualdad, sin <span class="mathi">v</span>, es la proyección/dominio de las variables que quedan. No es un truco: es matemática de existencia, pura y dura.</p>
+        </div>
+
+        <span class="example-source">Ejemplo (cartesianas)</span>
+        <p>Sólido dado por <span class="mathi">2y\le z\le 3-x^2-y^2</span>. Para que exista <span class="mathi">z</span>:</p>
+        $$2y \le 3-x^2-y^2 \;\Rightarrow\; x^2+y^2+2y \le 3 \;\Rightarrow\; x^2+(y+1)^2-1 \le 3$$
+        $$x^2+(y+1)^2 \le 4$$
+        <div class="example-answer">Proyección: disco de centro (0,-1) y radio 2</div>
+
+        <span class="example-source">Ejemplo (cilíndricas)</span>
+        <p>Sólido dado por <span class="mathi">r^2\le z\le 4-r^2</span> (con <span class="mathi">r\ge0</span> ya de por sí). Para que exista <span class="mathi">z</span>:</p>
+        $$r^2 \le 4-r^2 \;\Rightarrow\; 2r^2\le4 \;\Rightarrow\; r\le\sqrt2$$
+        <div class="example-answer">Proyección: 0 ≤ r ≤ √2</div>
+
+        <span class="example-source">Ejemplo (esféricas)</span>
+        <p>Sólido entre el plano <span class="mathi">z=\tfrac12</span> y la esfera <span class="mathi">x^2+y^2+z^2=2z</span> (que en esféricas es <span class="mathi">\rho=2\cos\varphi</span>; el plano es <span class="mathi">\rho=\tfrac{1}{2\cos\varphi}</span>). El sólido pedido es <span class="mathi">\tfrac{1}{2\cos\varphi}\le\rho\le2\cos\varphi</span>. Para que exista <span class="mathi">\rho</span>:</p>
+        $$\frac{1}{2\cos\varphi}\le2\cos\varphi \;\Rightarrow\; 1\le4\cos^2\varphi \;\Rightarrow\; \cos\varphi\ge\frac12$$
+        <div class="example-answer">Proyección: 0 ≤ φ ≤ π/3</div>
+
+        <div class="caution"><b>Ojo:</b> no confundas "igualar las dos cotas" con "encontrar la frontera". Igualar <span class="mathi">A(\text{resto})=B(\text{resto})</span> te da sólo el <b>borde</b> de la proyección (una curva); la proyección completa es la región donde vale la desigualdad <span class="mathi">A(\text{resto})\le B(\text{resto})</span>, no sólo esa curva.</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">Tenés z acotada así: A(x,y) ≤ z ≤ B(x,y), y no sabés cuál es la proyección D. ¿Qué es lo primero que deberías analizar?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'Sin la proyección D no podés armar los límites de las otras dos variables: hace falta encontrarla antes, no después.')">Plantear la integral triple directamente, la proyección se ve al final</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Exacto: esa desigualdad, sin z, es justo la condición de existencia y define toda la proyección D (no sólo su borde).')">Que A(x,y) ≤ B(x,y): esa desigualdad sin z define la proyección</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'Igualar A(x,y)=B(x,y) te da solo el borde (una curva), no la región completa de la proyección.')">Igualar A(x,y) = B(x,y) y quedarme con esa curva</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="tip-next-link">¿Esto no era lo que te trababa? Seguí con → <a href="#lim-transitividad">¿Puedo comparar extremos (transitividad)?</a></div>
+
+    <details class="block" style="--panel-color:#EA0061;">
+      <summary>¿Puedo deducir nuevas restricciones por transitividad?</summary>
+      <div class="inner" id="lim-transitividad">
+
+        <span class="example-source">La idea</span>
+        <p>A veces no tenés una variable "de más" para eliminar por existencia: tenés directamente una <b>cadena</b> de desigualdades entre las variables que ya usás, tipo <span class="mathi">A&lt;B&lt;C</span>. Ahí lo que conviene preguntarse es: si comparo los dos extremos de la cadena, salteándome el del medio, ¿qué me queda? Esa comparación casi siempre esconde una restricción que no estaba escrita explícitamente.</p>
+
+        <span class="example-source">Paso a paso</span>
+        <ol class="steps">
+          <li><div class="step-body">Buscá una cadena de desigualdades entre tres (o más) expresiones: <span class="mathi">A&lt;B&lt;C</span> (o combinaciones de cotas que se puedan encadenar).</div></li>
+          <li><div class="step-body">Compará los extremos, saltando el término del medio: de <span class="mathi">A&lt;B</span> y <span class="mathi">B&lt;C</span> se deduce <span class="mathi">A&lt;C</span>.</div></li>
+          <li><div class="step-body">Esa nueva desigualdad ya no tiene el término del medio: es una restricción escondida sobre las variables de los extremos.</div></li>
+          <li><div class="step-body">Sumala a lo que ya tenías (no reemplaza nada: es una condición ADICIONAL que también tiene que cumplirse).</div></li>
+        </ol>
+
+        <div class="theorem-box">
+          <div class="name">Regla general</div>
+          <p>Si <span class="mathi">A\le B\le C</span>, automáticamente vale <span class="mathi">A\le C</span>. Eso no te dice nada nuevo sobre <span class="mathi">B</span>, pero sí es una restricción necesaria sobre lo que aparece en <span class="mathi">A</span> y en <span class="mathi">C</span>, aunque el enunciado nunca la haya escrito así.</p>
+        </div>
+
+        <span class="example-source">Ejemplo 1</span>
+        <p>Región <span class="mathi">-x&lt;y&lt;x</span>. Comparando los extremos (saltando la <span class="mathi">y</span> del medio):</p>
+        $$-x &lt; y &lt; x \;\Rightarrow\; -x &lt; x \;\Rightarrow\; 2x&gt;0$$
+        <div class="example-answer">Restricción escondida: x &gt; 0</div>
+
+        <span class="example-source">Ejemplo 2</span>
+        <p>Región <span class="mathi">0&lt;x</span>, <span class="mathi">x&lt;y</span>, <span class="mathi">x+y&lt;2</span>. Como <span class="mathi">y&gt;x</span>, entonces <span class="mathi">x+y&gt;x+x=2x</span>; y como <span class="mathi">x+y&lt;2</span>:</p>
+        $$2x &lt; x+y &lt; 2 \;\Rightarrow\; 2x&lt;2$$
+        <div class="example-answer">Restricción escondida: x &lt; 1</div>
+
+        <div class="caution"><b>Ojo:</b> transitividad te da una condición <b>necesaria</b>, no te reemplaza la desigualdad original. No borres <span class="mathi">-x&lt;y&lt;x</span> y te quedes sólo con <span class="mathi">x&gt;0</span>: las dos siguen siendo parte de la región.</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">¿Qué condición aparece por transitividad en -x &lt; y &lt; x?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'y no queda fija en 0: sigue siendo una variable que recorre el intervalo (-x, x). Lo que se deduce es una condición sobre x, no sobre y.')">y = 0</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Sí: comparando los extremos -x y x (salteando la y del medio) se deduce -x<x, es decir x>0, aunque el enunciado no lo diga explícitamente.')">x > 0</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'Esa desigualdad no sale de comparar -x con x: fijate de nuevo qué pasa si sumás los dos extremos de la cadena en vez de compararlos.')">x + y > 0</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="tip-next-link">¿Esto no era lo que te trababa? Seguí con → <a href="#lim-dominio">¿Alguna expresión obliga un dominio?</a></div>
+
+    <details class="block" style="--panel-color:#FFD23F;">
+      <summary>¿Alguna expresión obliga un dominio?</summary>
+      <div class="inner" id="lim-dominio">
+
+        <span class="example-source">La idea</span>
+        <p>A veces la restricción no sale de la geometría del recinto que dibujaste, sino de que una cuenta simplemente no está definida en todos lados. Antes de seguir, recorré la expresión (el integrando, una superficie, o una fórmula del cambio de variables) preguntándote: <b>¿hay algo acá que podría "romperse"?</b></p>
+
+        <span class="example-source">Cómo pensarlo</span>
+        <ol class="steps">
+          <li><div class="step-body">Recorré la expresión buscando operaciones parcialmente definidas: algo bajo una raíz, adentro de un logaritmo, en un denominador, o como argumento de un arcsen/arccos.</div></li>
+          <li><div class="step-body">Para cada una que encuentres, preguntate qué necesita esa operación para tener sentido (el radicando no puede ser negativo, el argumento del log tiene que ser positivo, el denominador no puede anularse, el argumento de arcsen/arccos tiene que estar en [-1,1]).</div></li>
+          <li><div class="step-body">Traducí esa necesidad a una desigualdad en las variables del problema.</div></li>
+          <li><div class="step-body">Sumala al resto de las restricciones: no reemplaza nada, es una condición más.</div></li>
+        </ol>
+
+        <div class="theorem-box">
+          <div class="name">Regla general</div>
+          <p>Toda operación parcialmente definida exige que su argumento esté en el conjunto donde esa operación tiene sentido. Esa exigencia es una restricción más sobre el recinto, aunque el enunciado nunca la mencione explícitamente.</p>
+        </div>
+
+        <span class="example-source">Ejemplo</span>
+        <p>Región <span class="mathi">D=\{(x,y): |x|&lt;\sqrt{y+3}\}</span>. Lo primero que hay que mirar acá no es la desigualdad con <span class="mathi">x</span>, sino la raíz:</p>
+        $$y+3 \ge 0 \;\Rightarrow\; y\ge-3$$
+        <div class="example-answer">Restricción de dominio (independiente de x): y ≥ -3</div>
+
+        <div class="caution"><b>Ojo:</b> es común anotar <span class="mathi">\sqrt{y+3}</span> y seguir de largo sin preguntarte si <span class="mathi">y+3</span> puede ser negativo. Y cuidado con los signos: si el dominio te queda con <span class="mathi">\le</span> por un lado (por ejemplo, de un arcsen) y con <span class="mathi">&lt;</span> estricto por otro (un denominador que no puede anularse), no los mezcles: cada uno mantiene su propio signo.</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">En D = {(x,y): |x| &lt; √(y+3)}, ¿qué restricción aparece únicamente por una cuestión de dominio (no de la desigualdad con x)?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'La raíz no le pide nada al signo de x: lo que exige es que su propio radicando (y+3) no sea negativo.')">x ≥ 0</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Correcto: la raíz exige que el radicando sea no negativo, y eso da y ≥ -3, sin importar qué valga x.')">y ≥ -3</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'El signo quedó invertido: la raíz pide que y+3 no sea negativo, o sea y≥-3, no y≤-3.')">y ≤ -3</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="tip-next-link">¿Esto no era lo que te trababa? Seguí con → <a href="#lim-parametrizacion">¿La parametrización agrega restricciones?</a></div>
+
+    <details class="block" style="--panel-color:#FF6B35;">
+      <summary>¿La parametrización agrega restricciones?</summary>
+      <div class="inner" id="lim-parametrizacion">
+
+        <span class="example-source">La idea</span>
+        <p>Cambiar de variables (a polares, cilíndricas o esféricas) no es sólo reescribir ecuaciones: las variables nuevas (<span class="mathi">r</span>, <span class="mathi">\theta</span>, <span class="mathi">\rho</span>, <span class="mathi">\varphi</span>) tienen su <b>propio</b> rango natural. Si no lo restringís, tu parametrización "cubre de más" (recorre el mismo punto dos veces, o barre puntos que en el sistema original ni existían).</p>
+
+        <span class="example-source">Paso a paso</span>
+        <ol class="steps">
+          <li><div class="step-body">Antes de nada, anotá lo que la parametrización necesita para no ser redundante: <span class="mathi">r\ge0</span> (o <span class="mathi">\rho\ge0</span>), y que <span class="mathi">\theta</span> (y <span class="mathi">\varphi</span>) recorran un rango que cubra todo sin repetir.</div></li>
+          <li><div class="step-body">Si el enunciado le agrega una condición extra a x, y o z (por ejemplo <span class="mathi">x&lt;0</span>, <span class="mathi">y\ge0</span>, <span class="mathi">z\ge0</span>), reemplazá esa variable por su fórmula en el nuevo sistema.</div></li>
+          <li><div class="step-body">Resolvé la desigualdad que te queda (casi siempre en términos de <span class="mathi">\sin</span> o <span class="mathi">\cos</span>) para encontrar el rango de <span class="mathi">\theta</span> o <span class="mathi">\varphi</span>.</div></li>
+          <li><div class="step-body">Combiná esa restricción nueva con las que ya tenías de la superficie o el dominio (usando el resto de las ramas de este árbol si hace falta).</div></li>
+        </ol>
+
+        <p class="coord-subtitle"><span style="background:#FF6B35; color:#1B2340;">Polares</span></p>
+        <p>Restricciones típicas: <span class="mathi">r\ge0</span> siempre, y <span class="mathi">\cos\theta</span>/<span class="mathi">\sin\theta</span> heredan el signo de x/y. Ejemplo: <span class="mathi">x=r\cos\theta</span>, <span class="mathi">x&lt;0</span>, <span class="mathi">r\ge0</span>. Como <span class="mathi">r\ge0</span>, el signo de x depende sólo de <span class="mathi">\cos\theta</span>:</p>
+        $$r\cos\theta&lt;0,\ r\ge0 \;\Rightarrow\; \cos\theta&lt;0 \;\Rightarrow\; \theta\in\left(\frac\pi2,\frac{3\pi}2\right)$$
+
+        <p class="coord-subtitle"><span style="background:#7659FF; color:#fff;">Cilíndricas</span></p>
+        <p>Además de las restricciones de <span class="mathi">r</span> y <span class="mathi">\theta</span> (igual que en polares), en cilíndricas suele aparecer <span class="mathi">z</span> acotada entre dos funciones de <span class="mathi">r</span> — ahí volvés a la <a href="#lim-eliminar-variable">rama 1</a> para eliminarla. Ejemplo combinado: <span class="mathi">0\le z\le4-r^2</span>, <span class="mathi">x&gt;0</span>.</p>
+        $$\underbrace{0\le4-r^2 \Rightarrow r\le\sqrt2}_{\text{elimina }z\text{ (rama 1)}} \qquad \underbrace{\cos\theta&gt;0 \Rightarrow \theta\in\left(-\frac\pi2,\frac\pi2\right)}_{\text{parametrización}}$$
+        <div class="example-answer">0 ≤ r ≤ √2, -π/2 &lt; θ &lt; π/2, 0 ≤ z ≤ 4-r²</div>
+
+        <p class="coord-subtitle"><span style="background:#EA0061; color:#fff;">Esféricas</span></p>
+        <p>Acá aparecen restricciones de <span class="mathi">\rho</span>, <span class="mathi">\varphi</span> y <span class="mathi">\theta</span>. Un caso clásico: la condición <span class="mathi">z\ge0</span>.</p>
+        $$z\ge0 \;\Rightarrow\; \rho\cos\varphi\ge0 \;\Rightarrow\; \cos\varphi\ge0\ (\rho\ge0\text{ siempre}) \;\Rightarrow\; \varphi\in\left[0,\frac\pi2\right]$$
+
+        <div class="theorem-box">
+          <div class="name">Regla general</div>
+          <p>Un cambio de variables hereda automáticamente <span class="mathi">r\ge0</span> (o <span class="mathi">\rho\ge0</span>) y necesita que <span class="mathi">\theta</span> (y <span class="mathi">\varphi</span>) recorran un rango de longitud exacta para cubrir el plano/espacio sin repetir ni faltar puntos. Cualquier condición extra del enunciado sobre el signo de x, y o z se traduce reemplazando esa variable por su fórmula en el nuevo sistema.</p>
+        </div>
+
+        <div class="caution"><b>Ojo:</b> <span class="mathi">r</span> y <span class="mathi">\rho</span> ya son siempre <span class="mathi">\ge0</span> por construcción — no son ellos los que aportan el signo de x, y o z. Y en esféricas, <span class="mathi">\sin\varphi\ge0</span> siempre (porque <span class="mathi">\varphi\in[0,\pi]</span>), así que el signo de x e y depende sólo de <span class="mathi">\cos\theta</span>/<span class="mathi">\sin\theta</span>, nunca de <span class="mathi">\varphi</span>.</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">En cilíndricas tenés la condición x &gt; 0 del enunciado. ¿A qué se traduce?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'r ya es siempre ≥0 por construcción: no es r el que aporta el signo de x, sino θ.')">r > 0</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Sí: como r≥0 siempre, el signo de x=r·cosθ depende sólo de cosθ, así que x>0 se traduce en cosθ>0, es decir θ∈(-π/2,π/2).')">cos θ > 0, es decir θ ∈ (-π/2, π/2)</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'θ>0 no alcanza ni es lo correcto: por ejemplo θ=3π/4 es positivo pero ahí x=r·cos(3π/4)<0.')">θ &gt; 0</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="tip-next-link">¿Esto no era lo que te trababa? Seguí con → <a href="#lim-geometria">¿Reconozco la superficie o región?</a></div>
+
+    <details class="block" style="--panel-color:#7659FF;">
+      <summary>¿Reconozco la superficie o región?</summary>
+      <div class="inner" id="lim-geometria">
+
+        <span class="example-source">La idea</span>
+        <p>Muchas veces la ecuación no te dice nada hasta que la "traducís" a una forma conocida. Reconocer que algo es un disco, una esfera o un paraboloide suele resolver de un plumazo una restricción que, a mano, te costaría deducir.</p>
+
+        <span class="example-source">Formas representativas</span>
+        <table>
+          <tr><th>Forma algebraica</th><th>Qué es</th><th>Qué te regala</th></tr>
+          <tr><td><span class="mathi">x^2+y^2\le R^2</span></td><td>disco</td><td>pensá polares directas</td></tr>
+          <tr><td><span class="mathi">x^2+y^2+z^2\le R^2</span></td><td>esfera sólida</td><td>pensá esféricas, <span class="mathi">\rho\le R</span></td></tr>
+          <tr><td><span class="mathi">x^2+y^2\le R^2</span> (sin z)</td><td>cilindro</td><td>pensá cilíndricas, <span class="mathi">r\le R</span>, z libre</td></tr>
+          <tr><td><span class="mathi">z^2=x^2+y^2</span></td><td>cono (vértice en el origen)</td><td>en esféricas es <span class="mathi">\varphi=</span>cte</td></tr>
+          <tr><td><span class="mathi">z=x^2+y^2</span></td><td>paraboloide</td><td>en cilíndricas es <span class="mathi">z=r^2</span></td></tr>
+          <tr><td><span class="mathi">(x/a)^2+(y/b)^2\le1</span></td><td>elipse</td><td>achatá con <span class="mathi">x=au,\ y=bv</span> antes de ir a polares</td></tr>
+        </table>
+
+        <div class="theorem-box">
+          <div class="name">Regla general</div>
+          <p>Antes de plantear ninguna integral, traducí cada ecuación del enunciado a su nombre geométrico. Reconocer la superficie casi siempre revela de inmediato el rango natural del radio o del ángulo, o te dice si conviene eliminar una variable.</p>
+        </div>
+
+        <span class="example-source">Ejemplo</span>
+        <p>Recinto acotado por el paraboloide <span class="mathi">z=x^2+y^2</span> y el plano <span class="mathi">z=4</span>. Reconocer el paraboloide te dice de inmediato que la proyección sobre el plano xy es el disco donde el paraboloide todavía no superó al plano:</p>
+        $$x^2+y^2\le4$$
+        <div class="example-answer">Proyección: disco de radio 2, sin necesidad de "adivinar"</div>
+
+        <div class="caution"><b>Ojo:</b> no confundas el cono (<span class="mathi">z^2=x^2+y^2</span>, sin término independiente) con la esfera (<span class="mathi">x^2+y^2+z^2=R^2</span>, con un término independiente): comparten los mismos cuadrados pero son superficies completamente distintas. Y si falta una variable en la ecuación (por ejemplo, sólo <span class="mathi">x^2+y^2=R^2</span> en un problema 3D, sin z), no es una esfera: es un cilindro, con z totalmente libre.</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">¿Qué superficie es x² + y² = z² (con z pudiendo ser positivo o negativo)?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'A la esfera le falta un término independiente (algo como =R²) y le sobra un signo: acá los tres cuadrados están igualados entre sí, sin constante.')">Una esfera</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Correcto: sin término independiente y con z² (no z de grado 1), es un cono de doble hoja con vértice en el origen.')">Un cono de doble hoja con vértice en el origen</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'En el paraboloide z aparece de grado 1 (z=x²+y²), no al cuadrado. Acá z está al cuadrado, como x e y.')">Un paraboloide</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="tip-next-link">¿Esto no era lo que te trababa? Seguí con → <a href="#lim-interseccion">¿La región es la intersección de varias superficies?</a></div>
+
+    <details class="block" style="--panel-color:#33D6C0;">
+      <summary>¿La región es la intersección de varias superficies?</summary>
+      <div class="inner" id="lim-interseccion">
+
+        <span class="example-source">La idea</span>
+        <p>Muchas regiones no vienen dadas por una sola ecuación, sino por varias condiciones a la vez ("adentro de la esfera Y arriba del cono"). El recinto real es la intersección de todas ellas, y la curva donde esas superficies se tocan justo en la igualdad suele ser exactamente la frontera que te falta.</p>
+
+        <span class="example-source">Paso a paso</span>
+        <ol class="steps">
+          <li><div class="step-body">Identificá cada superficie por separado (usá la <a href="#lim-geometria">rama anterior</a> si hace falta reconocerlas).</div></li>
+          <li><div class="step-body">Igualá, de a pares, las ecuaciones de las superficies que se combinan.</div></li>
+          <li><div class="step-body">Esa igualdad te da la curva (o el punto) de intersección: es la frontera que separa "adentro" de "afuera" de una de las condiciones, o donde cambia cuál superficie manda.</div></li>
+          <li><div class="step-body">Usá esa intersección como borde de la proyección, o para saber qué ecuación usar como techo/piso en cada parte de la región.</div></li>
+        </ol>
+
+        <div class="theorem-box">
+          <div class="name">Regla general</div>
+          <p>Cuando el recinto está definido por dos o más superficies a la vez, la curva de intersección (donde valen ambas ecuaciones simultáneamente) suele ser exactamente la frontera que necesitás para los límites de la proyección, o el punto donde cambia cuál superficie es la que corresponde usar.</p>
+        </div>
+
+        <span class="example-source">Ejemplo</span>
+        <p>Sólido dentro de la esfera <span class="mathi">x^2+y^2+z^2\le16</span> y arriba del cono <span class="mathi">z=\sqrt{x^2+y^2}</span>. Igualando las dos superficies (con <span class="mathi">z^2=x^2+y^2</span> del cono):</p>
+        $$x^2+y^2+z^2=16,\quad z^2=x^2+y^2 \;\Rightarrow\; 2(x^2+y^2)=16 \;\Rightarrow\; x^2+y^2=8$$
+        <div class="example-answer">Proyección: disco x²+y² ≤ 8; para cada punto, el cono queda abajo y la esfera arriba: √(x²+y²) ≤ z ≤ √(16-x²-y²)</div>
+
+        <div class="caution"><b>Ojo:</b> no busques el límite superior/inferior de una variable ANTES de encontrar dónde se cruzan las superficies: es fácil terminar usando la ecuación equivocada como techo en una parte de la región donde en realidad manda la otra.</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">Sólido descripto como "adentro de x²+y²+z²≤9" y "arriba de z=x²+y²" (paraboloide). ¿Qué buscás para armar los límites?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'Derivar no te da ninguna región: eso serviría para pendientes o rectas tangentes, no para encontrar dónde se cruzan dos superficies.')">Derivar ambas ecuaciones</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Exacto: igualando esfera y paraboloide encontrás la curva de intersección, que te da la frontera de la proyección sobre el plano xy.')">Igualar las dos superficies para hallar la curva de intersección</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'Sumar las ecuaciones miembro a miembro no representa nada geométrico: no es una operación que tenga sentido para encontrar la intersección.')">Sumar las dos ecuaciones miembro a miembro</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <div class="tip-next-link">¿Ninguna de las anteriores resolvió tu duda? Volvé a la pregunta que las resume a todas → <a href="#lim-condiciones-necesarias">¿qué necesita un punto para existir en la región?</a></div>
+
+    <details class="block">
+      <summary>¿Qué condiciones son necesarias para que exista un punto de la región? (la pregunta que resume todo el árbol)</summary>
+      <div class="inner" id="lim-condiciones-necesarias">
+
+        <span class="example-source">La idea</span>
+        <p>Las seis ramas anteriores —eliminar una variable, comparar extremos, pedirle dominio a una expresión, restringir una parametrización, reconocer una superficie, cruzar dos superficies— son, en el fondo, la <b>misma</b> pregunta hecha de formas distintas: <b>¿qué tiene que cumplirse para que un punto pertenezca realmente a la región?</b> Cualquier condición necesaria para esa existencia es una restricción legítima, aunque el enunciado nunca la haya escrito.</p>
+
+        <span class="example-source">Cómo se conecta todo</span>
+        <ol class="steps">
+          <li><div class="step-body">Una variable acotada de más (<a href="#lim-eliminar-variable">rama 1</a>) esconde una condición de existencia para esa variable.</div></li>
+          <li><div class="step-body">Una cadena de desigualdades (<a href="#lim-transitividad">rama 2</a>) esconde una condición transitiva entre sus extremos.</div></li>
+          <li><div class="step-body">Una operación parcialmente definida (<a href="#lim-dominio">rama 3</a>) esconde una condición de dominio.</div></li>
+          <li><div class="step-body">Una parametrización (<a href="#lim-parametrizacion">rama 4</a>) esconde condiciones sobre sus propios parámetros.</div></li>
+          <li><div class="step-body">Una superficie reconocida (<a href="#lim-geometria">rama 5</a>) esconde su rango natural.</div></li>
+          <li><div class="step-body">Una combinación de superficies (<a href="#lim-interseccion">rama 6</a>) esconde una condición de intersección.</div></li>
+        </ol>
+        <p>Las seis responden la misma pregunta con distinto disfraz.</p>
+
+        <div class="theorem-box">
+          <div class="name">Regla general (la que unifica todo el árbol)</div>
+          <p>Frente a cualquier ejercicio de límites, hacete siempre esta pregunta: ¿qué debe cumplirse (en x, y, z, r, θ, ρ, φ, o lo que sea) para que exista al menos un punto de la región con esas coordenadas? Cualquier respuesta a esa pregunta es una restricción válida, la encuentres por el camino que la encuentres.</p>
+        </div>
+
+        <span class="example-source">Ejemplo (repasando la rama 1 con otros ojos)</span>
+        <p>En <span class="mathi">2y\le z\le3-x^2-y^2</span>, la condición <span class="mathi">x^2+(y+1)^2\le4</span> no es un truco de "esa rama en particular": es la respuesta a "¿qué necesita (x,y) para que exista un z que lo acompañe?". Cualquiera de las otras ramas te iba a llevar, tarde o temprano, a hacerte esa misma pregunta con otras palabras.</p>
+
+        <div class="caution"><b>Ojo:</b> el error más común acá es tratar cada rama como una receta suelta para memorizar, y quedarte "sin ideas" apenas un ejercicio no se parece a ningún ejemplo que ya viste. En vez de buscar en la memoria un ejercicio parecido, volvé a hacerte la pregunta de fondo: ¿qué necesita un punto para existir acá?</div>
+
+        <div class="mini-quiz">
+          <p class="mini-quiz-q">Todas las estrategias del árbol responden, en el fondo, la misma pregunta. ¿Cuál es?</p>
+          <div class="quiz-options">
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'El jacobiano importa para el cambio de variables, pero no tiene nada que ver con encontrar los límites de integración.')">¿Cuál es el jacobiano del cambio de variables?</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,true,'Ésa es. Eliminar variables, transitividad, dominio, parametrización, geometría e intersección son, todas, formas distintas de contestar exactamente esta pregunta.')">¿Qué debe cumplirse para que exista al menos un punto de la región?</div>
+            <div class="quiz-opt" onclick="miniQuizAnswer(this,false,'El orden de integración es una decisión de conveniencia práctica, posterior a saber cuáles son los límites.')">¿Cuál es el orden de integración más fácil?</div>
+          </div>
+          <p class="mini-quiz-feedback" hidden></p>
+        </div>
+
+      </div>
+    </details>
+
+    <details class="block example-block" style="--panel-color:#1B2340;">
+      <summary>Ejercicios difíciles (se combinan varias reglas)</summary>
+      <div class="inner">
+
+        <p>Acá abajo, los mismos ejercicios de antes pero resueltos completos, marcando en cada paso <b>qué rama del árbol</b> se está usando. La idea es que veas que un ejercicio "difícil" casi siempre es sólo una cadena corta de 2 o 3 ramas, aplicadas una atrás de la otra.</p>
+
+        <span class="example-source">Ejercicio 1</span>
+        <p><b>Enunciado:</b> plantear los límites para <span class="mathi">2y\le z\le3-x^2-y^2</span>.</p>
+        <p><b>[Rama 1: eliminar variable]</b> Para que exista z: <span class="mathi">2y\le3-x^2-y^2 \Rightarrow x^2+(y+1)^2\le4</span>.</p>
+        <p><b>[Rama 5: reconocer geometría]</b> Eso es un disco de centro (0,-1) y radio 2 en el plano xy.</p>
+        <p><b>[Armado final]</b> Con <span class="mathi">u=x,\ v=y+1</span> (polares desplazadas), <span class="mathi">u=r\cos\theta,\ v=r\sin\theta</span>, con <span class="mathi">0\le r\le2,\ 0\le\theta\le2\pi</span>, y z entre <span class="mathi">2y=2(r\sin\theta-1)</span> y <span class="mathi">3-x^2-y^2</span>.</p>
+        <div class="example-answer">2 ramas: existencia (1) + reconocimiento (5)</div>
+
+        <span class="example-source">Ejercicio 2</span>
+        <p><b>Enunciado:</b> interior de la esfera <span class="mathi">x^2+y^2+z^2\le16</span> y exterior al cono <span class="mathi">z=\sqrt{x^2+y^2}</span>, en cilíndricas.</p>
+        <p><b>[Rama 6: intersección]</b> Igualando esfera y cono: <span class="mathi">x^2+y^2=8</span> (ver el desarrollo completo en la rama de intersección).</p>
+        <p><b>[Rama 1: eliminar variable]</b> Para cada (x,y) del disco, z va del cono a la esfera.</p>
+        <p><b>[Rama 4: parametrización]</b> En cilíndricas: <span class="mathi">r\ge0</span>, <span class="mathi">0\le\theta\le2\pi</span>.</p>
+        <div class="example-answer">0 ≤ r ≤ 2√2, 0 ≤ θ ≤ 2π, r ≤ z ≤ √(16-r²)</div>
+
+        <span class="example-source">Ejercicio 3</span>
+        <p><b>Enunciado:</b> <span class="mathi">0\le z\le4-r^2</span>, <span class="mathi">x&gt;0</span>, en cilíndricas.</p>
+        <p><b>[Rama 1: eliminar variable]</b> Para que exista z: <span class="mathi">0\le4-r^2\Rightarrow r\le2</span>.</p>
+        <p><b>[Rama 4: parametrización]</b> <span class="mathi">x&gt;0\Rightarrow\cos\theta&gt;0\Rightarrow\theta\in(-\pi/2,\pi/2)</span>.</p>
+        <div class="example-answer">0 ≤ r ≤ 2, -π/2 &lt; θ &lt; π/2, 0 ≤ z ≤ 4-r²</div>
+
+        <span class="example-source">Ejercicio 4</span>
+        <p><b>Enunciado:</b> <span class="mathi">\rho\le5</span>, <span class="mathi">z\ge0</span>, <span class="mathi">y\le0</span>, en esféricas.</p>
+        <p><b>[Rama 4: parametrización, condición sobre z]</b> <span class="mathi">z\ge0\Rightarrow\cos\varphi\ge0\Rightarrow\varphi\in[0,\pi/2]</span> (ya que <span class="mathi">\rho\ge0</span> siempre).</p>
+        <p><b>[Rama 4: parametrización, condición sobre y]</b> <span class="mathi">y=\rho\sin\varphi\sin\theta\le0</span>. Como <span class="mathi">\sin\varphi\ge0</span> siempre (porque <span class="mathi">\varphi\in[0,\pi]</span>), necesitamos <span class="mathi">\sin\theta\le0\Rightarrow\theta\in[\pi,2\pi]</span>.</p>
+        <div class="example-answer">0 ≤ ρ ≤ 5, 0 ≤ φ ≤ π/2, π ≤ θ ≤ 2π</div>
+
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Practicá reconociendo la primera pregunta (niveles 1 y 2)</summary>
+      <div class="inner">
+
+        <p>No hace falta resolverlos del todo: para practicar el árbol alcanza con identificar qué rama usarías primero. Acá te dejamos la respuesta al lado de cada uno.</p>
+
+        <p class="coord-subtitle"><span style="background:#33D6C0; color:#1B2340;">Nivel 1 — una sola idea</span></p>
+        <p><span class="mathi">x^2+y^2\le16</span> → <b>[rama 5]</b> reconocer: es un disco de radio 4, directo a polares.</p>
+        <p><span class="mathi">-x&lt;y&lt;x</span> → <b>[rama 2]</b> transitividad: comparando extremos, <span class="mathi">x&gt;0</span>.</p>
+        <p><span class="mathi">|x|&lt;\sqrt{y+3}</span> → <b>[rama 3]</b> dominio: la raíz exige <span class="mathi">y\ge-3</span> (ya lo resolvimos completo más arriba).</p>
+
+        <p class="coord-subtitle"><span style="background:#FF6B35; color:#1B2340;">Nivel 2 — dos ideas</span></p>
+        <p><span class="mathi">y\le z\le4-x^2</span> → <b>[rama 1]</b> existencia: <span class="mathi">y\le4-x^2</span> es la proyección sobre el plano xy.</p>
+        <p><span class="mathi">x=r\cos\theta,\ x&lt;0,\ r\ge0</span> → <b>[rama 4]</b> parametrización: <span class="mathi">\cos\theta&lt;0\Rightarrow\theta\in(\pi/2,3\pi/2)</span>.</p>
+        <p><span class="mathi">x^2+y^2\le9,\ y\ge0</span> → <b>[ramas 5 y 4]</b> mitad superior de un disco de radio 3: en polares, <span class="mathi">0\le r\le3,\ 0\le\theta\le\pi</span>.</p>
+
+      </div>
+    </details>
+
+    <details class="block">
+      <summary>Desafío final: ¿qué rama usarías primero?</summary>
+      <div class="inner">
+
+        <p>10 ejercicios, sin resolverlos: para cada uno, decidí primero cuál sería la <b>primera</b> pregunta del árbol que te conviene hacerte. Después abrí "Ver respuesta" para chequear.</p>
+
+        <table>
+          <tr><th>Ejercicio</th><th>Primera pregunta del árbol</th></tr>
+          <tr><td><span class="mathi">2y\le z\le3-x^2-y^2</span></td><td><details><summary>Ver respuesta</summary>¿Puedo eliminar una variable? (rama 1)</details></td></tr>
+          <tr><td><span class="mathi">-x&lt;y&lt;x</span></td><td><details><summary>Ver respuesta</summary>¿Puedo comparar extremos? (rama 2)</details></td></tr>
+          <tr><td><span class="mathi">|x|&lt;\sqrt{y+3}</span></td><td><details><summary>Ver respuesta</summary>¿Alguna expresión obliga un dominio? (rama 3)</details></td></tr>
+          <tr><td><span class="mathi">x=r\cos\theta,\ x&lt;0</span></td><td><details><summary>Ver respuesta</summary>¿La parametrización restringe los parámetros? (rama 4)</details></td></tr>
+          <tr><td>Sólido entre el paraboloide <span class="mathi">z=x^2+y^2</span> y el plano <span class="mathi">z=4</span></td><td><details><summary>Ver respuesta</summary>¿Reconozco la superficie o región? (rama 5)</details></td></tr>
+          <tr><td><span class="mathi">x^2+y^2+z^2\le9,\ z\ge\sqrt{x^2+y^2}</span></td><td><details><summary>Ver respuesta</summary>¿La región es una intersección? (rama 6)</details></td></tr>
+          <tr><td><span class="mathi">0\le z\le4-r^2,\ x>0</span> (cilíndricas)</td><td><details><summary>Ver respuesta</summary>¿Puedo eliminar una variable? (rama 1, antes de mirar x>0)</details></td></tr>
+          <tr><td><span class="mathi">\rho\le5,\ z\ge0,\ y\le0</span> (esféricas)</td><td><details><summary>Ver respuesta</summary>¿La parametrización restringe los parámetros? (rama 4)</details></td></tr>
+          <tr><td>Interior de <span class="mathi">x^2+y^2+z^2\le16</span> y exterior al cono <span class="mathi">z=\sqrt{x^2+y^2}</span></td><td><details><summary>Ver respuesta</summary>¿La región es una intersección? (rama 6)</details></td></tr>
+          <tr><td>Una desigualdad rara, que no se parece a nada que ya viste</td><td><details><summary>Ver respuesta</summary>¿Qué necesita un punto para existir en la región? (rama 7, la que las resume a todas)</details></td></tr>
+        </table>
+
+      </div>
+    </details>
+
+    </div>
+  </details>
+
