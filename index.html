@@ -11,9 +11,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 <script src="https://www.geogebra.org/apps/deployggb.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.9.1/math.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraphcore.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraph.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.9.1/math.min.js" integrity="sha512-eNGG8Bb4cOLJMU+Mt29WWDCjUq0ERYeqdRWkdi+BF8VobaucqMYPPiBbjmA2DrUjUrT3QisFjDJJaJlzD7wdeg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraphcore.js" integrity="sha512-XiU0KL+dC6s2gR2lJ6209bOtADTD2wy7i/VeSmJaooIsGVxGhs4qK193LVSrfXlehd26ngPWai2zFxmJbzAUTA==" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/1.11.1/jsxgraph.css" integrity="sha512-lqa/hWy51n11JFpyM4r2JV4ewsV8P8wEIPp5s67eL79dS9wQm994qQaHz5wpiqztsLLrmJFQmthRew1erKcRyQ==" crossorigin="anonymous">
 <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
@@ -312,7 +312,7 @@
   // Se suma como query param a los fetch() de secciones para evitar que el navegador
   // sirva una versión vieja cacheada de un *.html cuando se edita el contenido.
   // Subir este número cada vez que cambie el contenido de alguna sección.
-  const ASSET_VERSION = 5;
+  const ASSET_VERSION = 6;
 
   const unitPanels = {
     u1: ['separables','lineal','familia'],
@@ -498,6 +498,23 @@
         el.classList.add('katex-own-line');
       }
     });
+  }
+
+  /* ================= MINI QUIZ DE COMPRENSIÓN (tips.html: límites de integración) =================
+     Chequeo puntual de razonamiento dentro de un nodo del árbol de decisión: una sola
+     pregunta de opción múltiple, sin flip-card ni progreso guardado (a diferencia de los
+     quiz1/quiz2 de parciales.html, acá no hace falta historial ni Leitner). Cada opción
+     llama a esta función con su propio feedback ya redactado en el HTML. */
+  function miniQuizAnswer(el, correct, feedback){
+    const box = el.closest('.mini-quiz');
+    if(!box || box.classList.contains('answered')) return;
+    box.classList.add('answered');
+    box.querySelectorAll('.quiz-opt').forEach(function(o){ o.style.pointerEvents = 'none'; });
+    el.classList.add(correct ? 'correct' : 'incorrect');
+    const fb = box.querySelector('.mini-quiz-feedback');
+    fb.textContent = feedback;
+    fb.className = 'mini-quiz-feedback ' + (correct ? 'ok' : 'bad');
+    fb.hidden = false;
   }
 
   /* ================= EJERCICIO GUIADO U1: verificación de EDO con math.js =================
